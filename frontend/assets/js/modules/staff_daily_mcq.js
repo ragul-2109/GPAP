@@ -62,7 +62,10 @@ const StaffDailyMCQ = (function() {
                 <td><div class="fw-medium">${t.studentsFinished}</div></td>
                 <td><div class="fw-bold text-primary">${t.avgScore}</div></td>
                 <td class="text-end">
-                    <button class="btn btn-sm btn-outline-primary" onclick="StaffDailyMCQ.viewResults(${t.id})">
+                    <button class="btn btn-sm btn-outline-primary" onclick="ExportResults.downloadTestResults('${t.title}')" title="Download Test Data">
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary ms-1" onclick="StaffDailyMCQ.viewResults(${t.id})">
                         <i class="fa-solid fa-eye me-1"></i>View & Proctoring
                     </button>
                 </td>
