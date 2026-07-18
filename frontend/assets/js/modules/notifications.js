@@ -94,10 +94,12 @@ const NotificationsModule = (function() {
             targetSelect.innerHTML += `<option value="management">Send to Management</option>`;
         } else if (role === 'staff') {
             targetSelect.innerHTML += `<option value="student">Broadcast to Students</option>`;
+            targetSelect.innerHTML += `<option value="specific_student">Send to Specific Student</option>`;
             targetSelect.innerHTML += `<option value="management">Send to Management</option>`;
         } else if (role === 'college_admin' || role === 'super_admin') {
             targetSelect.innerHTML += `<option value="all">Broadcast to All Users</option>`;
             targetSelect.innerHTML += `<option value="student">Broadcast to Students</option>`;
+            targetSelect.innerHTML += `<option value="specific_student">Send to Specific Student</option>`;
             targetSelect.innerHTML += `<option value="staff">Broadcast to Staff</option>`;
         } else {
             targetSelect.innerHTML += `<option value="admin">Send to Admin</option>`;
@@ -105,6 +107,8 @@ const NotificationsModule = (function() {
 
         document.getElementById('compose-subject').value = '';
         document.getElementById('compose-message').value = '';
+        document.getElementById('compose-specific-student').value = '';
+        handleTargetChange();
 
         if (typeof bootstrap !== 'undefined') {
             const modalEl = document.getElementById('composeNotificationModal');
@@ -115,11 +119,30 @@ const NotificationsModule = (function() {
         }
     }
 
+    function handleTargetChange() {
+        const target = document.getElementById('compose-target').value;
+        const container = document.getElementById('compose-specific-student-container');
+        if (target === 'specific_student') {
+            container.classList.remove('d-none');
+        } else {
+            container.classList.add('d-none');
+        }
+    }
+
     function sendMessage() {
         const target = document.getElementById('compose-target').value;
-        const targetText = document.getElementById('compose-target').options[document.getElementById('compose-target').selectedIndex].text;
+        let targetText = document.getElementById('compose-target').options[document.getElementById('compose-target').selectedIndex].text;
         const subject = document.getElementById('compose-subject').value.trim();
         const message = document.getElementById('compose-message').value.trim();
+        const specificStudent = document.getElementById('compose-specific-student').value.trim();
+
+        if (target === 'specific_student') {
+            if (!specificStudent) {
+                Swal.fire({ icon: 'warning', title: 'Missing Student', text: 'Please specify the student roll number or name.' });
+                return;
+            }
+            targetText = `Student: ${specificStudent}`;
+        }
 
         if(!subject || !message) {
             Swal.fire({
@@ -280,6 +303,7 @@ const NotificationsModule = (function() {
         filterFeed,
         switchTab,
         openCompose,
+        handleTargetChange,
         sendMessage,
         markAsRead,
         markAllAsRead

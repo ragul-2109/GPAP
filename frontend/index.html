@@ -369,9 +369,13 @@
                 <div class="modal-body p-4">
                     <div class="mb-3">
                         <label class="form-label fw-bold small text-muted">To</label>
-                        <select class="form-select" id="compose-target">
+                        <select class="form-select" id="compose-target" onchange="NotificationsModule.handleTargetChange()">
                             <!-- Populated dynamically based on user role -->
                         </select>
+                    </div>
+                    <div class="mb-3 d-none" id="compose-specific-student-container">
+                        <label class="form-label fw-bold small text-muted">Student Roll Number / Name</label>
+                        <input type="text" class="form-control" id="compose-specific-student" placeholder="e.g. 717821P101 or Arun Kumar">
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold small text-muted">Subject</label>
