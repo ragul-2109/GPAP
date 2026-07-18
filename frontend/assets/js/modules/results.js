@@ -4,66 +4,6 @@ const ResultsModule = (function () {
     const resultsData = [
         {
             id: 1,
-            title: "TCS NQT National Qualifier",
-            type: "live",
-            date: "Jul 10, 2026",
-            time: "10:00 AM",
-            scoreStr: "85/100",
-            percentage: 85,
-            status: "Pass",
-            timeTaken: "85m",
-            percentile: "92nd"
-        },
-        {
-            id: 2,
-            title: "Advanced Data Structures",
-            type: "coding",
-            date: "Jul 12, 2026",
-            time: "02:30 PM",
-            scoreStr: "4/5",
-            percentage: 80,
-            status: "Pass",
-            timeTaken: "45m",
-            percentile: "78th"
-        },
-        {
-            id: 3,
-            title: "Python Basics",
-            type: "mcq",
-            date: "Jul 15, 2026",
-            time: "09:15 AM",
-            scoreStr: "12/25",
-            percentage: 48,
-            status: "Fail",
-            timeTaken: "15m",
-            percentile: "40th"
-        },
-        {
-            id: 4,
-            title: "Infosys Systems Engineer Assessment",
-            type: "live",
-            date: "Jul 05, 2026",
-            time: "11:00 AM",
-            scoreStr: "68/100",
-            percentage: 68,
-            status: "Pass",
-            timeTaken: "90m",
-            percentile: "74th"
-        },
-        {
-            id: 5,
-            title: "Web Development Frameworks",
-            type: "mcq",
-            date: "Jul 01, 2026",
-            time: "04:00 PM",
-            scoreStr: "22/25",
-            percentage: 88,
-            status: "Pass",
-            timeTaken: "20m",
-            percentile: "85th"
-        },
-        {
-            id: 6,
             title: "Daily Data Structures Test",
             type: "daily_mcq",
             date: "Jul 18, 2026",
@@ -73,6 +13,57 @@ const ResultsModule = (function () {
             status: "Pass",
             timeTaken: "22m",
             percentile: "Top 5%",
+            proctoring: {
+                tabSwitches: 0,
+                copyPaste: 0,
+                risk: "Safe"
+            }
+        },
+        {
+            id: 2,
+            title: "Daily Python Concepts Test",
+            type: "daily_mcq",
+            date: "Jul 17, 2026",
+            time: "10:15 AM",
+            scoreStr: "18/25",
+            percentage: 72,
+            status: "Pass",
+            timeTaken: "28m",
+            percentile: "Top 40%",
+            proctoring: {
+                tabSwitches: 2,
+                copyPaste: 0,
+                risk: "Low Risk"
+            }
+        },
+        {
+            id: 3,
+            title: "Daily DBMS Assessment",
+            type: "daily_mcq",
+            date: "Jul 16, 2026",
+            time: "11:00 AM",
+            scoreStr: "9/25",
+            percentage: 36,
+            status: "Fail",
+            timeTaken: "15m",
+            percentile: "Bottom 20%",
+            proctoring: {
+                tabSwitches: 5,
+                copyPaste: 2,
+                risk: "High Risk"
+            }
+        },
+        {
+            id: 4,
+            title: "Daily Web Dev MCQ",
+            type: "daily_mcq",
+            date: "Jul 15, 2026",
+            time: "04:30 PM",
+            scoreStr: "25/25",
+            percentage: 100,
+            status: "Pass",
+            timeTaken: "12m",
+            percentile: "Top 1%",
             proctoring: {
                 tabSwitches: 0,
                 copyPaste: 0,
