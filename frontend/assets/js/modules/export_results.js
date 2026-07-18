@@ -136,8 +136,50 @@ const ExportResults = (function() {
         document.body.removeChild(link);
     }
 
+    // Advanced Professional Profile Export
+    function downloadFullStudentProfile(studentId, student) {
+        if (!student) {
+            alert('Student profile data not found.');
+            return;
+        }
+
+        let csvContent = "";
+
+        // Section 1: Profile Details
+        csvContent += "=== STUDENT PROFILE DATA ===\n";
+        csvContent += `Name,${student.name}\n`;
+        csvContent += `Roll Number,${student.roll}\n`;
+        csvContent += `Branch,${student.branch}\n\n`;
+
+        // Section 2: Analytics & Overall Performance
+        csvContent += "=== OVERALL ANALYTICS ===\n";
+        csvContent += `Average Score,${student.overallAvg}\n`;
+        csvContent += `Total Tests Taken,${student.totalTests}\n`;
+        csvContent += `Cheating Risk Level,${student.riskLevel}\n`;
+        csvContent += `Identified Weak Topics,"${student.weakTopics}"\n\n`;
+
+        // Section 3: Test History
+        csvContent += "=== TEST HISTORY ===\n";
+        csvContent += "Date,Test Name,Score,Proctoring Status\n";
+        
+        student.tests.forEach(t => {
+            csvContent += `"${t.date}","${t.name}","${t.score}","${t.status}"\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `Professional_Profile_${studentId}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     return {
         downloadTestResults,
-        downloadStudentResult
+        downloadStudentResult,
+        downloadFullStudentProfile
     };
 })();
