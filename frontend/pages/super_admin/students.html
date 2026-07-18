@@ -11,17 +11,17 @@
             <div class="col-md-8 text-center">
                 <div class="input-group input-group-lg mb-3 shadow-sm rounded-pill overflow-hidden border">
                     <span class="input-group-text bg-white border-0 ps-4 text-primary"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" class="form-control border-0 px-3 shadow-none" style="font-size: 1rem;" placeholder="Global search by student name, email, roll number, or college...">
-                    <button class="btn btn-primary px-4 border-0">Search</button>
+                    <input type="text" id="studentSearchInput" class="form-control border-0 px-3 shadow-none" style="font-size: 1rem;" placeholder="Global search by student name, email, roll number, or college...">
+                    <button class="btn btn-primary px-4 border-0" id="studentSearchBtn">Search</button>
                 </div>
                 
                 <div class="d-flex justify-content-center gap-3 mt-3">
-                    <select class="form-select form-select-sm w-auto rounded-pill px-3 shadow-sm border-0 bg-white">
+                    <select id="studentCollegeFilter" class="form-select form-select-sm w-auto rounded-pill px-3 shadow-sm border-0 bg-white">
                         <option>College: All</option>
                         <option>Genfinix Institute</option>
-                        <option>XYZ Tech</option>
+                        <option>XYZ Tech University</option>
                     </select>
-                    <select class="form-select form-select-sm w-auto rounded-pill px-3 shadow-sm border-0 bg-white">
+                    <select id="studentStatusFilter" class="form-select form-select-sm w-auto rounded-pill px-3 shadow-sm border-0 bg-white">
                         <option>Status: All</option>
                         <option>Active</option>
                         <option>Suspended</option>
@@ -56,7 +56,7 @@
                         <td>Aug 15, 2023</td>
                         <td><span class="status-pill status-active">Active</span></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary">View Global Profile</button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="SuperStudentsManager.openGlobalProfile(this)">View Global Profile</button>
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                         <td>Sep 02, 2023</td>
                         <td><span class="status-pill status-active">Active</span></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary">View Global Profile</button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="SuperStudentsManager.openGlobalProfile(this)">View Global Profile</button>
                         </td>
                     </tr>
                     <tr>
@@ -80,11 +80,64 @@
                         <td>Jan 10, 2023</td>
                         <td><span class="status-pill status-inactive">Suspended</span></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-primary">View Global Profile</button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="SuperStudentsManager.openGlobalProfile(this)">View Global Profile</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Global Student Profile Modal -->
+<div class="modal fade" id="globalStudentProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center">
+                    <i class="fa-solid fa-user-graduate text-primary me-2"></i> Global Student Profile
+                </h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="bg-primary bg-opacity-10 p-4 border-bottom text-center">
+                    <div class="staff-avatar mx-auto mb-3 bg-primary text-white" style="width: 80px; height: 80px; font-size: 2rem;">👤</div>
+                    <h4 class="mb-1 fw-bold" id="globalProfileName">Student Name</h4>
+                    <div class="text-muted small"><i class="fa-solid fa-building-columns me-1"></i> <span id="globalProfileCollege">College Name</span></div>
+                </div>
+                <div class="p-4">
+                    <h6 class="fw-bold mb-3 border-bottom pb-2">Academic Performance</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="p-3 bg-light rounded text-center">
+                                <div class="text-muted small text-uppercase mb-1">Tests Taken</div>
+                                <h4 class="m-0 fw-bold">14</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 bg-light rounded text-center">
+                                <div class="text-muted small text-uppercase mb-1">Avg Score</div>
+                                <h4 class="m-0 fw-bold text-success">82%</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 bg-light rounded text-center">
+                                <div class="text-muted small text-uppercase mb-1">AI Trust Score</div>
+                                <h4 class="m-0 fw-bold text-primary">98%</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="fw-bold mb-3 border-bottom pb-2">Platform Actions</h6>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-secondary text-start"><i class="fa-solid fa-file-pdf text-muted me-2"></i> Export Complete Dossier (PDF)</button>
+                        <button class="btn btn-outline-danger text-start"><i class="fa-solid fa-ban text-muted me-2"></i> Suspend Global Access</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Close Profile</button>
+            </div>
         </div>
     </div>
 </div>

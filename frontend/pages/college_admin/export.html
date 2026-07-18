@@ -26,8 +26,8 @@
             </div>
             
             <div class="export-btn-group">
-                <button class="btn-export btn-export-csv"><i class="fa-solid fa-file-csv"></i> CSV</button>
-                <button class="btn-export btn-export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button class="btn-export btn-export-csv" onclick="ExportResults.downloadPerformanceCSV()"><i class="fa-solid fa-file-csv"></i> CSV</button>
+                <button class="btn-export btn-export-pdf" onclick="ExportResults.downloadPerformancePDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
 
@@ -50,8 +50,8 @@
             </div>
             
             <div class="export-btn-group">
-                <button class="btn-export btn-export-csv"><i class="fa-solid fa-file-csv"></i> CSV</button>
-                <button class="btn-export btn-export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button class="btn-export btn-export-csv" onclick="ExportResults.downloadAttendanceCSV()"><i class="fa-solid fa-file-csv"></i> CSV</button>
+                <button class="btn-export btn-export-pdf" onclick="ExportResults.downloadAttendancePDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
 
@@ -73,7 +73,8 @@
             </div>
             
             <div class="export-btn-group">
-                <button class="btn-export btn-export-csv" style="flex: 1;"><i class="fa-solid fa-file-shield"></i> Generate Report</button>
+                <button class="btn-export btn-export-csv" onclick="ExportResults.downloadPlacementCSV()"><i class="fa-solid fa-file-csv"></i> CSV</button>
+                <button class="btn-export btn-export-pdf" onclick="ExportResults.downloadPlacementPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
     </div>

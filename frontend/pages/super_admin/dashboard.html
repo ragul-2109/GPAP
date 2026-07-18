@@ -5,14 +5,14 @@
             <div class="text-muted" style="font-size: 0.95rem;">Global Platform Analytics & Control Center</div>
         </div>
         <div>
-            <button class="btn btn-outline-secondary me-2" onclick="exportSuperAdminReport()"><i class="fa-solid fa-download"></i> Export Report</button>
+            <button class="btn btn-outline-secondary me-2" onclick="SuperDashboardManager.exportReport()"><i class="fa-solid fa-download"></i> Export Report</button>
             <button class="btn btn-primary"><i class="fa-solid fa-gear"></i> Platform Settings</button>
         </div>
     </div>
 
     <div class="row g-4 mb-4">
         <div class="col-md-3">
-            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="SuperDashboardManager.openCollegesModal()">
                 <div class="position-absolute"
                     style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: var(--primary-color);"><i
                         class="fa-solid fa-building-columns"></i></div>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="SuperDashboardManager.openStudentsModal()">
                 <div class="position-absolute"
                     style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: #10b981;"><i
                         class="fa-solid fa-users"></i></div>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="SuperDashboardManager.openMRRModal()">
                 <div class="position-absolute"
                     style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: #8b5cf6;"><i
                         class="fa-solid fa-credit-card"></i></div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="SuperDashboardManager.openUptimeModal()">
                 <div class="position-absolute"
                     style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: #f59e0b;"><i
                         class="fa-solid fa-server"></i></div>
@@ -74,9 +74,19 @@
         <div class="col-md-8">
             <div class="lux-card p-4 h-100">
                 <h5 class="mb-4">Platform Activity Overview</h5>
-                <div class="d-flex flex-column justify-content-center align-items-center h-75 text-muted">
-                    <i class="fa-solid fa-chart-line mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
-                    <p>Live Chart Visualization Placeholder</p>
+                <div class="mt-4">
+                    <div class="d-flex align-items-end" style="height: 200px; gap: 20px;">
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 35%; opacity: 0.6;" title="Jan"></div>
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 45%; opacity: 0.6;" title="Feb"></div>
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 60%; opacity: 0.7;" title="Mar"></div>
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 80%; opacity: 0.8;" title="Apr"></div>
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 65%; opacity: 0.7;" title="May"></div>
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 90%; opacity: 0.9;" title="Jun"></div>
+                        <div class="flex-grow-1 bg-primary rounded-top" style="height: 100%; opacity: 1;" title="Jul"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2 text-muted small fw-bold">
+                        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,63 +101,80 @@
     </div>
 </div>
 
-<script>
-    async function loadSuperAnalytics() {
-        try {
-            const res = await fetch('/api/analytics/super', {
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-            });
-            if(res.ok) {
-                const data = await res.json();
-                
-                document.getElementById('sa-total-colleges').innerText = data.overview.total_colleges;
-                document.getElementById('sa-total-students').innerText = data.overview.total_students.toLocaleString();
-                
-                let mrr = data.overview.mrr / 1000;
-                document.getElementById('sa-mrr').innerHTML = `$${mrr}<span style="font-size: 1.5rem;">k</span>`;
-                
-                document.getElementById('sa-uptime').innerHTML = `${data.overview.uptime}<span style="font-size: 1.5rem;">%</span>`;
-                
-                const alertsList = document.getElementById('sa-alerts-list');
-                alertsList.innerHTML = '';
-                
-                const iconMap = {
-                    'warning': '<i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>',
-                    'success': '<i class="fa-solid fa-building-circle-check text-success me-2"></i>',
-                    'primary': '<i class="fa-solid fa-file-invoice-dollar text-primary me-2"></i>'
-                };
-                
-                data.alerts.forEach(alert => {
-                    alertsList.innerHTML += `
-                        <div class="list-group-item bg-transparent px-0 border-bottom">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div style="font-weight: 600;">${iconMap[alert.type]} ${alert.title}</div>
-                                <span class="text-muted" style="font-size: 0.75rem;">${alert.time}</span>
-                            </div>
-                            <div class="text-muted mt-1" style="font-size: 0.85rem;">${alert.desc}</div>
-                        </div>
-                    `;
-                });
-            }
-        } catch(e) {
-            console.error('Failed to load super admin analytics', e);
-        }
-    }
-    
-    async function exportSuperAdminReport() {
-        try {
-            const res = await fetch('/api/reports/export?export_type=platform_analytics', {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-            });
-            if(res.ok) {
-                const data = await res.json();
-                alert(data.message + "\nDownload link: " + data.download_url);
-            }
-        } catch (e) {
-            alert('Export failed');
-        }
-    }
+<!-- Modals -->
+<div class="modal fade" id="saCollegesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title fw-bold">Colleges Breakdown</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Tier 1 Institutions <span class="badge bg-primary rounded-pill">12</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Tier 2 Institutions <span class="badge bg-primary rounded-pill">45</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Tier 3 Institutions <span class="badge bg-primary rounded-pill">85</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-    loadSuperAnalytics();
+<div class="modal fade" id="saStudentsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title fw-bold">Student Growth</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <p class="text-muted small">New student onboarding rate across the platform.</p>
+                <div class="progress mb-3" style="height: 20px;"><div class="progress-bar bg-success" style="width: 75%;">Organic (75%)</div></div>
+                <div class="progress" style="height: 20px;"><div class="progress-bar bg-info" style="width: 25%;">B2B Invites (25%)</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="saMRRModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title fw-bold">Financial Overview</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <h3 class="text-success text-center mb-3">$124,000 <span class="text-muted small fs-6">/ month</span></h3>
+                <p class="text-center text-muted small mb-0">Projected ARR: $1.48M</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="saUptimeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h5 class="modal-title fw-bold">System Status</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <i class="fa-solid fa-server fs-3 text-success"></i>
+                    <div>
+                        <div class="fw-bold">Database Clusters</div>
+                        <div class="text-success small">Healthy - 12ms latency</div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <i class="fa-solid fa-robot fs-3 text-success"></i>
+                    <div>
+                        <div class="fw-bold">AI Proctoring Engines</div>
+                        <div class="text-success small">Healthy - Processing 45 streams/sec</div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-globe fs-3 text-success"></i>
+                    <div>
+                        <div class="fw-bold">CDN & Edge Nodes</div>
+                        <div class="text-success small">Healthy - 100% Hit Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    if (typeof SuperDashboardManager !== 'undefined') {
+        SuperDashboardManager.loadAnalytics();
+    }
 </script>

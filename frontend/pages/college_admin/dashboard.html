@@ -10,7 +10,7 @@
 
 <div class="row g-4 mb-4">
     <div class="col-md-3">
-        <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+        <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="DashboardManager.openTotalStudentsModal()">
             <div class="position-absolute end-0 top-0 opacity-10 p-3">
                 <i class="fa-solid fa-users fa-4x text-primary"></i>
             </div>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+        <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="DashboardManager.openTotalTestsModal()">
             <div class="position-absolute end-0 top-0 opacity-10 p-3">
                 <i class="fa-solid fa-file-signature fa-4x text-info"></i>
             </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+        <div class="lux-card p-4 h-100 position-relative overflow-hidden cursor-pointer" onclick="DashboardManager.openAverageMarksModal()">
             <div class="position-absolute end-0 top-0 opacity-10 p-3">
                 <i class="fa-solid fa-chart-line fa-4x text-success"></i>
             </div>
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="lux-card p-4 h-100 position-relative overflow-hidden border-start border-danger border-4">
+        <div class="lux-card p-4 h-100 position-relative overflow-hidden border-start border-danger border-4 cursor-pointer" onclick="DashboardManager.openHighRiskModal()">
             <div class="position-absolute end-0 top-0 opacity-10 p-3">
                 <i class="fa-solid fa-triangle-exclamation fa-4x text-danger"></i>
             </div>
@@ -103,55 +103,147 @@
     </div>
 </div>
 
+<!-- Total Students Modal -->
+<div class="modal fade" id="totalStudentsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Student Overview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small">Distribution of the 1,250 total students across departments.</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Computer Science <span class="badge bg-primary rounded-pill">450</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Information Technology <span class="badge bg-primary rounded-pill">320</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Electronics <span class="badge bg-primary rounded-pill">280</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Mechanical <span class="badge bg-primary rounded-pill">200</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Total Tests Modal -->
+<div class="modal fade" id="totalTestsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Recent Tests Overview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small">Breakdown of the 42 tests conducted this academic year.</p>
+                <div class="d-flex flex-column gap-3">
+                    <div class="p-3 bg-light rounded border">
+                        <div class="fw-bold">Technical Skills</div>
+                        <div class="text-muted small">24 Assessments</div>
+                    </div>
+                    <div class="p-3 bg-light rounded border">
+                        <div class="fw-bold">Aptitude & Reasoning</div>
+                        <div class="text-muted small">12 Assessments</div>
+                    </div>
+                    <div class="p-3 bg-light rounded border">
+                        <div class="fw-bold">Soft Skills / English</div>
+                        <div class="text-muted small">6 Assessments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Average Marks Modal -->
+<div class="modal fade" id="averageMarksModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Performance Breakdown</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small">Institution average marks mapped against historical benchmarks.</p>
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between small fw-bold mb-1">
+                        <span>Current Batch</span>
+                        <span class="text-success">68%</span>
+                    </div>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-success" style="width: 68%;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex justify-content-between small fw-bold mb-1 text-muted">
+                        <span>Previous Batch Benchmark</span>
+                        <span>64%</span>
+                    </div>
+                    <div class="progress" style="height: 10px;">
+                        <div class="progress-bar bg-secondary opacity-50" style="width: 64%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- High Risk Modal -->
+<div class="modal fade" id="highRiskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-danger border-2">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title fw-bold"><i class="fa-solid fa-triangle-exclamation me-2"></i> High Risk Students</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small mb-3">These 15 students have been consistently flagged by the AI proctoring system for suspicious activity across multiple assessments.</p>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Student</th>
+                                <th>Flags Triggered</th>
+                                <th>Risk Level</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="fw-bold">Bhavya Shree</div>
+                                    <div class="small text-muted">717821P102</div>
+                                </td>
+                                <td>Multiple Window Switches, Audio Noise</td>
+                                <td><span class="badge bg-danger">Critical</span></td>
+                                <td><button class="btn btn-sm btn-outline-danger">View Full Logs</button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="fw-bold">John Doe</div>
+                                    <div class="small text-muted">ME2025010</div>
+                                </td>
+                                <td>Face Not Recognized, Second Person Detected</td>
+                                <td><span class="badge bg-danger">Critical</span></td>
+                                <td><button class="btn btn-sm btn-outline-danger">View Full Logs</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    async function loadAdminAnalytics() {
-        try {
-            const res = await fetch('/api/analytics/college', {
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-            });
-            if(res.ok) {
-                const data = await res.json();
-                
-                document.getElementById('admin-total-students').innerText = data.overview.total_students;
-                document.getElementById('admin-total-tests').innerText = data.overview.total_tests;
-                document.getElementById('admin-avg-marks').innerText = data.overview.avg_marks;
-                document.getElementById('admin-risk-students').innerText = data.overview.high_risk_students;
-                
-                const pPercent = data.overview.pass_percentage;
-                document.getElementById('admin-pass-percent').innerText = `${pPercent.toFixed(1)}%`;
-                
-                const pCount = data.charts.pass_fail.pass;
-                const fCount = data.charts.pass_fail.fail;
-                document.getElementById('admin-pass-count').innerText = pCount;
-                document.getElementById('admin-fail-count').innerText = fCount;
-                
-                const total = pCount + fCount;
-                const pWidth = total > 0 ? (pCount / total * 100) : 50;
-                const fWidth = total > 0 ? (fCount / total * 100) : 50;
-                
-                document.getElementById('admin-pass-bar').style.width = `${pWidth}%`;
-                document.getElementById('admin-fail-bar').style.width = `${fWidth}%`;
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }
-    
-    async function exportAdminReport() {
-        try {
-            const res = await fetch('/api/reports/export?export_type=college_analytics', {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-            });
-            if(res.ok) {
-                const data = await res.json();
-                alert(data.message + "\nDownload link: " + data.download_url);
-            }
-        } catch (e) {
-            alert('Export failed');
+    function exportAdminReport() {
+        if (typeof ExportResults !== 'undefined' && ExportResults.downloadPerformanceReport) {
+            ExportResults.downloadPerformanceReport();
+        } else {
+            alert('Export module not loaded.');
         }
     }
 
     // Call immediately upon loading
-    loadAdminAnalytics();
+    if (typeof DashboardManager !== 'undefined') {
+        DashboardManager.loadAdminAnalytics();
+    }
 </script>

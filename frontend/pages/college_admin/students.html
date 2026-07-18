@@ -5,8 +5,8 @@
             <div class="text-muted" style="font-size: 0.9rem;">Manage all enrolled students, their eligibility and profiles.</div>
         </div>
         <div>
-            <button class="btn btn-outline-secondary me-2"><i class="fa-solid fa-file-import"></i> Bulk Import</button>
-            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Student</button>
+            <button class="btn btn-outline-secondary me-2" onclick="StudentManager.openBulkImportModal()"><i class="fa-solid fa-file-import"></i> Bulk Import</button>
+            <button class="btn btn-primary" onclick="StudentManager.openAddStudentModal()"><i class="fa-solid fa-plus"></i> Add Student</button>
         </div>
     </div>
 
@@ -52,7 +52,7 @@
                         <td>2025</td>
                         <td><span class="status-pill status-active">Active</span></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="StudentManager.openEditStudentModal(this)"><i class="fa-solid fa-pen"></i></button>
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +65,7 @@
                         <td>2025</td>
                         <td><span class="status-pill status-active">Active</span></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="StudentManager.openEditStudentModal(this)"><i class="fa-solid fa-pen"></i></button>
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +78,7 @@
                         <td>2025</td>
                         <td><span class="status-pill status-pending">Pending Approval</span></td>
                         <td class="text-end">
-                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="StudentManager.openEditStudentModal(this)"><i class="fa-solid fa-pen"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -89,3 +89,89 @@
         </div>
     </div>
 </div>
+
+<!-- Add/Edit Student Modal -->
+<div class="modal fade" id="studentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-bold" id="studentModalTitle">Add New Student</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="studentForm">
+                    <input type="hidden" id="studentEditIndex">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Full Name</label>
+                        <input type="text" class="form-control" id="studentName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Email Address</label>
+                        <input type="email" class="form-control" id="studentEmail" required>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label class="form-label text-muted small fw-bold">Reg ID</label>
+                            <input type="text" class="form-control" id="studentRegId" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label text-muted small fw-bold">Batch</label>
+                            <input type="text" class="form-control" id="studentBatch" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Department</label>
+                        <select class="form-select" id="studentDept" required>
+                            <option value="">Select Department...</option>
+                            <option>Computer Science</option>
+                            <option>Electronics</option>
+                            <option>Information Technology</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted small fw-bold">Status</label>
+                        <select class="form-select" id="studentStatus">
+                            <option value="Active">Active</option>
+                            <option value="Pending Approval">Pending Approval</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" onclick="StudentManager.saveStudent()">Save Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Import Modal -->
+<div class="modal fade" id="bulkImportModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-bold">Bulk Import Students</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="p-4 border rounded bg-light text-center mb-4 border-dashed">
+                    <i class="fa-solid fa-cloud-arrow-up fs-1 text-primary mb-2"></i>
+                    <h6 class="fw-bold text-dark">Upload CSV File</h6>
+                    <p class="text-muted small mb-3">Drag and drop your file here, or click to browse</p>
+                    <input type="file" class="d-none" id="csvFileInput" accept=".csv">
+                    <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('csvFileInput').click()">Select File</button>
+                </div>
+                <div class="d-flex justify-content-between align-items-center bg-white p-3 border rounded">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-file-csv fs-4 text-success"></i>
+                        <div>
+                            <div class="fw-bold" style="font-size: 0.9rem;" id="selectedFileName">No file selected</div>
+                            <div class="text-muted" style="font-size: 0.75rem;">Template: <a href="#" class="text-decoration-none" onclick="StudentManager.downloadTemplate(event)">Download</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button class="btn btn-primary w-100" onclick="StudentManager.processBulkImport()">Start Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

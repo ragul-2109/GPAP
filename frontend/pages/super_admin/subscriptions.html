@@ -5,13 +5,12 @@
             <div class="text-muted" style="font-size: 0.9rem;">Track college subscription tiers, API usage, and billing cycles.</div>
         </div>
         <div>
-            <button class="btn btn-outline-secondary me-2"><i class="fa-solid fa-file-invoice"></i> All Invoices</button>
-            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Custom Plan</button>
+            <button class="btn btn-outline-secondary me-2" onclick="SuperSubscriptionsManager.openAllInvoicesModal()"><i class="fa-solid fa-file-invoice"></i> All Invoices</button>
+            <button class="btn btn-primary" onclick="SuperSubscriptionsManager.openCustomPlanModal()"><i class="fa-solid fa-plus"></i> Create Custom Plan</button>
         </div>
     </div>
 
     <div class="row g-4 mb-5">
-        <!-- Subscription Plan 1 -->
         <div class="col-md-4">
             <div class="lux-card p-4 h-100 d-flex flex-column" style="border-top: 4px solid #94a3b8;">
                 <h5 class="brand">Basic</h5>
@@ -26,11 +25,10 @@
                     <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Standard Reporting</li>
                     <li class="mb-2 text-muted"><i class="fa-solid fa-xmark text-danger opacity-50 me-2"></i> AI Cheating Detection</li>
                 </ul>
-                <button class="btn btn-outline-secondary w-100 mt-3">Edit Tier</button>
+                <button class="btn btn-outline-secondary w-100 mt-3" onclick="SuperSubscriptionsManager.openEditTierModal(this)">Edit Tier</button>
             </div>
         </div>
         
-        <!-- Subscription Plan 2 -->
         <div class="col-md-4">
             <div class="lux-card p-4 h-100 d-flex flex-column position-relative" style="border-top: 4px solid #3b82f6; transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
                 <div class="position-absolute top-0 start-50 translate-middle badge bg-primary rounded-pill">Most Popular</div>
@@ -46,11 +44,10 @@
                     <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Custom Reporting & Analytics</li>
                     <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Standard Support (24hr SLA)</li>
                 </ul>
-                <button class="btn btn-primary w-100 mt-3">Edit Tier</button>
+                <button class="btn btn-primary w-100 mt-3" onclick="SuperSubscriptionsManager.openEditTierModal(this)">Edit Tier</button>
             </div>
         </div>
 
-        <!-- Subscription Plan 3 -->
         <div class="col-md-4">
             <div class="lux-card p-4 h-100 d-flex flex-column" style="border-top: 4px solid #8b5cf6;">
                 <h5 class="brand" style="color: #8b5cf6;">Enterprise</h5>
@@ -64,7 +61,7 @@
                     <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> API Access & Integration</li>
                     <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Dedicated Account Manager</li>
                 </ul>
-                <button class="btn btn-outline-secondary w-100 mt-3">Edit Tier</button>
+                <button class="btn btn-outline-secondary w-100 mt-3" onclick="SuperSubscriptionsManager.openEditTierModal(this)">Edit Tier</button>
             </div>
         </div>
     </div>
@@ -94,7 +91,7 @@
                         <td>$2,450.00</td>
                         <td><span class="badge bg-success bg-opacity-25 text-success">Paid</span></td>
                         <td>Oct 15, 2023</td>
-                        <td class="text-end"><button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button></td>
+                        <td class="text-end"><button class="btn btn-sm btn-light" onclick="SuperSubscriptionsManager.downloadInvoice('INV-2023-0891')"><i class="fa-solid fa-download"></i></button></td>
                     </tr>
                     <tr>
                         <td class="font-monospace text-muted">INV-2023-0890</td>
@@ -103,10 +100,80 @@
                         <td>$999.00</td>
                         <td><span class="badge bg-warning bg-opacity-25 text-warning">Pending</span></td>
                         <td>Oct 12, 2023</td>
-                        <td class="text-end"><button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button></td>
+                        <td class="text-end"><button class="btn btn-sm btn-light" onclick="SuperSubscriptionsManager.downloadInvoice('INV-2023-0890')"><i class="fa-solid fa-download"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td class="font-monospace text-muted">INV-2023-0889</td>
+                        <td style="font-weight: 600; color: var(--primary-dark);">Global Engineering College</td>
+                        <td><span class="badge bg-secondary">Basic</span></td>
+                        <td>$499.00</td>
+                        <td><span class="badge bg-danger bg-opacity-25 text-danger">Overdue</span></td>
+                        <td>Sep 30, 2023</td>
+                        <td class="text-end"><button class="btn btn-sm btn-light" onclick="SuperSubscriptionsManager.downloadInvoice('INV-2023-0889')"><i class="fa-solid fa-download"></i></button></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modals for Subscriptions -->
+<div class="modal fade" id="allInvoicesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="fa-solid fa-file-invoice text-primary me-2"></i> All Invoices</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="text-muted small">Comprehensive list of all platform invoices.</p>
+                <div class="alert alert-info">Invoice history data is synced from the payment gateway.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="customPlanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="fa-solid fa-plus text-primary me-2"></i> Create Custom Plan</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Plan Name</label><input type="text" class="form-control" placeholder="E.g., Mega Enterprise"></div>
+                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Monthly Price ($)</label><input type="number" class="form-control" placeholder="4999"></div>
+                    </div>
+                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Features (Comma separated)</label><input type="text" class="form-control" placeholder="White-labeling, Dedicated Servers, 24/7 Phone Support"></div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Create Plan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editTierModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="fa-solid fa-pen-to-square text-primary me-2"></i> <span id="editTierTitle">Edit Tier</span></h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Monthly Price</label><input type="number" class="form-control" value="999"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Student Limit</label><input type="number" class="form-control" value="5000"></div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Update Tier</button>
+            </div>
         </div>
     </div>
 </div>

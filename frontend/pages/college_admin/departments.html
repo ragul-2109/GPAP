@@ -5,69 +5,227 @@
             <div class="text-muted" style="font-size: 0.9rem;">Organize academic departments and associated batches.</div>
         </div>
         <div>
-            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Department</button>
+            <button class="btn btn-primary" onclick="DepartmentManager.openAddDepartmentModal()"><i class="fa-solid fa-plus"></i> Add Department</button>
         </div>
     </div>
 
     <div class="dept-grid">
-        <div class="dept-card">
+        <div class="dept-card cursor-pointer" onclick="DepartmentManager.openDeptStudentsModal(this)">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="dept-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                <button class="btn btn-sm btn-light text-muted"><i class="fa-solid fa-ellipsis-v"></i></button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light text-muted" type="button" data-bs-toggle="dropdown" onclick="event.stopPropagation()"><i class="fa-solid fa-ellipsis-v"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <li><a class="dropdown-item" href="#" onclick="DepartmentManager.openEditDepartmentModal(this, event)"><i class="fa-solid fa-pen text-primary me-2"></i> Edit</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="DepartmentManager.deleteDepartment(this, event)"><i class="fa-solid fa-trash me-2"></i> Delete</a></li>
+                    </ul>
+                </div>
             </div>
             <h5 class="mb-1">Computer Science & Engineering</h5>
             <div class="text-muted mb-3" style="font-size: 0.85rem;">Dept Code: CSE</div>
             
             <div class="d-flex justify-content-between mb-3" style="font-size: 0.85rem;">
                 <div><i class="fa-solid fa-user-graduate text-primary"></i> 450 Students</div>
-                <div><i class="fa-solid fa-layer-group text-primary"></i> 4 Batches</div>
+                <div><i class="fa-solid fa-layer-group text-primary"></i> 4 Sections</div>
             </div>
-            <button class="btn btn-outline-secondary w-100 btn-sm">Manage Courses</button>
+            <button class="btn btn-outline-secondary w-100 btn-sm" onclick="DepartmentManager.openDeptStudentsModal(this, event)">View Details</button>
         </div>
 
-        <div class="dept-card">
+        <div class="dept-card cursor-pointer" onclick="DepartmentManager.openDeptStudentsModal(this)">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="dept-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"><i class="fa-solid fa-microchip"></i></div>
-                <button class="btn btn-sm btn-light text-muted"><i class="fa-solid fa-ellipsis-v"></i></button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light text-muted" type="button" data-bs-toggle="dropdown" onclick="event.stopPropagation()"><i class="fa-solid fa-ellipsis-v"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <li><a class="dropdown-item" href="#" onclick="DepartmentManager.openEditDepartmentModal(this, event)"><i class="fa-solid fa-pen text-primary me-2"></i> Edit</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="DepartmentManager.deleteDepartment(this, event)"><i class="fa-solid fa-trash me-2"></i> Delete</a></li>
+                    </ul>
+                </div>
             </div>
             <h5 class="mb-1">Electronics & Communication</h5>
             <div class="text-muted mb-3" style="font-size: 0.85rem;">Dept Code: ECE</div>
             
             <div class="d-flex justify-content-between mb-3" style="font-size: 0.85rem;">
                 <div><i class="fa-solid fa-user-graduate text-success"></i> 320 Students</div>
-                <div><i class="fa-solid fa-layer-group text-success"></i> 4 Batches</div>
+                <div><i class="fa-solid fa-layer-group text-success"></i> 4 Sections</div>
             </div>
-            <button class="btn btn-outline-secondary w-100 btn-sm">Manage Courses</button>
+            <button class="btn btn-outline-secondary w-100 btn-sm" onclick="DepartmentManager.openDeptStudentsModal(this, event)">View Details</button>
         </div>
 
-        <div class="dept-card">
+        <div class="dept-card cursor-pointer" onclick="DepartmentManager.openDeptStudentsModal(this)">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="dept-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);"><i class="fa-solid fa-gears"></i></div>
-                <button class="btn btn-sm btn-light text-muted"><i class="fa-solid fa-ellipsis-v"></i></button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light text-muted" type="button" data-bs-toggle="dropdown" onclick="event.stopPropagation()"><i class="fa-solid fa-ellipsis-v"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <li><a class="dropdown-item" href="#" onclick="DepartmentManager.openEditDepartmentModal(this, event)"><i class="fa-solid fa-pen text-primary me-2"></i> Edit</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="DepartmentManager.deleteDepartment(this, event)"><i class="fa-solid fa-trash me-2"></i> Delete</a></li>
+                    </ul>
+                </div>
             </div>
             <h5 class="mb-1">Mechanical Engineering</h5>
             <div class="text-muted mb-3" style="font-size: 0.85rem;">Dept Code: MECH</div>
             
             <div class="d-flex justify-content-between mb-3" style="font-size: 0.85rem;">
                 <div><i class="fa-solid fa-user-graduate text-warning"></i> 280 Students</div>
-                <div><i class="fa-solid fa-layer-group text-warning"></i> 4 Batches</div>
+                <div><i class="fa-solid fa-layer-group text-warning"></i> 4 Sections</div>
             </div>
-            <button class="btn btn-outline-secondary w-100 btn-sm">Manage Courses</button>
+            <button class="btn btn-outline-secondary w-100 btn-sm" onclick="DepartmentManager.openDeptStudentsModal(this, event)">View Details</button>
         </div>
         
-        <div class="dept-card">
+        <div class="dept-card cursor-pointer" onclick="DepartmentManager.openDeptStudentsModal(this)">
             <div class="d-flex justify-content-between align-items-start">
                 <div class="dept-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);"><i class="fa-solid fa-network-wired"></i></div>
-                <button class="btn btn-sm btn-light text-muted"><i class="fa-solid fa-ellipsis-v"></i></button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light text-muted" type="button" data-bs-toggle="dropdown" onclick="event.stopPropagation()"><i class="fa-solid fa-ellipsis-v"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                        <li><a class="dropdown-item" href="#" onclick="DepartmentManager.openEditDepartmentModal(this, event)"><i class="fa-solid fa-pen text-primary me-2"></i> Edit</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="DepartmentManager.deleteDepartment(this, event)"><i class="fa-solid fa-trash me-2"></i> Delete</a></li>
+                    </ul>
+                </div>
             </div>
             <h5 class="mb-1">Information Technology</h5>
             <div class="text-muted mb-3" style="font-size: 0.85rem;">Dept Code: IT</div>
             
             <div class="d-flex justify-content-between mb-3" style="font-size: 0.85rem;">
                 <div><i class="fa-solid fa-user-graduate" style="color: #8b5cf6;"></i> 200 Students</div>
-                <div><i class="fa-solid fa-layer-group" style="color: #8b5cf6;"></i> 4 Batches</div>
+                <div><i class="fa-solid fa-layer-group" style="color: #8b5cf6;"></i> 4 Sections</div>
             </div>
-            <button class="btn btn-outline-secondary w-100 btn-sm">Manage Courses</button>
+            <button class="btn btn-outline-secondary w-100 btn-sm" onclick="DepartmentManager.openDeptStudentsModal(this, event)">View Details</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add/Edit Department Modal -->
+<div class="modal fade" id="departmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-bold" id="deptModalTitle">Add New Department</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="deptForm">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-bold">Department Name</label>
+                        <input type="text" class="form-control" id="deptName" placeholder="e.g. Mechanical Engineering" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted small fw-bold">Department Code</label>
+                        <input type="text" class="form-control" id="deptCode" placeholder="e.g. MECH" required>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" onclick="DepartmentManager.saveDepartment()">Save Department</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Department Students Modal -->
+<div class="modal fade" id="deptStudentsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-light border-bottom-0 pb-3">
+                <div>
+                    <h5 class="modal-title fw-bold text-dark mb-1" id="deptStudentsModalTitle">Students</h5>
+                    <div class="text-muted small">View and manage students enrolled in this department.</div>
+                </div>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="bg-light px-3 border-bottom">
+                <ul class="nav nav-tabs border-0" id="sectionTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-semibold text-primary border-0 bg-transparent border-bottom border-primary border-2 px-3 py-2" id="section-a-tab" data-bs-toggle="tab" data-bs-target="#section-a" type="button" role="tab">Section A</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold text-muted border-0 bg-transparent px-3 py-2" id="section-b-tab" data-bs-toggle="tab" data-bs-target="#section-a" type="button" role="tab" onclick="DepartmentManager.openDeptStudentsModal(document.querySelector('.dept-card'))">Section B</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold text-muted border-0 bg-transparent px-3 py-2" id="section-c-tab" data-bs-toggle="tab" data-bs-target="#section-a" type="button" role="tab" onclick="DepartmentManager.openDeptStudentsModal(document.querySelector('.dept-card'))">Section C</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal-body p-0">
+                <div class="tab-content" id="sectionTabsContent">
+                    <div class="tab-pane fade show active" id="section-a" role="tabpanel">
+                        <div class="p-3 d-flex justify-content-between align-items-center bg-white border-bottom">
+                            <div class="input-group" style="max-width: 300px;">
+                                <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0 ps-0" placeholder="Search students...">
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-filter me-1"></i> Filter</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0 premium-table" style="border: none !important;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">Student Name</th>
+                                        <th>Reg ID</th>
+                                        <th>Email</th>
+                                        <th>Current CGPA</th>
+                                        <th>Status</th>
+                                        <th class="text-end pe-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="deptStudentsTbody" style="transition: opacity 0.3s ease;">
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">AK</div>
+                                                <div class="fw-semibold text-dark">Aryan Kumar</div>
+                                            </div>
+                                        </td>
+                                        <td class="text-muted">CS2024015</td>
+                                        <td class="text-muted">aryan.k@example.com</td>
+                                        <td class="fw-semibold">8.75</td>
+                                        <td><span class="badge bg-success bg-opacity-10 text-success border border-success-subtle rounded-pill px-2 py-1">Active</span></td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-sm btn-light text-primary"><i class="fa-solid fa-arrow-right"></i> View Profile</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="bg-info text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">MP</div>
+                                                <div class="fw-semibold text-dark">Meera Patel</div>
+                                            </div>
+                                        </td>
+                                        <td class="text-muted">CS2024089</td>
+                                        <td class="text-muted">meera.p@example.com</td>
+                                        <td class="fw-semibold">9.10</td>
+                                        <td><span class="badge bg-success bg-opacity-10 text-success border border-success-subtle rounded-pill px-2 py-1">Active</span></td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-sm btn-light text-primary"><i class="fa-solid fa-arrow-right"></i> View Profile</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px; font-size: 0.9rem;">RD</div>
+                                                <div class="fw-semibold text-dark">Rahul Desai</div>
+                                            </div>
+                                        </td>
+                                        <td class="text-muted">CS2024112</td>
+                                        <td class="text-muted">rahul.d@example.com</td>
+                                        <td class="fw-semibold">7.40</td>
+                                        <td><span class="badge bg-warning bg-opacity-10 text-warning border border-warning-subtle rounded-pill px-2 py-1">Probation</span></td>
+                                        <td class="text-end pe-4">
+                                            <button class="btn btn-sm btn-light text-primary"><i class="fa-solid fa-arrow-right"></i> View Profile</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-light border-top-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"><i class="fa-solid fa-file-export me-1"></i> Export Section Data</button>
+            </div>
         </div>
     </div>
 </div>

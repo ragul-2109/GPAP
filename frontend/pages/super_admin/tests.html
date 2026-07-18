@@ -5,8 +5,8 @@
             <div class="text-muted" style="font-size: 0.9rem;">View and audit all assessments conducted globally to ensure quality standards.</div>
         </div>
         <div>
-            <button class="btn btn-outline-secondary me-2"><i class="fa-solid fa-cloud-arrow-down"></i> Import Standard Test</button>
-            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Global Template</button>
+            <button class="btn btn-outline-secondary me-2" onclick="SuperTestsManager.openImportModal()"><i class="fa-solid fa-cloud-arrow-down"></i> Import Standard Test</button>
+            <button class="btn btn-primary" onclick="SuperTestsManager.openCreateTemplateModal()"><i class="fa-solid fa-plus"></i> Create Global Template</button>
         </div>
     </div>
 
@@ -14,15 +14,15 @@
         <div class="premium-table-toolbar">
             <div class="input-group" style="max-width: 300px;">
                 <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
-                <input type="text" class="form-control border-start-0 ps-0" placeholder="Search tests by name or ID...">
+                <input type="text" id="testSearchInput" class="form-control border-start-0 ps-0" placeholder="Search tests by name or ID...">
             </div>
             <div>
-                <select class="form-select form-select-sm d-inline-block w-auto me-2">
+                <select id="testCollegeFilter" class="form-select form-select-sm d-inline-block w-auto me-2">
                     <option>College: All</option>
                     <option>Genfinix Institute</option>
-                    <option>XYZ Tech</option>
+                    <option>XYZ Tech University</option>
                 </select>
-                <select class="form-select form-select-sm d-inline-block w-auto">
+                <select id="testSortFilter" class="form-select form-select-sm d-inline-block w-auto">
                     <option>Sort by: Most Recent</option>
                     <option>Sort by: Most Attendees</option>
                     <option>Sort by: Highest Difficulty</option>
@@ -57,8 +57,14 @@
                         <td><span class="badge" style="background-color: #f59e0b;">Medium</span></td>
                         <td class="text-end">
                             <button class="btn btn-sm btn-outline-primary" onclick="ExportResults.downloadTestResults('Global_Java_Test_Results')"><i class="fa-solid fa-download"></i></button>
-                            <button class="btn btn-sm btn-outline-primary ms-1">Audit Content</button>
-                            <button class="btn btn-sm btn-light ms-1"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                            <button class="btn btn-sm btn-outline-primary ms-1" onclick="SuperTestsManager.openAuditModal(this)">Audit Content</button>
+                            <div class="dropdown d-inline-block ms-1">
+                                <button class="btn btn-sm btn-light" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                    <li><a class="dropdown-item" href="#" onclick="SuperTestsManager.duplicateTemplate(this)"><i class="fa-solid fa-copy me-2 text-muted"></i>Duplicate Template</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#" onclick="SuperTestsManager.archiveTest(this)"><i class="fa-solid fa-box-archive me-2"></i>Archive Test</a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -76,12 +82,91 @@
                         <td><span class="badge" style="background-color: #ef4444;">Hard</span></td>
                         <td class="text-end">
                             <button class="btn btn-sm btn-outline-primary" onclick="ExportResults.downloadTestResults('Global_DSA_Prep_Results')"><i class="fa-solid fa-download"></i></button>
-                            <button class="btn btn-sm btn-outline-primary ms-1">Audit Content</button>
-                            <button class="btn btn-sm btn-light ms-1"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                            <button class="btn btn-sm btn-outline-primary ms-1" onclick="SuperTestsManager.openAuditModal(this)">Audit Content</button>
+                            <div class="dropdown d-inline-block ms-1">
+                                <button class="btn btn-sm btn-light" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                    <li><a class="dropdown-item" href="#" onclick="SuperTestsManager.duplicateTemplate(this)"><i class="fa-solid fa-copy me-2 text-muted"></i>Duplicate Template</a></li>
+                                    <li><a class="dropdown-item text-danger" href="#" onclick="SuperTestsManager.archiveTest(this)"><i class="fa-solid fa-box-archive me-2"></i>Archive Test</a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modals for Tests -->
+<div class="modal fade" id="importTestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="fa-solid fa-cloud-arrow-down text-primary me-2"></i> Import Standard Test</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <div class="border rounded p-4 mb-3 bg-light" style="border-style: dashed !important; border-width: 2px !important; cursor: pointer;">
+                    <i class="fa-solid fa-file-arrow-up fs-1 text-muted mb-3"></i>
+                    <p class="mb-0 text-muted">Click to browse or drag and drop JSON/CSV test format.</p>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Import</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createTemplateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="fa-solid fa-plus text-primary me-2"></i> Create Global Template</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Template Name</label><input type="text" class="form-control" placeholder="E.g., Global Entry Level Java"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Target Colleges</label><select class="form-select"><option>All Registered Colleges</option><option>Specific Colleges...</option></select></div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Create Template</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="auditTestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="fa-solid fa-shield-halved text-primary me-2"></i> Audit Content: <span id="auditTestTitle" class="ms-2">Test Name</span></h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="alert alert-warning d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-triangle-exclamation fs-3"></i>
+                    <div>
+                        <div class="fw-bold">2 Questions Flagged</div>
+                        <div class="small">AI has detected potential syntax errors in the coding questions.</div>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="fw-bold">Q12: Binary Tree Inversion</div>
+                        <div class="text-muted small">Missing edge case check for null root.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Override & Approve</button>
+            </div>
         </div>
     </div>
 </div>

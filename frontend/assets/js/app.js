@@ -132,12 +132,38 @@ async function fetchUserProfile() {
         
         appState.user = await response.json();
         appState.selectedRole = appState.user.role;
+        
+        const topNavAvatar = document.getElementById('top-nav-avatar');
+        if (topNavAvatar && appState.user && appState.user.full_name) {
+            topNavAvatar.innerText = appState.user.full_name.charAt(0).toUpperCase();
+            
+            // Apply dynamic colors based on role
+            topNavAvatar.className = 'text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm';
+            if (appState.selectedRole === 'student') topNavAvatar.classList.add('bg-primary');
+            else if (appState.selectedRole === 'staff') topNavAvatar.classList.add('bg-success');
+            else if (appState.selectedRole === 'college_admin') topNavAvatar.classList.add('bg-warning');
+            else if (appState.selectedRole === 'super_admin') topNavAvatar.classList.add('bg-danger');
+            else topNavAvatar.classList.add('bg-secondary');
+        }
+        
         renderDashboard(appState.selectedRole);
         setupAntiCheating(appState.selectedRole);
     } catch(err) {
         logout();
     }
 }
+
+window.handleProfileClick = function() {
+    if (appState.selectedRole === 'student') {
+        switchTab('tab-profile');
+    } else if (appState.selectedRole === 'staff') {
+        switchTab('tab-staff-profile');
+    } else if (appState.selectedRole === 'college_admin') {
+        switchTab('tab-college-profile');
+    } else if (appState.selectedRole === 'super_admin') {
+        switchTab('tab-super-profile');
+    }
+};
 
 // Anti-Cheating
 function setupAntiCheating(role) {

@@ -12,12 +12,44 @@
         </div>
     </div>
 
+    <!-- Advanced Analytics Filters -->
+    <div class="lux-card p-3 mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label text-muted small fw-bold">Department</label>
+                <select class="form-select" id="analyticsDeptFilter">
+                    <option value="">All Departments</option>
+                    <option value="CSE">Computer Science</option>
+                    <option value="IT">Information Technology</option>
+                    <option value="ECE">Electronics</option>
+                    <option value="MECH">Mechanical</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label text-muted small fw-bold">Section</label>
+                <select class="form-select" id="analyticsSectionFilter">
+                    <option value="">All Sections</option>
+                    <option value="A">Section A</option>
+                    <option value="B">Section B</option>
+                    <option value="C">Section C</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label text-muted small fw-bold">Test Date Range</label>
+                <input type="date" class="form-control" id="analyticsDateFilter">
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary w-100" onclick="AnalyticsManager.applyFilters()"><i class="fa-solid fa-filter me-1"></i> View Results</button>
+            </div>
+        </div>
+    </div>
+
     <div class="row mb-4">
         <div class="col-md-4">
             <div class="lux-card p-4 text-center">
                 <div class="text-muted mb-2 font-weight-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Avg Institution Score</div>
-                <h2 class="brand m-0" style="font-size: 3rem; color: var(--primary-color);">68<span style="font-size:1.5rem;">%</span></h2>
-                <div class="text-success mt-2" style="font-size: 0.85rem;"><i class="fa-solid fa-arrow-trend-up"></i> +4% from last semester</div>
+                <h2 class="brand m-0" id="avgInstitutionScore" style="font-size: 3rem; color: var(--primary-color);">68<span style="font-size:1.5rem;">%</span></h2>
+                <div class="text-success mt-2" id="avgScoreTrend" style="font-size: 0.85rem;"><i class="fa-solid fa-arrow-trend-up"></i> +4% from last semester</div>
             </div>
         </div>
         <div class="col-md-4">
@@ -37,7 +69,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="lux-card p-4 h-100">
                 <h5 class="mb-4">Department Performance Comparison</h5>
                 <div class="d-flex align-items-center mb-3">
@@ -68,31 +100,6 @@
                     </div>
                     <div style="width: 40px; font-weight: bold; text-align: right;">54%</div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="lux-card p-4 h-100" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%); border-color: rgba(79, 70, 229, 0.2);">
-                <div class="d-flex align-items-center gap-3 mb-4">
-                    <div style="font-size: 2rem; color: var(--primary-color);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                    <h5 class="m-0">AI Weakness Identification</h5>
-                </div>
-                
-                <p class="text-muted" style="font-size: 0.95rem;">Across all departments, students are struggling most with the following technical concepts. We recommend scheduling remedial training with Genfinix staff.</p>
-                
-                <ul class="list-group list-group-flush bg-transparent mt-3">
-                    <li class="list-group-item bg-transparent px-0 d-flex justify-content-between align-items-center border-bottom-0 mb-2">
-                        <span><i class="fa-solid fa-circle-exclamation text-danger me-2"></i> Dynamic Programming</span>
-                        <button class="btn btn-sm btn-outline-primary py-1">Assign Trainer</button>
-                    </li>
-                    <li class="list-group-item bg-transparent px-0 d-flex justify-content-between align-items-center border-bottom-0 mb-2">
-                        <span><i class="fa-solid fa-circle-exclamation text-danger me-2"></i> Advanced SQL Joins</span>
-                        <button class="btn btn-sm btn-outline-primary py-1">Assign Trainer</button>
-                    </li>
-                    <li class="list-group-item bg-transparent px-0 d-flex justify-content-between align-items-center border-bottom-0">
-                        <span><i class="fa-solid fa-circle-exclamation text-warning me-2"></i> Logical Reasoning - Puzzles</span>
-                        <button class="btn btn-sm btn-outline-primary py-1">Assign Trainer</button>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
             <div class="text-muted" style="font-size: 0.9rem;">Manage internal trainers, account managers, and support staff.</div>
         </div>
         <div>
-            <button class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Add Staff Member</button>
+            <button class="btn btn-primary" onclick="SuperStaffManager.openAddStaffModal()"><i class="fa-solid fa-user-plus"></i> Add Staff Member</button>
         </div>
     </div>
 
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 
-                <button class="btn btn-outline-primary w-100">Manage Profile</button>
+                <button class="btn btn-outline-primary w-100" onclick="SuperStaffManager.openManageProfileModal(this)">Manage Profile</button>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 
-                <button class="btn btn-outline-primary w-100">Manage Profile</button>
+                <button class="btn btn-outline-primary w-100" onclick="SuperStaffManager.openManageProfileModal(this)">Manage Profile</button>
             </div>
         </div>
 
@@ -93,7 +93,75 @@
                     </div>
                 </div>
                 
-                <button class="btn btn-outline-primary w-100">Manage Profile</button>
+                <button class="btn btn-outline-primary w-100" onclick="SuperStaffManager.openManageProfileModal(this)">Manage Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Staff Modal -->
+<div class="modal fade" id="addStaffModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center">
+                    <i class="fa-solid fa-user-plus text-primary me-2"></i> Add New Staff Member
+                </h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">First Name</label><input type="text" class="form-control" placeholder="E.g. John"></div>
+                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Last Name</label><input type="text" class="form-control" placeholder="E.g. Doe"></div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Email Address</label><input type="email" class="form-control" placeholder="john.doe@genfinix.com"></div>
+                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Role</label><select class="form-select"><option>Technical Trainer</option><option>Aptitude Specialist</option><option>Account Manager</option><option>Support Staff</option></select></div>
+                    </div>
+                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Specializations (Comma separated)</label><input type="text" class="form-control" placeholder="E.g. Java, DSA, Python"></div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Create Account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Manage Staff Modal -->
+<div class="modal fade" id="manageStaffModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom bg-light">
+                <h5 class="modal-title fw-bold text-dark d-flex align-items-center">
+                    <i class="fa-solid fa-user-pen text-primary me-2"></i> <span id="manageStaffTitle">Manage Staff</span>
+                </h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <h6 class="fw-bold mb-3 border-bottom pb-2">Quick Actions</h6>
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-outline-secondary text-start" onclick="SuperStaffManager.resetPassword()"><i class="fa-solid fa-key text-muted me-2"></i> Reset Password</button>
+                    <button class="btn btn-outline-secondary text-start" onclick="SuperStaffManager.sendMessage()"><i class="fa-solid fa-envelope text-muted me-2"></i> Send Direct Message</button>
+                    <button class="btn btn-outline-danger text-start" onclick="SuperStaffManager.deactivateAccount()"><i class="fa-solid fa-user-slash text-muted me-2"></i> Deactivate Account</button>
+                </div>
+                
+                <h6 class="fw-bold mb-3 border-bottom pb-2">Reassign Role</h6>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Current Role</label>
+                    <select class="form-select">
+                        <option>Technical Trainer</option>
+                        <option>Aptitude Specialist</option>
+                        <option>Account Manager</option>
+                        <option>Support Staff</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 bg-light">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Save Changes</button>
             </div>
         </div>
     </div>

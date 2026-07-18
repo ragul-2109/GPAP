@@ -188,13 +188,6 @@
                     <button class="btn btn-sm d-md-none" onclick="toggleSidebar()"><i
                             class="fa-solid fa-times"></i></button>
                 </div>
-                
-                <div class="px-3 pb-3">
-                    <button class="btn btn-primary shadow-sm rounded-pill w-100" onclick="NotificationsModule.openCompose()" title="Send Message or Feedback">
-                        <i class="fa-solid fa-pen-to-square me-2"></i>Compose
-                    </button>
-                </div>
-
                 <!-- Student Menu -->
                 <div class="sidebar-menu d-none" id="studentMenu">
                     <a href="#" class="menu-item active" onclick="switchTab('tab-dashboard')"><i
@@ -204,7 +197,8 @@
 
                     <a href="#" class="menu-item" onclick="switchTab('tab-mcq')"><i class="fa-solid fa-list-check"></i>
                         MCQ Practice</a>
-                    <a href="#" class="menu-item" onclick="switchTab('tab-student-daily-mcq')"><i class="fa-solid fa-clock-rotate-left"></i>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-student-daily-mcq')"><i
+                            class="fa-solid fa-clock-rotate-left"></i>
                         Daily MCQ Test</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-coding')"><i class="fa-solid fa-code"></i>
                         Coding Practice</a>
@@ -212,7 +206,8 @@
                     <a href="#" class="menu-item" onclick="switchTab('tab-results')"><i class="fa-solid fa-award"></i>
                         View Results</a>
 
-
+                    <a href="#" class="menu-item" onclick="NotificationsModule.openCompose()"
+                        title="Send Message or Feedback"><i class="fa-solid fa-pen-to-square"></i> Compose</a>
                 </div>
 
                 <!-- Staff Menu -->
@@ -229,6 +224,9 @@
                             class="fa-solid fa-user-injured"></i> Weak Student Analysis</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-staff-export')"><i
                             class="fa-solid fa-file-export"></i> Export Results</a>
+
+                    <a href="#" class="menu-item" onclick="NotificationsModule.openCompose()"
+                        title="Send Message or Feedback"><i class="fa-solid fa-pen-to-square"></i> Compose</a>
                 </div>
 
                 <!-- College Admin Menu -->
@@ -245,12 +243,13 @@
                             class="fa-solid fa-square-poll-vertical"></i> View Student Results</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-college-analytics')"><i
                             class="fa-solid fa-chart-column"></i> Performance Analytics</a>
-                    <a href="#" class="menu-item" onclick="switchTab('tab-college-eligibility')"><i
-                            class="fa-solid fa-briefcase"></i> Placement Eligibility</a>
+
                     <a href="#" class="menu-item" onclick="switchTab('tab-college-export')"><i
                             class="fa-solid fa-file-export"></i> Export Reports</a>
-                    <a href="#" class="menu-item" onclick="switchTab('tab-college-announcements')"><i
-                            class="fa-solid fa-bullhorn"></i> Announcements</a>
+
+
+                    <a href="#" class="menu-item" onclick="NotificationsModule.openCompose()"
+                        title="Send Message or Feedback"><i class="fa-solid fa-pen-to-square"></i> Compose</a>
                 </div>
 
                 <!-- Super Admin Menu -->
@@ -277,6 +276,9 @@
                             class="fa-solid fa-database"></i> Backup & Restore</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-super-audit')"><i
                             class="fa-solid fa-clipboard-list"></i> Audit Logs</a>
+
+                    <a href="#" class="menu-item" onclick="NotificationsModule.openCompose()"
+                        title="Send Message or Feedback"><i class="fa-solid fa-pen-to-square"></i> Compose</a>
                 </div>
 
                 <div class="p-3 border-top">
@@ -288,46 +290,60 @@
 
             <!-- Main Content Area -->
             <main class="main-content">
-                <div class="top-navbar mb-4 d-flex justify-content-between align-items-center bg-white shadow-sm px-4 py-3 border-bottom">
+                <div
+                    class="top-navbar mb-4 d-flex justify-content-between align-items-center bg-white shadow-sm px-4 py-3 border-bottom">
                     <div class="d-flex align-items-center gap-3">
                         <button class="btn btn-light border-0 shadow-sm d-md-none" onclick="toggleSidebar()">
                             <i class="fa-solid fa-bars"></i>
                         </button>
-                        <div class="brand fs-4 m-0 p-0 text-primary fw-bold" style="letter-spacing: 1px;"><i class="fa-solid fa-graduation-cap me-2"></i>GPAP Portal</div>
+                        <div class="brand fs-4 m-0 p-0 text-primary fw-bold" style="letter-spacing: 1px;"><i
+                                class="fa-solid fa-graduation-cap me-2"></i>GPAP Portal</div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <button class="btn btn-light position-relative border-0 shadow-sm rounded-circle p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#notificationsOffcanvas" aria-controls="notificationsOffcanvas" style="width: 45px; height: 45px;">
+                        <button class="btn btn-light position-relative border-0 shadow-sm rounded-circle p-2"
+                            type="button" data-bs-toggle="offcanvas" data-bs-target="#notificationsOffcanvas"
+                            aria-controls="notificationsOffcanvas" style="width: 45px; height: 45px;">
                             <i class="fa-regular fa-bell fs-5 text-dark"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="nav-notification-badge">
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                id="nav-notification-badge">
                                 3
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </button>
                         <div class="vr mx-2"></div>
-                        <div class="d-flex align-items-center gap-2 cursor-pointer" onclick="switchTab('tab-profile')">
-                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 40px; height: 40px;" id="top-nav-avatar">R</div>
+                        <div class="d-flex align-items-center gap-2 cursor-pointer" onclick="handleProfileClick()">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm"
+                                style="width: 40px; height: 40px;" id="top-nav-avatar">R</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Notifications Offcanvas -->
-                <div class="offcanvas offcanvas-end shadow-lg border-0" tabindex="-1" id="notificationsOffcanvas" aria-labelledby="notificationsOffcanvasLabel" style="width: 400px;">
+                <div class="offcanvas offcanvas-end shadow-lg border-0" tabindex="-1" id="notificationsOffcanvas"
+                    aria-labelledby="notificationsOffcanvasLabel" style="width: 400px;">
                     <div class="offcanvas-header border-bottom bg-light">
-                        <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="notificationsOffcanvasLabel">
+                        <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2"
+                            id="notificationsOffcanvasLabel">
                             <i class="fa-solid fa-bell text-primary"></i> Notifications
                         </h5>
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
-                    
+
                     <div class="bg-light px-3 pt-2 border-bottom">
                         <ul class="nav nav-tabs nav-tabs-custom border-0" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active bg-transparent border-0 fw-bold pb-2" id="inbox-tab" data-bs-toggle="tab" data-bs-target="#inbox-panel" type="button" role="tab" onclick="NotificationsModule.switchTab('inbox')">
+                                <button class="nav-link active bg-transparent border-0 fw-bold pb-2" id="inbox-tab"
+                                    data-bs-toggle="tab" data-bs-target="#inbox-panel" type="button" role="tab"
+                                    onclick="NotificationsModule.switchTab('inbox')">
                                     <i class="fa-solid fa-inbox me-1"></i> Inbox
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link bg-transparent border-0 text-muted fw-bold pb-2" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent-panel" type="button" role="tab" onclick="NotificationsModule.switchTab('sent')">
+                                <button class="nav-link bg-transparent border-0 text-muted fw-bold pb-2" id="sent-tab"
+                                    data-bs-toggle="tab" data-bs-target="#sent-panel" type="button" role="tab"
+                                    onclick="NotificationsModule.switchTab('sent')">
                                     <i class="fa-solid fa-paper-plane me-1"></i> Sent
                                 </button>
                             </li>
@@ -341,7 +357,7 @@
                                 <!-- Notifications loaded dynamically via JS -->
                             </div>
                         </div>
-                        
+
                         <!-- Sent Tab -->
                         <div class="tab-pane fade" id="sent-panel" role="tabpanel">
                             <div id="sent-panel-body">
@@ -372,13 +388,15 @@
                 <div class="modal-body p-4">
                     <div class="mb-3">
                         <label class="form-label fw-bold small text-muted">To</label>
-                        <select class="form-select" id="compose-target" onchange="NotificationsModule.handleTargetChange()">
+                        <select class="form-select" id="compose-target"
+                            onchange="NotificationsModule.handleTargetChange()">
                             <!-- Populated dynamically based on user role -->
                         </select>
                     </div>
                     <div class="mb-3 d-none" id="compose-specific-student-container">
                         <label class="form-label fw-bold small text-muted">Student Roll Number / Name</label>
-                        <input type="text" class="form-control" id="compose-specific-student" placeholder="e.g. 717821P101 or Arun Kumar">
+                        <input type="text" class="form-control" id="compose-specific-student"
+                            placeholder="e.g. 717821P101 or Arun Kumar">
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold small text-muted">Subject</label>
@@ -386,7 +404,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold small text-muted">Message</label>
-                        <textarea class="form-control" id="compose-message" rows="4" placeholder="Type your message or feedback here..."></textarea>
+                        <textarea class="form-control" id="compose-message" rows="4"
+                            placeholder="Type your message or feedback here..."></textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 bg-light">
@@ -410,17 +429,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4 pt-3">
-                    
+
                     <!-- Profile Header -->
                     <div class="d-flex align-items-center mb-4">
-                        <img id="sp-avatar" src="" class="rounded-circle shadow-sm me-4 border border-3 border-white" width="80" height="80" alt="Student Photo">
+                        <img id="sp-avatar" src="" class="rounded-circle shadow-sm me-4 border border-3 border-white"
+                            width="80" height="80" alt="Student Photo">
                         <div>
                             <h4 id="sp-name" class="fw-bold mb-1 text-dark"></h4>
                             <div id="sp-roll" class="text-muted fw-medium mb-2"></div>
                             <span id="sp-risk" class="badge bg-success">Safe</span>
                         </div>
                         <div class="ms-auto text-end">
-                            <button id="sp-download-btn" class="btn btn-primary shadow-sm"><i class="fa-solid fa-file-csv me-2"></i>Download Advanced Report</button>
+                            <button id="sp-download-btn" class="btn btn-primary shadow-sm"><i
+                                    class="fa-solid fa-file-csv me-2"></i>Download Advanced Report</button>
                         </div>
                     </div>
 
@@ -439,9 +460,11 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="p-3 bg-danger bg-opacity-10 rounded text-center border border-danger border-opacity-25">
+                            <div
+                                class="p-3 bg-danger bg-opacity-10 rounded text-center border border-danger border-opacity-25">
                                 <div class="small text-danger fw-bold text-uppercase mb-1">Identified Weaknesses</div>
-                                <div id="sp-weakness" class="m-0 fw-medium text-danger small" style="min-height:30px;"></div>
+                                <div id="sp-weakness" class="m-0 fw-medium text-danger small" style="min-height:30px;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -487,7 +510,20 @@
     <script src="/static/assets/js/modules/staff_daily_mcq.js?v=1"></script>
     <script src="/static/assets/js/modules/staff_mcq_create.js?v=1"></script>
     <script src="/static/assets/js/modules/export_results.js?v=1"></script>
+    <script src="/static/assets/js/modules/dashboard_management.js?v=1"></script>
     <script src="/static/assets/js/modules/student_profile.js?v=1"></script>
+    <script src="/static/assets/js/modules/student_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/department_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/dashboard_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_dashboard_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_colleges_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_staff_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_subscriptions_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_students_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_tests_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/analytics_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/staff_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/results_management.js?v=1"></script>
 
     <script src="/static/assets/js/modules/notifications.js?v=2"></script>
     <script src="/static/assets/js/modules/init.js?v=3"></script>
