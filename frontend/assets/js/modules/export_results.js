@@ -177,9 +177,67 @@ const ExportResults = (function() {
         document.body.removeChild(link);
     }
 
+    function downloadPerformanceReport() {
+        const select = document.getElementById('export-date-range');
+        const range = select ? select.options[select.selectedIndex].text : "Custom";
+
+        const headers = ["Rank", "Student Name", "Roll Number", "Branch", "Score", "Percentage"];
+        const rows = detailedStudentResults.map(s => [
+            s.rank, s.studentName, s.studentId, s.branch, s.score, `${s.percentage}%`
+        ]);
+
+        let csvContent = `=== PERFORMANCE REPORT: ${range} ===\n`;
+        csvContent += headers.join(",") + "\n";
+        csvContent += rows.map(row => row.map(item => `"${String(item).replace(/"/g, '""')}"`).join(",")).join("\n");
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `Performance_Report_${range.replace(/\s+/g, '_')}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function downloadProctoringLogs() {
+        const select = document.getElementById('export-risk-level');
+        const risk = select ? select.options[select.selectedIndex].text : "All";
+
+        const headers = ["Student Name", "Roll Number", "Proctoring Status", "Risk Analysis"];
+        
+        // Filter based on mock risk level
+        const filtered = detailedStudentResults.filter(s => {
+            if (risk === "High Risk Only") return s.proctoringStatus.includes("Flag");
+            if (risk === "Medium & High") return s.proctoringStatus !== "Clean";
+            return true;
+        });
+
+        const rows = filtered.map(s => [
+            s.studentName, s.studentId, s.proctoringStatus, s.proctoringStatus === "Clean" ? "Low/No Risk" : "Attention Required"
+        ]);
+
+        let csvContent = `=== AI PROCTORING LOGS: ${risk} ===\n`;
+        csvContent += headers.join(",") + "\n";
+        csvContent += rows.map(row => row.map(item => `"${String(item).replace(/"/g, '""')}"`).join(",")).join("\n");
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `Proctoring_Logs_${risk.replace(/\s+/g, '_')}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     return {
         downloadTestResults,
         downloadStudentResult,
-        downloadFullStudentProfile
+        downloadFullStudentProfile,
+        downloadPerformanceReport,
+        downloadProctoringLogs
     };
 })();

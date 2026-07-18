@@ -6,7 +6,7 @@
         </div>
     </div>
     
-    <div class="export-grid">
+    <div class="export-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto;">
         <!-- Performance Report -->
         <div class="export-card">
             <div class="export-icon-wrapper">
@@ -17,41 +17,16 @@
             
             <div class="export-form-group">
                 <label>Date Range</label>
-                <select>
-                    <option>Last 7 Days</option>
-                    <option>Last 30 Days</option>
-                    <option>This Semester</option>
-                    <option>All Time</option>
+                <select id="export-date-range">
+                    <option value="7">Last 7 Days</option>
+                    <option value="30">Last 30 Days</option>
+                    <option value="semester">This Semester</option>
+                    <option value="all">All Time</option>
                 </select>
             </div>
             
             <div class="export-btn-group">
-                <button class="btn-export btn-export-csv"><i class="fa-solid fa-file-csv"></i> CSV</button>
-                <button class="btn-export btn-export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-            </div>
-        </div>
-
-        <!-- Attendance Report -->
-        <div class="export-card">
-            <div class="export-icon-wrapper">
-                <i class="fa-solid fa-clipboard-user"></i>
-            </div>
-            <h5>Attendance Report</h5>
-            <p class="text-muted" style="font-size: 0.85rem;">Daily attendance logs for live assessments and scheduled training sessions.</p>
-            
-            <div class="export-form-group">
-                <label>Filter by Department</label>
-                <select>
-                    <option>All Departments</option>
-                    <option>Computer Science</option>
-                    <option>Information Tech</option>
-                    <option>Electronics</option>
-                </select>
-            </div>
-            
-            <div class="export-btn-group">
-                <button class="btn-export btn-export-csv"><i class="fa-solid fa-file-csv"></i> CSV</button>
-                <button class="btn-export btn-export-pdf"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+                <button class="btn-export btn-export-csv" style="flex: 1;" onclick="ExportResults.downloadPerformanceReport()"><i class="fa-solid fa-file-csv"></i> Download CSV</button>
             </div>
         </div>
 
@@ -65,15 +40,15 @@
             
             <div class="export-form-group">
                 <label>Risk Level</label>
-                <select>
-                    <option>High Risk Only</option>
-                    <option>Medium & High</option>
-                    <option>All Incidents</option>
+                <select id="export-risk-level">
+                    <option value="High Risk Only">High Risk Only</option>
+                    <option value="Medium & High">Medium & High</option>
+                    <option value="All Incidents">All Incidents</option>
                 </select>
             </div>
             
             <div class="export-btn-group">
-                <button class="btn-export btn-export-csv" style="flex: 1;"><i class="fa-solid fa-file-shield"></i> Generate Secure Report</button>
+                <button class="btn-export btn-export-csv" style="flex: 1;" onclick="ExportResults.downloadProctoringLogs()"><i class="fa-solid fa-file-shield"></i> Generate Secure CSV Report</button>
             </div>
         </div>
     </div>
