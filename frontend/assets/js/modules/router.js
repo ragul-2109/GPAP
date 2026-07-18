@@ -61,10 +61,6 @@ async function switchTab(tabId) {
                     ResultsModule.init();
                 }
 
-            } else if (page === 'notifications') {
-                if (typeof NotificationsModule !== 'undefined') {
-                    NotificationsModule.init();
-                }
             } else if (page === 'daily-mcq') {
                 if (role === 'student' && typeof StudentDailyMCQ !== 'undefined') {
                     StudentDailyMCQ.init();

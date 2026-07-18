@@ -86,20 +86,19 @@ const NotificationsModule = (function() {
 
     function updateUnreadCount() {
         const count = notificationsData.filter(n => !n.isRead).length;
-        const countEl = document.getElementById('unread-count');
-        if (countEl) {
-            countEl.textContent = count;
+        const badge = document.getElementById('nav-notification-badge');
+        if (badge) {
+            badge.textContent = count;
             if (count > 0) {
-                countEl.classList.add('text-danger');
+                badge.classList.remove('d-none');
             } else {
-                countEl.classList.remove('text-danger');
+                badge.classList.add('d-none');
             }
         }
     }
 
     function renderFeed() {
-        const listEl = document.getElementById('notifications-list');
-        const emptyEl = document.getElementById('notifications-empty');
+        const listEl = document.getElementById('notifications-panel-body');
         if (!listEl) return;
 
         updateUnreadCount();
@@ -111,39 +110,36 @@ const NotificationsModule = (function() {
         });
 
         if (filteredData.length === 0) {
-            listEl.innerHTML = '';
-            emptyEl.classList.remove('d-none');
+            listEl.innerHTML = `
+                <div class="text-center p-5 mt-4">
+                    <i class="fa-regular fa-bell-slash fa-3x text-muted opacity-25 mb-3"></i>
+                    <h6 class="text-muted fw-bold">All caught up!</h6>
+                    <p class="small text-muted mb-0">You have no new notifications.</p>
+                </div>
+            `;
             return;
         }
 
-        emptyEl.classList.add('d-none');
-
         listEl.innerHTML = filteredData.map(n => {
-            const readClass = n.isRead ? '' : 'unread';
+            const readClass = n.isRead ? '' : 'bg-light border-start border-primary border-4';
             const iconBg = `bg-${n.color}`;
             const iconText = `text-${n.color}`;
+            const dot = n.isRead ? '' : `<div class="bg-primary rounded-circle mt-1 flex-shrink-0" style="width: 8px; height: 8px;"></div>`;
 
             return `
-            <div class="notification-item p-4 ${readClass}" onclick="NotificationsModule.markAsRead(${n.id})">
+            <div class="p-3 border-bottom cursor-pointer notification-item-hover ${readClass}" onclick="NotificationsModule.markAsRead(${n.id})" style="transition: background 0.2s;">
                 <div class="d-flex align-items-start gap-3">
-                    <!-- Icon -->
-                    <div class="${iconBg} bg-opacity-10 ${iconText} rounded-circle d-flex justify-content-center align-items-center flex-shrink-0" style="width: 48px; height: 48px; font-size: 1.25rem;">
+                    <div class="${iconBg} bg-opacity-10 ${iconText} rounded-circle d-flex justify-content-center align-items-center flex-shrink-0 mt-1" style="width: 40px; height: 40px; font-size: 1rem;">
                         <i class="${n.icon}"></i>
                     </div>
-                    
-                    <!-- Content -->
                     <div class="flex-grow-1">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <h6 class="fw-bold text-dark m-0">${n.title}</h6>
-                            <small class="text-muted">${n.timestamp}</small>
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h6 class="fw-bold text-dark m-0 pe-2" style="font-size: 0.9rem;">${n.title}</h6>
+                            <small class="text-muted flex-shrink-0" style="font-size: 0.75rem;">${n.timestamp}</small>
                         </div>
-                        <p class="text-muted small mb-0 pe-md-5" style="line-height: 1.6;">${n.message}</p>
+                        <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.4;">${n.message}</p>
                     </div>
-                    
-                    <!-- Unread Indicator -->
-                    <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width: 20px; height: 100%;">
-                        <span class="unread-indicator"></span>
-                    </div>
+                    ${dot}
                 </div>
             </div>
             `;

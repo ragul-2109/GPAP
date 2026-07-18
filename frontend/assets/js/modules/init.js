@@ -41,4 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         login();
     });
+
+    if (typeof NotificationsModule !== 'undefined') {
+        NotificationsModule.init();
+    }
 });

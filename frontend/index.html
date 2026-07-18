@@ -207,8 +207,6 @@
                         View Results</a>
 
 
-                    <a href="#" class="menu-item" onclick="switchTab('tab-notifications')"><i
-                            class="fa-solid fa-bell"></i> Notifications</a>
                 </div>
 
                 <!-- Staff Menu -->
@@ -283,8 +281,6 @@
                             class="fa-solid fa-user-secret"></i> AI Cheating Reports</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-super-export')"><i
                             class="fa-solid fa-file-export"></i> Export Reports</a>
-                    <a href="#" class="menu-item" onclick="switchTab('tab-super-notifications')"><i
-                            class="fa-solid fa-bell"></i> Notifications</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-super-settings')"><i
                             class="fa-solid fa-gears"></i> System Settings</a>
                     <a href="#" class="menu-item" onclick="switchTab('tab-super-backup')"><i
@@ -302,11 +298,39 @@
 
             <!-- Main Content Area -->
             <main class="main-content">
-                <div class="top-navbar mb-4">
-                    <button class="btn btn-outline-secondary" onclick="toggleSidebar()">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="brand fs-5">GPAP Portal</div>
+                <div class="top-navbar mb-4 d-flex justify-content-between align-items-center bg-white shadow-sm px-4 py-3 border-bottom">
+                    <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-light border-0 shadow-sm" onclick="toggleSidebar()">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <div class="brand fs-4 m-0 p-0 text-primary fw-bold" style="letter-spacing: 1px;"><i class="fa-solid fa-graduation-cap me-2"></i>GPAP Portal</div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-light position-relative border-0 shadow-sm rounded-circle p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#notificationsOffcanvas" aria-controls="notificationsOffcanvas" style="width: 45px; height: 45px;">
+                            <i class="fa-regular fa-bell fs-5 text-dark"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="nav-notification-badge">
+                                3
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </button>
+                        <div class="vr mx-2"></div>
+                        <div class="d-flex align-items-center gap-2 cursor-pointer" onclick="switchTab('tab-profile')">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 40px; height: 40px;" id="top-nav-avatar">R</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Offcanvas -->
+                <div class="offcanvas offcanvas-end shadow-lg border-0" tabindex="-1" id="notificationsOffcanvas" aria-labelledby="notificationsOffcanvasLabel" style="width: 400px;">
+                    <div class="offcanvas-header border-bottom bg-light">
+                        <h5 class="offcanvas-title fw-bold text-dark d-flex align-items-center gap-2" id="notificationsOffcanvasLabel">
+                            <i class="fa-solid fa-bell text-primary"></i> Notifications
+                        </h5>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body p-0" id="notifications-panel-body">
+                        <!-- Notifications loaded dynamically via JS -->
+                    </div>
                 </div>
 
                 <!-- Dynamic Content Area -->
