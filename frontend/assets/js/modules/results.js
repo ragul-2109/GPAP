@@ -1,11 +1,11 @@
-const ResultsModule = (function() {
-    
+const ResultsModule = (function () {
+
     // Mock Database for Results
     const resultsData = [
         {
             id: 1,
             title: "TCS NQT National Qualifier",
-            type: "mcq",
+            type: "live",
             date: "Jul 10, 2026",
             time: "10:00 AM",
             scoreStr: "85/100",
@@ -41,7 +41,7 @@ const ResultsModule = (function() {
         {
             id: 4,
             title: "Infosys Systems Engineer Assessment",
-            type: "mcq",
+            type: "live",
             date: "Jul 05, 2026",
             time: "11:00 AM",
             scoreStr: "68/100",
@@ -61,6 +61,23 @@ const ResultsModule = (function() {
             status: "Pass",
             timeTaken: "20m",
             percentile: "85th"
+        },
+        {
+            id: 6,
+            title: "Daily Data Structures Test",
+            type: "daily_mcq",
+            date: "Jul 18, 2026",
+            time: "09:30 AM",
+            scoreStr: "24/25",
+            percentage: 96,
+            status: "Pass",
+            timeTaken: "22m",
+            percentile: "Top 5%",
+            proctoring: {
+                tabSwitches: 0,
+                copyPaste: 0,
+                risk: "Safe"
+            }
         }
     ];
 
@@ -73,12 +90,12 @@ const ResultsModule = (function() {
 
     function filterResults(type, btnElement) {
         currentFilter = type;
-        
+
         // Update active class on buttons
         const buttons = btnElement.parentElement.querySelectorAll('button');
         buttons.forEach(b => b.classList.remove('active'));
         btnElement.classList.add('active');
-        
+
         renderTable();
     }
 
@@ -109,10 +126,12 @@ const ResultsModule = (function() {
         tbody.innerHTML = filteredData.map(r => {
             const isPass = r.status === 'Pass';
             const statusColor = isPass ? 'success' : 'danger';
-            
+
             let icon = 'fa-file-lines';
             let iconColor = 'text-primary';
-            if(r.type === 'coding') { icon = 'fa-code'; iconColor = 'text-info'; }
+            if (r.type === 'coding') { icon = 'fa-code'; iconColor = 'text-info'; }
+            if (r.type === 'live') { icon = 'fa-globe'; iconColor = 'text-warning'; }
+            if (r.type === 'daily_mcq') { icon = 'fa-calendar-day'; iconColor = 'text-danger'; }
 
             return `
             <tr>
@@ -152,71 +171,48 @@ const ResultsModule = (function() {
     }
 
     let reportModalInstance = null;
-    let radarChartInstance = null;
 
     function viewReport(id) {
         const result = resultsData.find(r => r.id === id);
-        if(!result) return;
+        if (!result) return;
 
         document.getElementById('report-title').textContent = result.title;
         document.getElementById('report-date').textContent = `Taken on ${result.date} at ${result.time}`;
         document.getElementById('report-score').textContent = result.scoreStr;
-
-        const totalQ = parseInt(result.scoreStr.split('/')[1]) || 25;
-        const correct = parseInt(result.scoreStr.split('/')[0]) || 0;
-        const incorrect = Math.floor((totalQ - correct) * 0.7);
-        const skipped = totalQ - correct - incorrect;
-
-        document.getElementById('report-correct').textContent = correct;
-        document.getElementById('report-incorrect').textContent = incorrect;
-        document.getElementById('report-skipped').textContent = skipped;
-
+        document.getElementById('report-accuracy').textContent = `${result.percentage}%`;
         document.getElementById('report-time').textContent = result.timeTaken;
         document.getElementById('report-percentile').textContent = result.percentile;
-
-        const ctx = document.getElementById('skillRadarChart').getContext('2d');
-        if (radarChartInstance) {
-            radarChartInstance.destroy();
-        }
-        radarChartInstance = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Core Concepts', 'Problem Solving', 'Time Management', 'Accuracy', 'Logic'],
-                datasets: [{
-                    label: 'Skill Level (%)',
-                    data: [
-                        Math.min(100, result.percentage + 5), 
-                        Math.max(0, result.percentage - 10), 
-                        92, 
-                        result.percentage, 
-                        Math.min(100, result.percentage + 15)
-                    ],
-                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
-                    borderColor: 'rgba(78, 115, 223, 1)',
-                    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(78, 115, 223, 1)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(0,0,0,0.1)' },
-                        grid: { color: 'rgba(0,0,0,0.05)' },
-                        pointLabels: { font: { size: 11, family: 'Inter' } },
-                        ticks: { display: false, min: 0, max: 100 }
-                    }
-                },
-                plugins: { legend: { display: false } }
+        
+        const procSection = document.getElementById('report-proctoring-section');
+        const topicTitle = document.getElementById('report-topic-title');
+        
+        if (result.type === 'daily_mcq' && result.proctoring) {
+            procSection.classList.remove('d-none');
+            topicTitle.classList.add('d-none');
+            
+            document.getElementById('report-tab-switches').textContent = result.proctoring.tabSwitches;
+            document.getElementById('report-copy-paste').textContent = result.proctoring.copyPaste;
+            
+            const riskEl = document.getElementById('report-risk');
+            riskEl.textContent = result.proctoring.risk;
+            if (result.proctoring.risk === 'Safe') {
+                riskEl.className = 'fs-5 fw-bold text-success mt-1';
+            } else if (result.proctoring.risk === 'High Risk') {
+                riskEl.className = 'fs-5 fw-bold text-danger mt-1';
+            } else {
+                riskEl.className = 'fs-5 fw-bold text-warning mt-1';
             }
-        });
+        } else {
+            procSection.classList.add('d-none');
+            topicTitle.classList.remove('d-none');
+        }
+
+        const accuracyEl = document.getElementById('report-accuracy');
+        accuracyEl.className = result.status === 'Pass' ? 'fs-4 fw-bold text-success' : 'fs-4 fw-bold text-danger';
 
         if (typeof bootstrap !== 'undefined') {
             const modalEl = document.getElementById('reportModal');
-            if(modalEl) {
+            if (modalEl) {
                 if (!reportModalInstance) {
                     reportModalInstance = new bootstrap.Modal(modalEl);
                 }

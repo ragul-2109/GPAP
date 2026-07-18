@@ -69,6 +69,7 @@
                     onclick="ResultsModule.filterResults('coding', this)">Coding</button>
                 <button class="btn btn-outline-secondary" onclick="ResultsModule.filterResults('live', this)">Live
                     Assessments</button>
+                <button class="btn btn-outline-secondary" onclick="ResultsModule.filterResults('daily_mcq', this)">Daily MCQ</button>
             </div>
             <div class="input-group" style="width: 250px;">
                 <span class="input-group-text bg-light border-end-0"><i
@@ -153,7 +154,31 @@
                     </div>
                 </div>
 
-                <h6 class="fw-bold mb-3">Topic Analysis</h6>
+                <div id="report-proctoring-section" class="d-none mb-4">
+                    <h6 class="fw-bold mb-3 text-danger"><i class="fa-solid fa-user-secret me-2"></i>Proctoring Logs</h6>
+                    <div class="row g-4">
+                        <div class="col-6 col-md-4">
+                            <div class="p-3 bg-danger bg-opacity-10 rounded text-center border border-danger border-opacity-25">
+                                <div class="text-danger small mb-1 fw-bold">Tab Switches</div>
+                                <div class="fs-4 fw-bold text-danger" id="report-tab-switches">0</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="p-3 bg-danger bg-opacity-10 rounded text-center border border-danger border-opacity-25">
+                                <div class="text-danger small mb-1 fw-bold">Copy/Paste</div>
+                                <div class="fs-4 fw-bold text-danger" id="report-copy-paste">0</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="p-3 bg-danger bg-opacity-10 rounded text-center border border-danger border-opacity-25">
+                                <div class="text-danger small mb-1 fw-bold">AI Risk Level</div>
+                                <div class="fs-5 fw-bold text-danger mt-1" id="report-risk">Safe</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold mb-3" id="report-topic-title">Topic Analysis</h6>
                 <div class="mb-3">
                     <div class="d-flex justify-content-between small mb-1">
                         <span class="text-muted fw-medium">Core Concepts</span>
