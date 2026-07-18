@@ -1,0 +1,153 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h3 class="brand m-0">Super Admin (Genfinix Owner)</h3>
+            <div class="text-muted" style="font-size: 0.95rem;">Global Platform Analytics & Control Center</div>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary me-2" onclick="exportSuperAdminReport()"><i class="fa-solid fa-download"></i> Export Report</button>
+            <button class="btn btn-primary"><i class="fa-solid fa-gear"></i> Platform Settings</button>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+                <div class="position-absolute"
+                    style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: var(--primary-color);"><i
+                        class="fa-solid fa-building-columns"></i></div>
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="text-muted font-weight-bold text-uppercase"
+                        style="font-size: 0.8rem; letter-spacing: 1px;">Total Colleges</div>
+                    <div class="badge bg-primary text-white bg-opacity-75"><i class="fa-solid fa-arrow-trend-up"></i> +2
+                        This Month</div>
+                </div>
+                <div class="stat-value" id="sa-total-colleges" style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 700;">...
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+                <div class="position-absolute"
+                    style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: #10b981;"><i
+                        class="fa-solid fa-users"></i></div>
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="text-muted font-weight-bold text-uppercase"
+                        style="font-size: 0.8rem; letter-spacing: 1px;">Total Students</div>
+                    <div class="badge bg-success text-white bg-opacity-75">+1,200 New</div>
+                </div>
+                <div class="stat-value" id="sa-total-students" style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 700;">...
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+                <div class="position-absolute"
+                    style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: #8b5cf6;"><i
+                        class="fa-solid fa-credit-card"></i></div>
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="text-muted font-weight-bold text-uppercase"
+                        style="font-size: 0.8rem; letter-spacing: 1px;">Active Subscriptions</div>
+                    <div class="badge bg-info text-white bg-opacity-75">MRR</div>
+                </div>
+                <div class="stat-value" id="sa-mrr" style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 700;">
+                    ...</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 position-relative overflow-hidden">
+                <div class="position-absolute"
+                    style="top: -10px; right: -10px; font-size: 5rem; opacity: 0.05; color: #f59e0b;"><i
+                        class="fa-solid fa-server"></i></div>
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="text-muted font-weight-bold text-uppercase"
+                        style="font-size: 0.8rem; letter-spacing: 1px;">System Uptime</div>
+                    <div class="badge bg-success text-white bg-opacity-75">All Systems Operational</div>
+                </div>
+                <div class="stat-value" id="sa-uptime" style="font-size: 2.5rem; color: var(--primary-dark); font-weight: 700;">
+                    ...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="lux-card p-4 h-100">
+                <h5 class="mb-4">Platform Activity Overview</h5>
+                <div class="d-flex flex-column justify-content-center align-items-center h-75 text-muted">
+                    <i class="fa-solid fa-chart-line mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
+                    <p>Live Chart Visualization Placeholder</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100">
+                <h5 class="mb-4">Recent Alerts</h5>
+                <div class="list-group list-group-flush bg-transparent" id="sa-alerts-list">
+                    <div class="text-center p-3"><div class="spinner-border text-primary" role="status"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function loadSuperAnalytics() {
+        try {
+            const res = await fetch('/api/analytics/super', {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+            if(res.ok) {
+                const data = await res.json();
+                
+                document.getElementById('sa-total-colleges').innerText = data.overview.total_colleges;
+                document.getElementById('sa-total-students').innerText = data.overview.total_students.toLocaleString();
+                
+                let mrr = data.overview.mrr / 1000;
+                document.getElementById('sa-mrr').innerHTML = `$${mrr}<span style="font-size: 1.5rem;">k</span>`;
+                
+                document.getElementById('sa-uptime').innerHTML = `${data.overview.uptime}<span style="font-size: 1.5rem;">%</span>`;
+                
+                const alertsList = document.getElementById('sa-alerts-list');
+                alertsList.innerHTML = '';
+                
+                const iconMap = {
+                    'warning': '<i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>',
+                    'success': '<i class="fa-solid fa-building-circle-check text-success me-2"></i>',
+                    'primary': '<i class="fa-solid fa-file-invoice-dollar text-primary me-2"></i>'
+                };
+                
+                data.alerts.forEach(alert => {
+                    alertsList.innerHTML += `
+                        <div class="list-group-item bg-transparent px-0 border-bottom">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div style="font-weight: 600;">${iconMap[alert.type]} ${alert.title}</div>
+                                <span class="text-muted" style="font-size: 0.75rem;">${alert.time}</span>
+                            </div>
+                            <div class="text-muted mt-1" style="font-size: 0.85rem;">${alert.desc}</div>
+                        </div>
+                    `;
+                });
+            }
+        } catch(e) {
+            console.error('Failed to load super admin analytics', e);
+        }
+    }
+    
+    async function exportSuperAdminReport() {
+        try {
+            const res = await fetch('/api/reports/export?export_type=platform_analytics', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+            if(res.ok) {
+                const data = await res.json();
+                alert(data.message + "\nDownload link: " + data.download_url);
+            }
+        } catch (e) {
+            alert('Export failed');
+        }
+    }
+
+    loadSuperAnalytics();
+</script>

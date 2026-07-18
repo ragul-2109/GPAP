@@ -1,0 +1,65 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">System Audit Logs</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Real-time tracking of administrative actions and system events.</div>
+        </div>
+        <div>
+            <div class="input-group">
+                <span class="input-group-text bg-white"><i class="fa-solid fa-filter text-muted"></i></span>
+                <select class="form-select border-start-0" style="max-width: 150px;">
+                    <option>All Events</option>
+                    <option>Security (SEC)</option>
+                    <option>Warnings (WARN)</option>
+                    <option>Info (INFO)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="lux-card bg-dark text-white rounded-3 shadow-lg overflow-hidden position-relative" style="border: 1px solid #334155;">
+        <!-- Terminal Header -->
+        <div class="d-flex align-items-center px-3 py-2" style="background-color: #1e293b; border-bottom: 1px solid #334155;">
+            <div class="d-flex gap-2 me-3">
+                <div class="rounded-circle" style="width: 12px; height: 12px; background-color: #ef4444;"></div>
+                <div class="rounded-circle" style="width: 12px; height: 12px; background-color: #f59e0b;"></div>
+                <div class="rounded-circle" style="width: 12px; height: 12px; background-color: #10b981;"></div>
+            </div>
+            <div class="text-muted" style="font-size: 0.8rem; font-family: monospace;">admin@genfinix-server:~</div>
+            <div class="ms-auto">
+                <button class="btn btn-sm btn-outline-secondary border-0 text-white"><i class="fa-solid fa-download"></i></button>
+                <button class="btn btn-sm btn-outline-secondary border-0 text-white"><i class="fa-solid fa-expand"></i></button>
+            </div>
+        </div>
+        
+        <!-- Terminal Body -->
+        <div class="p-4" style="height: 500px; overflow-y: auto; background-color: #0f172a;">
+            <pre class="m-0" style="font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; line-height: 1.6;">
+<span style="color: #64748b;">[2026-07-14 10:23:45]</span> <span style="color: #3b82f6;">[INFO]</span> College 'XYZTECH' added by admin_01
+<span style="color: #64748b;">[2026-07-14 10:45:12]</span> <span style="color: #f59e0b;">[WARN]</span> High load detected on Compiler Node 2
+<span style="color: #64748b;">[2026-07-14 11:05:00]</span> <span style="color: #3b82f6;">[INFO]</span> Automated daily backup completed
+<span style="color: #64748b;">[2026-07-14 11:15:22]</span> <span style="color: #ef4444;">[SEC]</span> Blocked unauthorized API access from IP 192.168.1.5
+<span style="color: #64748b;">[2026-07-14 12:30:11]</span> <span style="color: #3b82f6;">[INFO]</span> User 'sarah.connor' updated subscription tier to 'Pro'
+<span style="color: #64748b;">[2026-07-14 13:01:45]</span> <span style="color: #10b981;">[CRON]</span> Executing cleanup routine for expired sessions...
+<span style="color: #64748b;">[2026-07-14 13:02:10]</span> <span style="color: #10b981;">[CRON]</span> Cleanup routine finished successfully.
+<span style="color: #64748b;">[2026-07-14 14:22:05]</span> <span style="color: #ef4444;">[SEC]</span> Failed login attempt for user 'admin_root' (IP: 45.33.22.1)
+<span style="color: #64748b;">[2026-07-14 14:22:08]</span> <span style="color: #ef4444;">[SEC]</span> Failed login attempt for user 'admin_root' (IP: 45.33.22.1)
+<span style="color: #64748b;">[2026-07-14 14:22:15]</span> <span style="color: #ef4444;">[SEC]</span> IP 45.33.22.1 temporarily banned (Too many failed attempts).
+<span style="color: #64748b;">[2026-07-14 15:45:33]</span> <span style="color: #3b82f6;">[INFO]</span> Manual backup initiated by 'super_admin'
+<span style="color: #64748b;">[2026-07-14 15:50:12]</span> <span style="color: #3b82f6;">[INFO]</span> Manual backup completed. Size: 4.1GB
+<span style="color: #64748b;">[2026-07-14 16:10:00]</span> <span style="color: #f59e0b;">[WARN]</span> API rate limit exceeded by college 'GENFINIX'
+            
+<span class="blink-cursor" style="color: #10b981;">&gt; _</span></pre>
+        </div>
+    </div>
+</div>
+
+<style>
+    .blink-cursor {
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>

@@ -1,0 +1,248 @@
+<div class="staff-question-bank pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Question Bank</h3>
+            <div class="text-muted small mt-1">Manage, filter, and upload assessment questions.</div>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-success btn-sm px-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#bulkUploadModal">
+                <i class="fa-solid fa-file-excel me-1"></i> Bulk Upload
+            </button>
+            <button class="btn btn-primary btn-sm px-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#createQuestionModal">
+                <i class="fa-solid fa-plus me-1"></i> Create Question
+            </button>
+        </div>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="glass-panel p-4 mb-4">
+        <h6 class="fw-bold mb-3 brand">Advanced Filters</h6>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label small text-muted">Search Prompt</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-dark border-secondary text-muted"><i class="fa-solid fa-search"></i></span>
+                    <input type="text" class="form-control bg-dark border-secondary text-white" id="qbSearch" placeholder="Search...">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small text-muted">Department</label>
+                <select class="form-select bg-dark border-secondary text-white" id="qbDept">
+                    <option value="all">All</option>
+                    <option value="CSE">CSE</option>
+                    <option value="IT">IT</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small text-muted">Subject</label>
+                <select class="form-select bg-dark border-secondary text-white" id="qbSubject">
+                    <option value="all">All</option>
+                    <option value="Aptitude">Aptitude</option>
+                    <option value="Programming">Programming</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small text-muted">Topic</label>
+                <input type="text" class="form-control bg-dark border-secondary text-white" placeholder="e.g. Java, OOPs">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small text-muted">Difficulty</label>
+                <select class="form-select bg-dark border-secondary text-white" id="qbDiff">
+                    <option value="all">All</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
+            <div class="col-md-1 d-flex align-items-end">
+                <button class="btn btn-primary w-100"><i class="fa-solid fa-filter"></i></button>
+            </div>
+        </div>
+        
+        <div class="d-flex gap-2 mt-3 flex-wrap">
+            <span class="badge bg-secondary border border-secondary text-white cursor-pointer px-3 py-2">Company <i class="fa-solid fa-chevron-down ms-1"></i></span>
+            <span class="badge bg-secondary border border-secondary text-white cursor-pointer px-3 py-2">Previous Year <i class="fa-solid fa-chevron-down ms-1"></i></span>
+            <span class="badge bg-secondary border border-secondary text-white cursor-pointer px-3 py-2"><i class="fa-solid fa-star text-warning me-1"></i> Frequently Used</span>
+            <span class="badge bg-secondary border border-secondary text-white cursor-pointer px-3 py-2"><i class="fa-solid fa-bookmark text-info me-1"></i> Bookmarks</span>
+            <span class="badge bg-secondary border border-secondary text-white cursor-pointer px-3 py-2"><i class="fa-solid fa-robot text-primary me-1"></i> AI Generated</span>
+        </div>
+    </div>
+    
+    <!-- Table -->
+    <div class="glass-panel p-4">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0">
+                <thead>
+                    <tr class="text-muted small text-uppercase" style="letter-spacing:1px; border-bottom: 2px solid rgba(255,255,255,0.1);">
+                        <th style="width: 50px;">ID</th>
+                        <th style="width: 40%;">Question</th>
+                        <th>Type</th>
+                        <th>Topic</th>
+                        <th>Difficulty</th>
+                        <th>Marks</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="qbTableBody">
+                    <!-- Example Row -->
+                    <tr>
+                        <td class="text-muted">#1042</td>
+                        <td>
+                            <div class="text-white text-truncate" style="max-width: 300px;">Which keyword is used to create an object in Java?</div>
+                            <div class="small text-success mt-1">Ans: C. new</div>
+                        </td>
+                        <td><span class="badge bg-secondary text-white">Single Choice</span></td>
+                        <td>Java Basics</td>
+                        <td><span class="badge bg-warning text-dark">Medium</span></td>
+                        <td>1.0</td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-link text-info p-1"><i class="fa-solid fa-eye"></i></button>
+                            <button class="btn btn-sm btn-link text-warning p-1"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-link text-primary p-1"><i class="fa-solid fa-copy"></i></button>
+                            <button class="btn btn-sm btn-link text-danger p-1"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Create Question Modal -->
+<div class="modal fade" id="createQuestionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content glass-panel border-0 text-white">
+            <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title brand">Create New Question</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="questionForm">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label class="form-label text-muted small">Question Prompt</label>
+                                <textarea class="form-control bg-dark border-secondary text-white" rows="4" placeholder="Enter question..." required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label text-muted small">Question Type</label>
+                                <select class="form-select bg-dark border-secondary text-white">
+                                    <option>Single Choice</option>
+                                    <option>Multiple Choice</option>
+                                    <option>True / False</option>
+                                    <option>Fill in the Blank</option>
+                                    <option>Image Based MCQ</option>
+                                    <option>Paragraph Based MCQ</option>
+                                </select>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small">Option A</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text bg-dark border-secondary">
+                                            <input class="form-check-input mt-0" type="radio" name="correctOpt" value="A">
+                                        </div>
+                                        <input type="text" class="form-control bg-dark border-secondary text-white" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small">Option B</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text bg-dark border-secondary">
+                                            <input class="form-check-input mt-0" type="radio" name="correctOpt" value="B">
+                                        </div>
+                                        <input type="text" class="form-control bg-dark border-secondary text-white" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small">Option C</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text bg-dark border-secondary">
+                                            <input class="form-check-input mt-0" type="radio" name="correctOpt" value="C">
+                                        </div>
+                                        <input type="text" class="form-control bg-dark border-secondary text-white" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small">Option D</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text bg-dark border-secondary">
+                                            <input class="form-check-input mt-0" type="radio" name="correctOpt" value="D">
+                                        </div>
+                                        <input type="text" class="form-control bg-dark border-secondary text-white" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label text-muted small">Explanation</label>
+                                <textarea class="form-control bg-dark border-secondary text-white" rows="2" placeholder="Explain the correct answer..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="p-3 bg-dark bg-opacity-50 rounded border border-secondary mb-3">
+                                <h6 class="brand mb-3">Metadata</h6>
+                                <div class="mb-2">
+                                    <label class="form-label text-muted small">Marks</label>
+                                    <input type="number" class="form-control bg-dark border-secondary text-white form-control-sm" value="1.0">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label text-muted small">Difficulty</label>
+                                    <select class="form-select bg-dark border-secondary text-white form-select-sm">
+                                        <option>Beginner</option>
+                                        <option>Intermediate</option>
+                                        <option>Advanced</option>
+                                    </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label text-muted small">Topic</label>
+                                    <input type="text" class="form-control bg-dark border-secondary text-white form-control-sm" placeholder="e.g. Core Java">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label text-muted small">Bloom Level</label>
+                                    <select class="form-select bg-dark border-secondary text-white form-select-sm">
+                                        <option>Remember</option>
+                                        <option>Understand</option>
+                                        <option>Apply</option>
+                                        <option>Analyze</option>
+                                        <option>Evaluate</option>
+                                        <option>Create</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top border-secondary">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save Question</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Upload Modal -->
+<div class="modal fade" id="bulkUploadModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-panel border-0 text-white">
+            <div class="modal-header border-bottom border-secondary">
+                <h5 class="modal-title brand">Bulk Upload Questions</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <i class="fa-solid fa-cloud-arrow-up fa-4x text-primary mb-3"></i>
+                <p class="text-muted">Upload your Excel or CSV file containing questions. Ensure it follows the Question Import Template.</p>
+                <input class="form-control bg-dark border-secondary text-white mb-3" type="file" accept=".csv, .xlsx, .json">
+                <a href="#" class="text-info small text-decoration-none"><i class="fa-solid fa-download me-1"></i> Download Template</a>
+            </div>
+            <div class="modal-footer border-top border-secondary">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success">Upload File</button>
+            </div>
+        </div>
+    </div>
+</div>

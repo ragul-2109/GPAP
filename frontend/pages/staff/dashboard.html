@@ -1,0 +1,182 @@
+<div class="staff-dashboard pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Trainer Dashboard</h3>
+            <div class="text-muted small mt-1">Welcome back! Here's an overview of your batches and tests.</div>
+        </div>
+        <button class="btn btn-primary btn-sm px-3 shadow-sm" onclick="alert('Generating report...')">
+            <i class="fa-solid fa-download me-2"></i>Download Report
+        </button>
+    </div>
+
+    <!-- Top Stats -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden">
+                <div class="position-absolute end-0 top-0 opacity-10 p-3">
+                    <i class="fa-solid fa-users fa-4x text-primary"></i>
+                </div>
+                <div class="text-muted fw-semibold mb-2 text-uppercase" style="font-size:0.8rem; letter-spacing:1px;">
+                    Active Students</div>
+                <div class="fs-2 brand fw-bold">1,245</div>
+                <div class="text-success small fw-medium mt-1"><i class="fa-solid fa-arrow-trend-up me-1"></i>+12% this
+                    month</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden">
+                <div class="position-absolute end-0 top-0 opacity-10 p-3">
+                    <i class="fa-solid fa-file-signature fa-4x text-info"></i>
+                </div>
+                <div class="text-muted fw-semibold mb-2 text-uppercase" style="font-size:0.8rem; letter-spacing:1px;">
+                    Tests Conducted</div>
+                <div class="fs-2 brand fw-bold">84</div>
+                <div class="text-muted small mt-1">Across 12 batches</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden">
+                <div class="position-absolute end-0 top-0 opacity-10 p-3">
+                    <i class="fa-solid fa-chart-line fa-4x text-success"></i>
+                </div>
+                <div class="text-muted fw-semibold mb-2 text-uppercase" style="font-size:0.8rem; letter-spacing:1px;">
+                    Avg. Batch Score</div>
+                <div class="fs-2 brand fw-bold text-success">76.4%</div>
+                <div class="text-muted small mt-1">Target: 75%</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div
+                class="lux-card p-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden border-start border-warning border-4">
+                <div class="position-absolute end-0 top-0 opacity-10 p-3">
+                    <i class="fa-solid fa-user-clock fa-4x text-warning"></i>
+                </div>
+                <div class="text-muted fw-semibold mb-2 text-uppercase" style="font-size:0.8rem; letter-spacing:1px;">
+                    Pending Evaluations</div>
+                <div class="fs-2 brand fw-bold text-warning">12</div>
+                <div class="text-muted small mt-1">Requires manual grading</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Recent Activity Feed -->
+        <div class="col-md-8">
+            <div class="lux-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="brand m-0">Recent Activity</h5>
+                    <a href="#" class="text-primary text-decoration-none small fw-semibold">View All</a>
+                </div>
+
+                <div class="activity-feed">
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 border-bottom pb-3">
+                            <div class="fw-semibold text-dark">Python Basics Test Completed</div>
+                            <div class="text-muted small mb-1">Batch A (45/50 students submitted)</div>
+                            <div class="text-muted" style="font-size:0.75rem;">10 mins ago</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <i class="fa-solid fa-upload"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 border-bottom pb-3">
+                            <div class="fw-semibold text-dark">New Material Uploaded</div>
+                            <div class="text-muted small mb-1">"Data Structures Advanced Guide.pdf" uploaded to CS Dept
+                            </div>
+                            <div class="text-muted" style="font-size:0.75rem;">2 hours ago</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="flex-shrink-0">
+                            <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 border-bottom pb-3">
+                            <div class="fw-semibold text-dark">AI Proctoring Alert Triggered</div>
+                            <div class="text-muted small mb-1">3 students flagged during "Java Midterms"</div>
+                            <div class="text-muted" style="font-size:0.75rem;">Yesterday, 2:30 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <div class="flex-shrink-0">
+                            <div class="bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <i class="fa-solid fa-calendar-plus"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="fw-semibold text-dark">New Test Scheduled</div>
+                            <div class="text-muted small mb-1">"React JS Frontend" scheduled for Batch B on Friday</div>
+                            <div class="text-muted" style="font-size:0.75rem;">Yesterday, 10:15 AM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions & Upcoming -->
+        <div class="col-md-4">
+            <div class="lux-card p-4 mb-4">
+                <h5 class="brand mb-4">Quick Actions</h5>
+                <div class="d-grid gap-3">
+                    <button class="btn btn-outline-primary text-start d-flex align-items-center gap-3"
+                        onclick="switchTab('tab-staff-mcq-create')">
+                        <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center"
+                            style="width: 32px; height: 32px;">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <span class="fw-semibold">Create MCQ Test</span>
+                    </button>
+                    <button class="btn btn-outline-dark text-start d-flex align-items-center gap-3"
+                        onclick="switchTab('tab-staff-coding-create')">
+                        <div class="bg-dark text-white rounded d-flex align-items-center justify-content-center"
+                            style="width: 32px; height: 32px;">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="fw-semibold">Create Coding Challenge</span>
+                    </button>
+                    <button class="btn btn-outline-success text-start d-flex align-items-center gap-3"
+                        onclick="switchTab('tab-staff-materials')">
+                        <div class="bg-success text-white rounded d-flex align-items-center justify-content-center"
+                            style="width: 32px; height: 32px;">
+                            <i class="fa-solid fa-file-arrow-up"></i>
+                        </div>
+                        <span class="fw-semibold">Upload Materials</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="lux-card p-4 bg-primary text-white position-relative overflow-hidden">
+                <div class="position-absolute end-0 bottom-0 opacity-25" style="transform: translate(20%, 20%);">
+                    <i class="fa-solid fa-calendar fa-6x"></i>
+                </div>
+                <h5 class="text-white mb-3 position-relative">Next Scheduled Test</h5>
+                <div class="fs-4 fw-bold position-relative">Aptitude & Reasoning</div>
+                <div class="d-flex align-items-center gap-2 mt-2 text-white-50 position-relative">
+                    <i class="fa-regular fa-clock"></i> <span>Tomorrow, 10:00 AM</span>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-1 text-white-50 position-relative">
+                    <i class="fa-solid fa-users"></i> <span>Batch C (120 Students)</span>
+                </div>
+                <button
+                    class="btn btn-light btn-sm mt-4 fw-bold text-primary position-relative px-4 rounded-pill">Manage
+                    Event</button>
+            </div>
+        </div>
+    </div>
+</div>

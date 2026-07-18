@@ -1,0 +1,12 @@
+/* Core Theme Variables */
+:root {
+    --primary-color: #0f4c81; /* Classic Blue */
+    --primary-hover: #0a355c;
+    --secondary-color: #3b82f6;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --bg-main: #f4f7fb;
+    --bg-card: #ffffff;
+    --border-color: rgba(226, 232, 240, 0.8);
+    --font-family: 'Outfit', sans-serif;
+}

@@ -1,0 +1,91 @@
+<div>
+    <div class="page-header-actions">
+        <div>
+            <h4 class="brand m-0">Student Management</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Manage all enrolled students, their eligibility and profiles.</div>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary me-2"><i class="fa-solid fa-file-import"></i> Bulk Import</button>
+            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Student</button>
+        </div>
+    </div>
+
+    <div class="premium-table-wrapper">
+        <div class="premium-table-toolbar">
+            <div class="input-group" style="max-width: 300px;">
+                <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                <input type="text" class="form-control border-start-0 ps-0" placeholder="Search by name, ID or email...">
+            </div>
+            <div>
+                <select class="form-select form-select-sm d-inline-block w-auto me-2">
+                    <option>All Departments</option>
+                    <option>Computer Science</option>
+                    <option>Electronics</option>
+                </select>
+                <select class="form-select form-select-sm d-inline-block w-auto">
+                    <option>Status: All</option>
+                    <option>Active</option>
+                    <option>Pending</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Reg ID</th>
+                        <th>Department</th>
+                        <th>Batch</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Alex Johnson</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">alex.j@example.com</div>
+                        </td>
+                        <td>CS2025001</td>
+                        <td>Computer Science</td>
+                        <td>2025</td>
+                        <td><span class="status-pill status-active">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Samantha Smith</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">s.smith@example.com</div>
+                        </td>
+                        <td>EC2025042</td>
+                        <td>Electronics</td>
+                        <td>2025</td>
+                        <td><span class="status-pill status-active">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Michael Chang</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">m.chang@example.com</div>
+                        </td>
+                        <td>CS2025118</td>
+                        <td>Computer Science</td>
+                        <td>2025</td>
+                        <td><span class="status-pill status-pending">Pending Approval</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="p-3 border-top text-end text-muted" style="font-size: 0.85rem;">
+            Showing 3 of 1,250 students
+        </div>
+    </div>
+</div>

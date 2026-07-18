@@ -1,0 +1,78 @@
+<div>
+    <h4 class="brand mb-4">Weak Student Analysis</h4>
+    
+    <div class="weak-analysis-grid">
+        <div class="lux-card p-4 ai-insight-card">
+            <div class="insight-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <h5 class="mb-3">AI Insights</h5>
+            <p class="text-muted" style="font-size: 0.9rem; line-height: 1.6;">
+                Based on recent MCQ and Coding assessments, the AI has identified <strong>Data Structures</strong> and <strong>SQL Joins</strong> as the primary weak points for the current batch. 12% of students are considered high-risk for upcoming placement drives.
+            </p>
+            <button class="btn btn-primary btn-sm mt-3 w-100"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Remedial Plan</button>
+        </div>
+
+        <div class="lux-card p-4" style="grid-column: span 2;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="m-0">At-Risk Students</h5>
+                <div class="input-group" style="max-width: 250px;">
+                    <span class="input-group-text bg-white"><i class="fa-solid fa-search text-muted"></i></span>
+                    <input type="text" class="form-control" placeholder="Search student...">
+                </div>
+            </div>
+
+            <div class="student-risk-list">
+                <div class="risk-item">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:40px; height:40px; border-radius:50%; background:var(--primary-color); color:white; display:flex; align-items:center; justify-content:center; font-weight:600;">JD</div>
+                        <div>
+                            <div style="font-weight:600;">John Doe</div>
+                            <div class="weak-topics">
+                                <span class="topic-tag">Graph Theory</span>
+                                <span class="topic-tag">Dynamic Prog</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <span class="risk-badge risk-high mb-2 d-inline-block">High Risk</span>
+                        <div><button class="btn btn-outline-secondary btn-sm"><i class="fa-regular fa-envelope"></i> Message</button></div>
+                    </div>
+                </div>
+
+                <div class="risk-item">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:40px; height:40px; border-radius:50%; background:#8b5cf6; color:white; display:flex; align-items:center; justify-content:center; font-weight:600;">SA</div>
+                        <div>
+                            <div style="font-weight:600;">Sarah Adams</div>
+                            <div class="weak-topics">
+                                <span class="topic-tag">SQL Joins</span>
+                                <span class="topic-tag">Normalization</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <span class="risk-badge risk-medium mb-2 d-inline-block">Medium Risk</span>
+                        <div><button class="btn btn-outline-secondary btn-sm"><i class="fa-regular fa-envelope"></i> Message</button></div>
+                    </div>
+                </div>
+
+                <div class="risk-item">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:40px; height:40px; border-radius:50%; background:#10b981; color:white; display:flex; align-items:center; justify-content:center; font-weight:600;">MJ</div>
+                        <div>
+                            <div style="font-weight:600;">Mike Johnson</div>
+                            <div class="weak-topics">
+                                <span class="topic-tag">Binary Trees</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <span class="risk-badge risk-low mb-2 d-inline-block">Low Risk</span>
+                        <div><button class="btn btn-outline-secondary btn-sm"><i class="fa-regular fa-envelope"></i> Message</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

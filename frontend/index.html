@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GPAP - Placement & Assessment Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="/static/assets/css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Login Page -->
+    <section id="loginPage" class="login-split-page page">
+        <!-- Left Pane -->
+        <div class="login-left-pane col-md-5 d-none d-md-flex">
+            <div class="left-pane-content">
+                <div class="login-logo">
+                    <div class="login-logo-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size:1.5rem; font-weight:700; color:white; letter-spacing:1px; line-height:1.2;">
+                            GENFINIX</div>
+                        <div style="font-size:0.7rem; color:rgba(255,255,255,0.7);">Placement & Assessment Platform
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-hero-text text-white">
+                    <h1>Empowering Students.<br>Enabling Placements.</h1>
+                    <p>All-in-one platform for assessments, learning, performance tracking and placement success.</p>
+                </div>
+
+                <div class="feature-cards-container text-white">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h6>AI Proctoring</h6>
+                        <p>Advanced anti-cheating system</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
+                        <h6>Analytics</h6>
+                        <p>Detailed performance insights</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
+                        <h6>Coding Tests</h6>
+                        <p>Real-time code evaluation</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-briefcase"></i></div>
+                        <h6>Placement</h6>
+                        <p>Drive, interviews & offers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Pane -->
+        <div class="login-right-pane col-12 col-md-7">
+            <div class="top-bar-login">
+                <div class="lang-select">
+                    <i class="fa-solid fa-globe"></i> English <i class="fa-solid fa-chevron-down ms-1"
+                        style="font-size:0.7rem;"></i>
+                </div>
+            </div>
+
+            <div class="login-form-container mt-4">
+                <h2>Welcome Back!</h2>
+                <p>Sign in to continue to your account</p>
+
+                <div class="role-tabs">
+                    <div class="role-tab active" onclick="setRole('student', this)">
+                        <i class="fa-solid fa-user-graduate"></i>
+                        <span>Student</span>
+                    </div>
+                    <div class="role-tab" onclick="setRole('staff', this)">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Staff</span>
+                    </div>
+                    <div class="role-tab" onclick="setRole('college', this)">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span>College Admin</span>
+                    </div>
+                    <div class="role-tab" onclick="setRole('super', this)">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Super Admin</span>
+                    </div>
+                </div>
+
+                <form id="loginForm">
+                    <label class="login-label">Select Institute / College</label>
+                    <div class="login-input-group">
+                        <i class="fa-solid fa-building-columns left-icon"></i>
+                        <input id="collegeCode" type="text" class="login-input"
+                            placeholder="Choose your institute / college" value="EXCEL" required />
+                        <i class="fa-solid fa-chevron-down right-icon" style="font-size:0.8rem;"></i>
+                    </div>
+
+                    <label class="login-label">Username / Email</label>
+                    <div class="login-input-group">
+                        <i class="fa-regular fa-user left-icon"></i>
+                        <input id="email" type="text" class="login-input" placeholder="Enter your username or email"
+                            value="student@gmail.com" required />
+                    </div>
+
+                    <label class="login-label">Password</label>
+                    <div class="login-input-group mb-2">
+                        <i class="fa-solid fa-lock left-icon"></i>
+                        <input id="password" type="password" class="login-input" placeholder="Enter your password"
+                            value="student123" required />
+                        <i class="fa-regular fa-eye right-icon"
+                            onclick="const p=document.getElementById('password'); p.type=p.type==='password'?'text':'password';"></i>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" style="cursor:pointer;">
+                            <label class="form-check-label text-muted" for="rememberMe"
+                                style="font-size:0.85rem; cursor:pointer;">
+                                Remember Me
+                            </label>
+                        </div>
+                        <a href="#" class="text-primary text-decoration-none"
+                            style="font-size:0.85rem; font-weight:600;">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <i class="fa-solid fa-lock" style="font-size:0.9rem;"></i> Sign In
+                    </button>
+
+                    <div class="divider">or continue with</div>
+
+                    <div class="social-btns">
+                        <button type="button" class="btn-social">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="18" height="18"
+                                alt="Google"> Google
+                        </button>
+                        <button type="button" class="btn-social">
+                            <img src="https://www.svgrepo.com/show/448239/microsoft.svg" width="18" height="18"
+                                alt="Microsoft"> Microsoft
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted" style="font-size:0.9rem;">
+                            New here? Contact your <a href="#"
+                                class="text-primary text-decoration-none fw-semibold">college admin</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="login-footer-info">
+                <div class="footer-item">
+                    <i class="fa-solid fa-headset fa-lg"></i>
+                    <div>
+                        <div style="font-weight:600; color:#1e293b;">24/7 Support</div>
+                        <div>We are here to help you</div>
+                    </div>
+                </div>
+                <div class="footer-item"><i class="fa-regular fa-envelope"></i> support@genfinix.com</div>
+                <div class="footer-item"><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
+                <div class="footer-item"><i class="fa-solid fa-globe"></i> www.genfinix.com</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Layout -->
+    <section id="dashboardPage" class="page d-none">
+        <div class="dashboard-layout">
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="sidebar">
+                <div class="sidebar-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap brand fs-5"></i>
+                        <div class="brand fs-5">GPAP</div>
+                    </div>
+                    <button class="btn btn-sm d-md-none" onclick="toggleSidebar()"><i
+                            class="fa-solid fa-times"></i></button>
+                </div>
+
+                <!-- Student Menu -->
+                <div class="sidebar-menu d-none" id="studentMenu">
+                    <a href="#" class="menu-item active" onclick="switchTab('tab-dashboard')"><i
+                            class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-profile')"><i class="fa-solid fa-user"></i>
+                        Profile</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-study')"><i class="fa-solid fa-book-open"></i>
+                        Study Materials</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-mcq')"><i class="fa-solid fa-list-check"></i>
+                        MCQ Practice</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-coding')"><i class="fa-solid fa-code"></i>
+                        Coding Practice</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-live')"><i class="fa-solid fa-stopwatch"></i>
+                        Live Test</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-results')"><i class="fa-solid fa-award"></i>
+                        View Results</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-performance')"><i
+                            class="fa-solid fa-chart-pie"></i> Performance Analysis</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-resume')"><i
+                            class="fa-solid fa-file-lines"></i> Resume Builder</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-notifications')"><i
+                            class="fa-solid fa-bell"></i> Notifications</a>
+                </div>
+
+                <!-- Staff Menu -->
+                <div class="sidebar-menu d-none" id="staffMenu">
+                    <a href="#" class="menu-item active" onclick="switchTab('tab-staff-dashboard')"><i
+                            class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-mcq-create')"><i
+                            class="fa-solid fa-plus-circle"></i> Create MCQ</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-coding-create')"><i
+                            class="fa-solid fa-code"></i> Create Coding</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-question-bank')"><i
+                            class="fa-solid fa-database"></i> Question Bank</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-materials')"><i
+                            class="fa-solid fa-file-arrow-up"></i> Upload Materials</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-schedule')"><i
+                            class="fa-solid fa-calendar-check"></i> Schedule Tests</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-attendance')"><i
+                            class="fa-solid fa-clipboard-user"></i> Daily Attendance</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-monitor')"><i
+                            class="fa-solid fa-desktop"></i> Monitor Live Tests</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-results')"><i
+                            class="fa-solid fa-square-poll-vertical"></i> View Results</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-weak-analysis')"><i
+                            class="fa-solid fa-user-injured"></i> Weak Student Analysis</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-staff-export')"><i
+                            class="fa-solid fa-file-export"></i> Export Results</a>
+                </div>
+
+                <!-- College Admin Menu -->
+                <div class="sidebar-menu d-none" id="collegeMenu">
+                    <a href="#" class="menu-item active" onclick="switchTab('tab-college-dashboard')"><i
+                            class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-students')"><i
+                            class="fa-solid fa-users"></i> Student Management</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-departments')"><i
+                            class="fa-solid fa-building-columns"></i> Dept & Courses</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-staff')"><i
+                            class="fa-solid fa-chalkboard-user"></i> Assign Genfinix Staff</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-schedule')"><i
+                            class="fa-solid fa-calendar-check"></i> Schedule Tests</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-results')"><i
+                            class="fa-solid fa-square-poll-vertical"></i> View Student Results</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-analytics')"><i
+                            class="fa-solid fa-chart-column"></i> Performance Analytics</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-eligibility')"><i
+                            class="fa-solid fa-briefcase"></i> Placement Eligibility</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-attendance')"><i
+                            class="fa-solid fa-clipboard-user"></i> Attendance Reports</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-export')"><i
+                            class="fa-solid fa-file-export"></i> Export Reports</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-college-announcements')"><i
+                            class="fa-solid fa-bullhorn"></i> Announcements</a>
+                </div>
+
+                <!-- Super Admin Menu -->
+                <div class="sidebar-menu d-none" id="superAdminMenu">
+                    <a href="#" class="menu-item active" onclick="switchTab('tab-super-dashboard')"><i
+                            class="fa-solid fa-globe"></i> Dashboard Analytics</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-colleges')"><i
+                            class="fa-solid fa-building"></i> College Management</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-staff')"><i
+                            class="fa-solid fa-user-tie"></i> Genfinix Staff Mgt</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-subscriptions')"><i
+                            class="fa-solid fa-credit-card"></i> Subscription Mgt</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-students')"><i
+                            class="fa-solid fa-users-viewfinder"></i> View All Students</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-tests')"><i
+                            class="fa-solid fa-folder-tree"></i> View All Tests</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-cheating')"><i
+                            class="fa-solid fa-user-secret"></i> AI Cheating Reports</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-export')"><i
+                            class="fa-solid fa-file-export"></i> Export Reports</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-notifications')"><i
+                            class="fa-solid fa-bell"></i> Notifications</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-settings')"><i
+                            class="fa-solid fa-gears"></i> System Settings</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-backup')"><i
+                            class="fa-solid fa-database"></i> Backup & Restore</a>
+                    <a href="#" class="menu-item" onclick="switchTab('tab-super-audit')"><i
+                            class="fa-solid fa-clipboard-list"></i> Audit Logs</a>
+                </div>
+
+                <div class="p-3 border-top">
+                    <button class="btn btn-outline-danger w-100" onclick="logout()">
+                        <i class="fa-solid fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <div class="top-navbar mb-4">
+                    <button class="btn btn-outline-secondary" onclick="toggleSidebar()">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="brand fs-5">GPAP Portal</div>
+                </div>
+
+                <!-- Dynamic Content Area -->
+                <div id="content-area" class="tab-section active">
+                    <!-- Content will be injected here by app.js -->
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/js/modules/state.js?v=2"></script>
+    <script src="/static/assets/js/modules/layout.js?v=2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"
+        integrity="sha512-v48N5EAhqA+e0t8QeT4aTj8Oa/5oT12r/03i1RjQzQ/m+J4+098oN3Q7Tz5q+yP10a7M7x+4U3E/8+629Q+U+A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/assets/js/modules/router.js?v=2"></script>
+    <script src="/static/assets/js/modules/auth.js?v=2"></script>
+    <script src="/static/assets/js/modules/dashboard.js?v=2"></script>
+    <script src="/static/assets/js/modules/mcq.js?v=2"></script>
+    <script src="/static/assets/js/modules/coding.js?v=2"></script>
+    <script src="/static/assets/js/modules/live_test.js?v=2"></script>
+    <script src="/static/assets/js/modules/results.js?v=2"></script>
+    <script src="/static/assets/js/modules/performance.js?v=2"></script>
+    <script src="/static/assets/js/modules/resume.js?v=2"></script>
+    <script src="/static/assets/js/modules/notifications.js?v=2"></script>
+    <script src="/static/assets/js/modules/init.js?v=3"></script>
+</body>
+
+</html>

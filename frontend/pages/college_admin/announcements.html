@@ -1,0 +1,76 @@
+<div>
+    <div class="page-header-actions">
+        <div>
+            <h4 class="brand m-0">Announcements</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Broadcast messages to students and staff.</div>
+        </div>
+        <div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAnnouncementModal"><i class="fa-solid fa-bullhorn"></i> New Announcement</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="d-flex flex-column gap-3">
+                <!-- Announcement Card 1 -->
+                <div class="lux-card p-4">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-danger text-white">Urgent</span>
+                            <span class="badge bg-light text-dark border">Placement</span>
+                        </div>
+                        <div class="text-muted" style="font-size: 0.8rem;"><i class="fa-regular fa-clock"></i> 2 hours ago</div>
+                    </div>
+                    <h5 class="mb-2" style="color: var(--primary-dark);">TCS Ninja Hiring Drive - Registration Open</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.9rem; line-height: 1.6;">
+                        All eligible final year students from CSE, IT, and ECE branches must complete their registration on the TCS NextStep portal by tomorrow evening. Mandatory mock tests will be conducted on Friday.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div style="font-size: 0.85rem;"><i class="fa-solid fa-user-circle"></i> Posted by Placement Cell</div>
+                        <div>
+                            <button class="btn btn-sm btn-light text-primary"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-light text-danger"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Announcement Card 2 -->
+                <div class="lux-card p-4">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-light text-dark border">Academics</span>
+                        </div>
+                        <div class="text-muted" style="font-size: 0.8rem;"><i class="fa-regular fa-clock"></i> Yesterday</div>
+                    </div>
+                    <h5 class="mb-2" style="color: var(--primary-dark);">Rescheduling of Data Structures Mid-Term</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.9rem; line-height: 1.6;">
+                        Due to the technical workshop scheduled for this week, the Data Structures mid-term assessment has been postponed to next Monday at 10:00 AM. Please prepare accordingly.
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div style="font-size: 0.85rem;"><i class="fa-solid fa-user-circle"></i> Posted by CSE HOD</div>
+                        <div>
+                            <button class="btn btn-sm btn-light text-primary"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-light text-danger"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="lux-card p-4 sticky-top" style="top: 20px;">
+                <h6 class="mb-3">Quick Draft</h6>
+                <div class="mb-3">
+                    <input type="text" class="form-control mb-2" placeholder="Title">
+                    <select class="form-select mb-2">
+                        <option>Target: All Students</option>
+                        <option>Target: Final Years Only</option>
+                        <option>Target: Staff Only</option>
+                    </select>
+                    <textarea class="form-control" rows="4" placeholder="Type your announcement here..."></textarea>
+                </div>
+                <button class="btn btn-outline-primary w-100">Post Now</button>
+            </div>
+        </div>
+    </div>
+</div>

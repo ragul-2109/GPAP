@@ -1,0 +1,92 @@
+<div class="notifications-container pb-5">
+    
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <h3 class="brand m-0">Activity Feed</h3>
+            <div class="text-muted small mt-1">Stay updated with alerts, results, and announcements.</div>
+        </div>
+        <button class="btn btn-light text-primary shadow-sm fw-medium border" onclick="NotificationsModule.markAllAsRead()"><i class="fa-solid fa-check-double me-2"></i>Mark all as read</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="lux-card border-0 shadow-sm overflow-hidden">
+        
+        <!-- Filters Header -->
+        <div class="bg-light p-3 border-bottom d-flex align-items-center justify-content-between">
+            <ul class="nav nav-pills custom-nav-pills gap-2" id="notification-filters">
+                <li class="nav-item">
+                    <button class="nav-link active rounded-pill px-3 py-1" onclick="NotificationsModule.filterFeed('all', this)">All</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link rounded-pill px-3 py-1" onclick="NotificationsModule.filterFeed('unread', this)">Unread</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link rounded-pill px-3 py-1" onclick="NotificationsModule.filterFeed('system', this)">System Alerts</button>
+                </li>
+            </ul>
+            <div class="text-muted small fw-bold"><span id="unread-count">0</span> Unread</div>
+        </div>
+
+        <!-- Notifications List -->
+        <div id="notifications-list" class="d-flex flex-column">
+            <!-- Dynamic items injected here via JS -->
+        </div>
+        
+        <!-- Empty State -->
+        <div id="notifications-empty" class="text-center p-5 d-none">
+            <div class="d-inline-flex justify-content-center align-items-center bg-light text-muted rounded-circle mb-3 border" style="width: 80px; height: 80px; font-size: 2rem;">
+                <i class="fa-regular fa-bell-slash"></i>
+            </div>
+            <h5 class="fw-bold text-dark mb-1">You're all caught up!</h5>
+            <p class="text-muted small mb-0">There are no notifications matching this filter.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Notification specific styles */
+.notification-item {
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+.notification-item.unread {
+    background-color: rgba(13, 110, 253, 0.03);
+}
+.notification-item.unread:hover {
+    background-color: rgba(13, 110, 253, 0.08);
+}
+.unread-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0;
+}
+.notification-item.unread .unread-indicator {
+    opacity: 1;
+}
+
+/* Reusing custom pill styling from Live Test for consistency */
+.custom-nav-pills .nav-link {
+    color: #6c757d;
+    background: transparent;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+.custom-nav-pills .nav-link:hover {
+    color: var(--primary-color);
+    background: #f8f9fa;
+}
+.custom-nav-pills .nav-link.active {
+    color: #fff;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+}
+</style>

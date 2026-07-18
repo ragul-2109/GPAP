@@ -1,0 +1,111 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0 text-danger"><i class="fa-solid fa-shield-virus"></i> AI Cheating & Proctoring Reports</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Global logs of proctoring flags, unauthorized access, and plagiarism detected by the AI compiler.</div>
+        </div>
+        <div>
+            <button class="btn btn-outline-danger me-2"><i class="fa-solid fa-ban"></i> Mass Suspend Flagged</button>
+            <button class="btn btn-primary"><i class="fa-solid fa-download"></i> Export Incident Log</button>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="lux-card p-3 border-start border-4 border-danger h-100">
+                <div class="text-muted" style="font-size: 0.8rem; font-weight: 600;">CRITICAL INCIDENTS (24H)</div>
+                <div class="d-flex align-items-baseline mt-1 gap-2">
+                    <h3 class="m-0 text-danger">12</h3>
+                    <span class="text-muted" style="font-size: 0.8rem;">Requires immediate review</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-3 border-start border-4 border-warning h-100">
+                <div class="text-muted" style="font-size: 0.8rem; font-weight: 600;">PLAGIARISM FLAGS (7D)</div>
+                <div class="d-flex align-items-baseline mt-1 gap-2">
+                    <h3 class="m-0 text-warning">84</h3>
+                    <span class="text-muted" style="font-size: 0.8rem;">Code similarity > 85%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-3 border-start border-4 border-info h-100">
+                <div class="text-muted" style="font-size: 0.8rem; font-weight: 600;">BROWSER SWITCHES (7D)</div>
+                <div class="d-flex align-items-baseline mt-1 gap-2">
+                    <h3 class="m-0 text-info">312</h3>
+                    <span class="text-muted" style="font-size: 0.8rem;">Minor warnings issued</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-table-wrapper" style="border: 1px solid rgba(239, 68, 68, 0.2);">
+        <div class="premium-table-toolbar bg-danger bg-opacity-10">
+            <h5 class="m-0 text-danger">Recent Incident Log</h5>
+            <div>
+                <select class="form-select form-select-sm d-inline-block w-auto me-2">
+                    <option>Severity: High</option>
+                    <option>Severity: Medium</option>
+                    <option>Severity: Low</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>College</th>
+                        <th>Student</th>
+                        <th>Incident Type</th>
+                        <th>Confidence Score</th>
+                        <th>Severity</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-danger" style="background-color: rgba(239, 68, 68, 0.05);">
+                        <td class="text-muted" style="font-size: 0.85rem;">Oct 16, 2023 <br> 14:32:05 EST</td>
+                        <td style="font-weight: 600;">Genfinix Institute</td>
+                        <td>
+                            <div style="color: var(--primary-dark);">Student A (CS2025110)</div>
+                        </td>
+                        <td><i class="fa-solid fa-copy text-danger me-1"></i> Exact Code Copy/Paste</td>
+                        <td><span class="badge bg-light text-dark border">98% Match</span></td>
+                        <td><span class="badge bg-danger">Critical</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-danger">Review Evidence</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted" style="font-size: 0.85rem;">Oct 16, 2023 <br> 10:15:22 EST</td>
+                        <td style="font-weight: 600;">XYZ Tech University</td>
+                        <td>
+                            <div style="color: var(--primary-dark);">Student B (EC2024099)</div>
+                        </td>
+                        <td><i class="fa-regular fa-window-restore text-warning me-1"></i> Tab Switch Detected</td>
+                        <td><span class="badge bg-light text-dark border">Duration: 45s</span></td>
+                        <td><span class="badge bg-warning text-dark">Medium</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-secondary">Review Evidence</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-muted" style="font-size: 0.85rem;">Oct 15, 2023 <br> 16:05:11 EST</td>
+                        <td style="font-weight: 600;">Genfinix Institute</td>
+                        <td>
+                            <div style="color: var(--primary-dark);">Student C (IT2025042)</div>
+                        </td>
+                        <td><i class="fa-solid fa-users-viewfinder text-danger me-1"></i> Multiple Faces Detected</td>
+                        <td><span class="badge bg-light text-dark border">AI Webcam Flag</span></td>
+                        <td><span class="badge bg-danger">Critical</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-danger">Review Evidence</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

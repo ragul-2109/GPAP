@@ -1,0 +1,70 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">System Settings</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Configure global platform parameters, security policies, and integrations.</div>
+        </div>
+        <div>
+            <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active border-0 rounded mb-1"><i class="fa-solid fa-sliders me-2"></i> General Settings</a>
+                <a href="#" class="list-group-item list-group-item-action border-0 rounded mb-1 text-muted"><i class="fa-solid fa-shield-halved me-2"></i> Security & Proctoring</a>
+                <a href="#" class="list-group-item list-group-item-action border-0 rounded mb-1 text-muted"><i class="fa-solid fa-code me-2"></i> API & Webhooks</a>
+                <a href="#" class="list-group-item list-group-item-action border-0 rounded mb-1 text-muted"><i class="fa-solid fa-credit-card me-2"></i> Billing Gateway</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="lux-card p-4 mb-4">
+                <h5 class="mb-4 pb-2 border-bottom">Core Engine Configuration</h5>
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <div style="font-weight: 600;">Global AI Compiler</div>
+                        <div class="text-muted" style="font-size: 0.85rem;">Enable code execution and compilation features for coding assessments.</div>
+                    </div>
+                    <div class="form-check form-switch fs-4 m-0">
+                        <input class="form-check-input" type="checkbox" checked>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <div style="font-weight: 600;">Strict Proctoring Enforcement</div>
+                        <div class="text-muted" style="font-size: 0.85rem;">Force all new assessments to use webcam and screen monitoring by default.</div>
+                    </div>
+                    <div class="form-check form-switch fs-4 m-0">
+                        <input class="form-check-input" type="checkbox" checked>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <div style="font-weight: 600;">Auto-Suspend on Critical Flags</div>
+                        <div class="text-muted" style="font-size: 0.85rem;">Automatically suspend student accounts if similarity score exceeds 95%.</div>
+                    </div>
+                    <div class="form-check form-switch fs-4 m-0">
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lux-card p-4">
+                <h5 class="mb-4 pb-2 border-bottom">Maintenance Mode</h5>
+                <div class="alert alert-warning d-flex gap-3 align-items-center m-0">
+                    <i class="fa-solid fa-triangle-exclamation fs-3"></i>
+                    <div>
+                        <div style="font-weight: 600;">Enable Platform Maintenance</div>
+                        <div style="font-size: 0.85rem;">This will log out all active users except Super Admins and show a maintenance page.</div>
+                    </div>
+                    <button class="btn btn-outline-warning text-dark ms-auto">Activate Mode</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

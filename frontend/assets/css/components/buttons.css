@@ -1,0 +1,29 @@
+/* Interactive Buttons */
+.btn-primary {
+    background: var(--primary-color);
+    border: none;
+    font-weight: 500;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px 0 rgba(15, 76, 129, 0.39);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(15, 76, 129, 0.23);
+    transform: translateY(-1px);
+    color: white;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+    background: #f0f7ff;
+    color: var(--primary-hover);
+}

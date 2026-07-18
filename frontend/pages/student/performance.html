@@ -1,0 +1,143 @@
+<div class="performance-container pb-5">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Performance Analytics</h3>
+            <div class="text-muted small mt-1">AI-driven insights into your skill progression.</div>
+        </div>
+        <button class="btn btn-outline-primary px-4 shadow-sm"><i class="fa-solid fa-share-nodes me-2"></i>Share Profile</button>
+    </div>
+
+    <!-- Top Charts Row -->
+    <div class="row g-4 mb-4">
+        <!-- Radar Chart: Skill Matrix -->
+        <div class="col-md-5">
+            <div class="lux-card p-4 border-0 shadow-sm h-100 d-flex flex-column">
+                <h5 class="fw-bold mb-1">Skill Matrix</h5>
+                <p class="text-muted small mb-4">Your proficiency across core domains.</p>
+                <div class="flex-grow-1 position-relative d-flex justify-content-center align-items-center" style="min-height: 250px;">
+                    <canvas id="skillRadarChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Line Chart: Progress Over Time -->
+        <div class="col-md-7">
+            <div class="lux-card p-4 border-0 shadow-sm h-100 d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h5 class="fw-bold m-0">Score Progression</h5>
+                    <select class="form-select form-select-sm border-0 bg-light w-auto text-muted fw-medium">
+                        <option>Last 6 Months</option>
+                        <option>Last 30 Days</option>
+                        <option>All Time</option>
+                    </select>
+                </div>
+                <p class="text-muted small mb-4">Tracking your average scores over time.</p>
+                <div class="flex-grow-1 position-relative w-100" style="min-height: 250px;">
+                    <canvas id="progressLineChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Strengths & Weaknesses Row -->
+    <div class="row g-4 mb-4">
+        
+        <div class="col-md-6">
+            <div class="lux-card p-4 border-0 shadow-sm h-100 border-top border-4 border-success">
+                <h5 class="fw-bold text-success mb-4"><i class="fa-solid fa-arrow-trend-up me-2"></i>Top Strengths</h5>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold text-dark">Data Structures</span>
+                        <span class="badge bg-success bg-opacity-10 text-success">Expert</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-success rounded-pill" style="width: 92%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold text-dark">Object Oriented Programming</span>
+                        <span class="badge bg-success bg-opacity-10 text-success">Advanced</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-success rounded-pill opacity-75" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-0">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold text-dark">Web Technologies (HTML/CSS)</span>
+                        <span class="badge bg-primary bg-opacity-10 text-primary">Proficient</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-primary rounded-pill opacity-75" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="lux-card p-4 border-0 shadow-sm h-100 border-top border-4 border-warning">
+                <h5 class="fw-bold text-warning mb-4"><i class="fa-solid fa-hammer me-2"></i>Areas to Improve</h5>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold text-dark">Dynamic Programming</span>
+                        <span class="badge bg-danger bg-opacity-10 text-danger">Beginner</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-danger rounded-pill opacity-75" style="width: 35%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-bold text-dark">System Design</span>
+                        <span class="badge bg-warning bg-opacity-10 text-warning">Intermediate</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-warning rounded-pill opacity-75" style="width: 52%"></div>
+                    </div>
+                </div>
+                
+                <div class="p-3 bg-light rounded text-muted small mt-4 border border-secondary border-opacity-10">
+                    <i class="fa-solid fa-robot me-2 text-primary"></i> <strong>AI Suggestion:</strong> Your performance in algorithmic challenges drops when time pressure is applied. Focus on practicing medium-difficulty Dynamic Programming questions with a strict timer.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Badges -->
+    <h5 class="fw-bold mb-3 mt-2">Recent Achievements</h5>
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="lux-card p-3 border-0 shadow-sm text-center hover-lift">
+                <i class="fa-solid fa-fire fa-2x text-danger mb-2"></i>
+                <div class="fw-bold text-dark small">7-Day Streak</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="lux-card p-3 border-0 shadow-sm text-center hover-lift">
+                <i class="fa-solid fa-code fa-2x text-info mb-2"></i>
+                <div class="fw-bold text-dark small">100+ Codes Compiled</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="lux-card p-3 border-0 shadow-sm text-center hover-lift">
+                <i class="fa-solid fa-crown fa-2x text-warning mb-2"></i>
+                <div class="fw-bold text-dark small">Top 10% Scorer</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="lux-card p-3 border-0 shadow-sm text-center hover-lift opacity-50" style="filter: grayscale(100%);">
+                <i class="fa-solid fa-star fa-2x text-warning mb-2"></i>
+                <div class="fw-bold text-dark small">Perfect Assessment</div>
+                <div class="text-muted" style="font-size: 0.7rem;">Locked</div>
+            </div>
+        </div>
+    </div>
+    
+</div>

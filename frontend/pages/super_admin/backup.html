@@ -1,0 +1,103 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">Database Backup & Restore</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Manage system snapshots and disaster recovery points.</div>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary me-2"><i class="fa-solid fa-gear"></i> Backup Settings</button>
+            <button class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Create Manual Backup</button>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100 border-top border-4 border-success">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="m-0 text-muted">System Health</h6>
+                    <i class="fa-solid fa-heart-pulse text-success fs-4"></i>
+                </div>
+                <h3 class="mb-1 text-success">Optimal</h3>
+                <div class="text-muted" style="font-size: 0.85rem;">Last automated backup: 2 hours ago</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100 border-top border-4" style="border-color: #3b82f6 !important;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="m-0 text-muted">Storage Usage</h6>
+                    <i class="fa-solid fa-hard-drive text-primary fs-4"></i>
+                </div>
+                <h3 class="mb-1" style="color: #3b82f6;">45.2 GB</h3>
+                <div class="text-muted" style="font-size: 0.85rem;">Of 500 GB allocated storage</div>
+                <div class="progress mt-2" style="height: 5px;">
+                    <div class="progress-bar bg-primary" style="width: 9%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100 border-top border-4 border-warning">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="m-0 text-muted">Available Restore Points</h6>
+                    <i class="fa-solid fa-clock-rotate-left text-warning fs-4"></i>
+                </div>
+                <h3 class="mb-1 text-warning">14</h3>
+                <div class="text-muted" style="font-size: 0.85rem;">Retention policy: Last 14 days</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-table-wrapper">
+        <div class="p-3 border-bottom bg-light">
+            <h6 class="m-0">Recent Backup History</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Backup ID</th>
+                        <th>Type</th>
+                        <th>Timestamp</th>
+                        <th>Size</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-monospace text-muted">BKP-20231016-AUTO</td>
+                        <td><span class="badge bg-light text-dark border"><i class="fa-solid fa-robot me-1"></i> Automated</span></td>
+                        <td>Oct 16, 2023 &bull; 03:00 AM</td>
+                        <td>4.2 GB</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success"><i class="fa-solid fa-check-circle me-1"></i> Success</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-danger me-1">Restore</button>
+                            <button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-monospace text-muted">BKP-20231015-AUTO</td>
+                        <td><span class="badge bg-light text-dark border"><i class="fa-solid fa-robot me-1"></i> Automated</span></td>
+                        <td>Oct 15, 2023 &bull; 03:00 AM</td>
+                        <td>4.1 GB</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success"><i class="fa-solid fa-check-circle me-1"></i> Success</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-danger me-1">Restore</button>
+                            <button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-monospace text-muted">BKP-20231014-MAN</td>
+                        <td><span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25"><i class="fa-solid fa-user me-1"></i> Manual</span></td>
+                        <td>Oct 14, 2023 &bull; 15:45 PM</td>
+                        <td>4.1 GB</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success"><i class="fa-solid fa-check-circle me-1"></i> Success</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-danger me-1">Restore</button>
+                            <button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

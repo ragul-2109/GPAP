@@ -1,0 +1,202 @@
+<div class="staff-mcq-create pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Create MCQ Test</h3>
+            <div class="text-muted small mt-1">Configure test parameters and assign questions</div>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm px-3 shadow-sm" onclick="switchTab('tab-staff-dashboard')">
+            <i class="fa-solid fa-arrow-left me-2"></i>Back to Dashboard
+        </button>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-8">
+            <!-- Test Configuration Form -->
+            <div class="lux-card p-4 mb-4">
+                <h5 class="brand mb-4 border-bottom pb-2">1. Test Configuration</h5>
+                <form id="createTestForm">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label small fw-semibold text-muted">Test Title</label>
+                            <input type="text" class="form-control" id="testTitle" required placeholder="e.g., Python Basics Midterm">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-muted">Subject</label>
+                            <input type="text" class="form-control" id="testSubject" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-muted">Topic</label>
+                            <input type="text" class="form-control" id="testTopic">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted">Total Questions</label>
+                            <input type="number" class="form-control" id="testTotalQuestions" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted">Total Marks</label>
+                            <input type="number" class="form-control" id="testTotalMarks" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-muted">Duration (Minutes)</label>
+                            <input type="number" class="form-control" id="testDuration" required value="30">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-muted">Passing Marks</label>
+                            <input type="number" class="form-control" id="testPassingMarks">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-muted">Negative Marking (Marks per wrong answer)</label>
+                            <input type="number" step="0.1" class="form-control" id="testNegativeMarking" value="0">
+                        </div>
+                        
+                        <div class="col-md-12 mt-4">
+                            <h6 class="brand mb-3">Security & Randomization Options</h6>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="shuffleQuestions" checked>
+                                        <label class="form-check-label" for="shuffleQuestions">Randomize Question Order</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="shuffleOptions" checked>
+                                        <label class="form-check-label" for="shuffleOptions">Randomize Option Order</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="requireFullscreen" checked>
+                                        <label class="form-check-label" for="requireFullscreen">Require Fullscreen (Anti-cheating)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="allowCalculator">
+                                        <label class="form-check-label" for="allowCalculator">Allow On-screen Calculator</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12 mt-4 text-end">
+                            <button type="submit" class="btn btn-primary px-4 shadow-sm">Save Test Configuration</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Bulk Upload Questions -->
+            <div class="lux-card p-4">
+                <h5 class="brand mb-4 border-bottom pb-2">2. Upload Questions</h5>
+                <div class="alert alert-info border-0 rounded-3 d-flex align-items-center gap-3">
+                    <i class="fa-solid fa-circle-info fa-2x"></i>
+                    <div>
+                        <div class="fw-bold">Upload Format</div>
+                        <small>Please upload a CSV file with columns: Question, Option A, Option B, Option C, Option D, Correct Answer, Explanation, Marks, Difficulty, Topic</small>
+                    </div>
+                </div>
+                <form id="bulkUploadForm">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="questionFile" accept=".csv,.json" required>
+                        <button class="btn btn-success" type="submit"><i class="fa-solid fa-upload me-2"></i>Upload</button>
+                    </div>
+                </form>
+                <div id="uploadStatus" class="mt-3"></div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="lux-card p-4 mb-4">
+                <h5 class="brand mb-3">Test Summary</h5>
+                <div id="testSummaryContainer" class="text-center text-muted py-4">
+                    <i class="fa-solid fa-file-circle-check fa-3x mb-3 text-light"></i>
+                    <p>Create a test configuration first to see the summary.</p>
+                </div>
+            </div>
+            
+            <div class="lux-card p-4 border-start border-warning border-4">
+                <h6 class="brand mb-2"><i class="fa-solid fa-shield-halved text-warning me-2"></i>AI Proctoring Engine</h6>
+                <p class="small text-muted mb-0">Tests with "Require Fullscreen" enabled will automatically track tab switches, copy/paste attempts, and blur events, generating a Cheating Risk Score per student.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('createTestForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+            title: document.getElementById('testTitle').value,
+            subject: document.getElementById('testSubject').value,
+            topic: document.getElementById('testTopic').value,
+            total_questions: parseInt(document.getElementById('testTotalQuestions').value),
+            total_marks: parseFloat(document.getElementById('testTotalMarks').value),
+            duration_minutes: parseInt(document.getElementById('testDuration').value),
+            passing_marks: parseFloat(document.getElementById('testPassingMarks').value) || 0,
+            negative_marking: parseFloat(document.getElementById('testNegativeMarking').value) || 0,
+            random_questions: document.getElementById('shuffleQuestions').checked,
+            random_options: document.getElementById('shuffleOptions').checked,
+            fullscreen_required: document.getElementById('requireFullscreen').checked,
+            allow_calculator: document.getElementById('allowCalculator').checked
+        };
+        
+        try {
+            const res = await fetch('/api/tests/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(payload)
+            });
+            
+            if(res.ok) {
+                const data = await res.json();
+                document.getElementById('testSummaryContainer').innerHTML = `
+                    <div class="text-success mb-3"><i class="fa-solid fa-check-circle fa-3x"></i></div>
+                    <h6>Test Created Successfully!</h6>
+                    <div class="small text-muted mt-2">Test ID: ${data.id}</div>
+                    <button class="btn btn-outline-primary btn-sm mt-3 w-100" onclick="alert('Assignment module loading...')">Assign to Batch</button>
+                `;
+            } else {
+                alert('Failed to create test');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error creating test');
+        }
+    });
+
+    document.getElementById('bulkUploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fileInput = document.getElementById('questionFile');
+        if (!fileInput.files.length) return;
+        
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        
+        const statusDiv = document.getElementById('uploadStatus');
+        statusDiv.innerHTML = '<div class="spinner-border text-primary spinner-border-sm" role="status"></div> Uploading...';
+        
+        try {
+            const res = await fetch('/api/questions/bulk-upload', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: formData
+            });
+            
+            if (res.ok) {
+                const data = await res.json();
+                statusDiv.innerHTML = `<div class="alert alert-success py-2 mb-0">${data.message}</div>`;
+            } else {
+                const err = await res.json();
+                statusDiv.innerHTML = `<div class="alert alert-danger py-2 mb-0">${err.detail || 'Upload failed'}</div>`;
+            }
+        } catch (error) {
+            statusDiv.innerHTML = `<div class="alert alert-danger py-2 mb-0">Connection error</div>`;
+        }
+    });
+</script>

@@ -1,0 +1,290 @@
+<div class="staff-monitor-tests pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Live Test Monitor</h3>
+            <div class="text-muted small mt-1">Real-time proctoring and progress tracking.</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2">
+                <i class="fa-solid fa-circle-dot fa-fade me-2"></i>Live: TCS NQT Mock 1
+            </span>
+            <button class="btn btn-outline-danger btn-sm shadow-sm" onclick="alert('Are you sure you want to end this test early for all students?')">
+                <i class="fa-solid fa-stop me-2"></i>End Test
+            </button>
+        </div>
+    </div>
+
+    <!-- Header Stats -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="lux-card p-3 border-start border-4 border-primary h-100">
+                <div class="text-muted small fw-bold text-uppercase mb-1">Active Students</div>
+                <div class="d-flex align-items-end justify-content-between">
+                    <h3 class="brand m-0">142</h3>
+                    <span class="text-success small fw-bold"><i class="fa-solid fa-arrow-up me-1"></i>+4</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-3 border-start border-4 border-warning h-100">
+                <div class="text-muted small fw-bold text-uppercase mb-1">Avg. Progress</div>
+                <div class="d-flex align-items-end justify-content-between">
+                    <h3 class="brand m-0">65%</h3>
+                    <span class="text-muted small">of 50 Questions</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-3 border-start border-4 border-danger h-100">
+                <div class="text-muted small fw-bold text-uppercase mb-1">Proctoring Alerts</div>
+                <div class="d-flex align-items-end justify-content-between">
+                    <h3 class="text-danger m-0">12</h3>
+                    <span class="text-danger small fw-bold"><i class="fa-solid fa-triangle-exclamation me-1"></i>Action Req.</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="lux-card p-3 border-start border-4 border-info h-100">
+                <div class="text-muted small fw-bold text-uppercase mb-1">Time Remaining</div>
+                <div class="d-flex align-items-end justify-content-between">
+                    <h3 class="text-info m-0" style="font-variant-numeric: tabular-nums;">00:42:15</h3>
+                    <span class="text-muted small">Ends at 11:30 AM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Live Alert Feed -->
+        <div class="col-md-4">
+            <div class="lux-card p-0 h-100 overflow-hidden d-flex flex-column" style="max-height: 600px;">
+                <div class="p-3 border-bottom bg-light d-flex justify-content-between align-items-center">
+                    <h6 class="brand m-0"><i class="fa-solid fa-satellite-dish fa-fade text-danger me-2"></i>Live Alert Feed</h6>
+                    <span class="badge bg-danger rounded-pill">3 New</span>
+                </div>
+                
+                <div class="overflow-auto p-3 flex-grow-1" style="background-color: #f8fafc;">
+                    <div class="alert-feed d-flex flex-column gap-3">
+                        
+                        <!-- Alert Item -->
+                        <div class="bg-white p-3 rounded-3 border shadow-sm position-relative">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 rounded-3 border border-danger border-2 pointer-events-none" style="opacity: 0.5;"></div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <div class="fw-bold text-dark small"><i class="fa-solid fa-user-ninja text-danger me-1"></i>Multiple Faces Detected</div>
+                                <div class="text-muted" style="font-size: 0.7rem;">Just now</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <img src="https://ui-avatars.com/api/?name=Arun+Kumar&background=random" class="rounded-circle me-2" width="24" height="24" alt="Avatar">
+                                <span class="small text-muted fw-medium">Arun Kumar (717821P101)</span>
+                            </div>
+                            <div class="mt-2 text-end">
+                                <button class="btn btn-sm btn-outline-danger py-0 px-2" style="font-size: 0.75rem;">Issue Warning</button>
+                            </div>
+                        </div>
+
+                        <!-- Alert Item -->
+                        <div class="bg-white p-3 rounded-3 border shadow-sm">
+                            <div class="d-flex justify-content-between mb-2">
+                                <div class="fw-bold text-dark small"><i class="fa-solid fa-window-restore text-warning me-1"></i>Tab Switch Detected</div>
+                                <div class="text-muted" style="font-size: 0.7rem;">2 mins ago</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <img src="https://ui-avatars.com/api/?name=Bhavya+Shree&background=random" class="rounded-circle me-2" width="24" height="24" alt="Avatar">
+                                <span class="small text-muted fw-medium">Bhavya Shree (717821P102)</span>
+                            </div>
+                            <div class="mt-2 text-end">
+                                <button class="btn btn-sm btn-outline-warning py-0 px-2" style="font-size: 0.75rem;">Issue Warning</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Alert Item -->
+                        <div class="bg-white p-3 rounded-3 border shadow-sm">
+                            <div class="d-flex justify-content-between mb-2">
+                                <div class="fw-bold text-dark small"><i class="fa-solid fa-microphone-lines-slash text-danger me-1"></i>Audio Spike / Noise</div>
+                                <div class="text-muted" style="font-size: 0.7rem;">5 mins ago</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <img src="https://ui-avatars.com/api/?name=Chandra+Sekhar&background=random" class="rounded-circle me-2" width="24" height="24" alt="Avatar">
+                                <span class="small text-muted fw-medium">Chandra Sekhar (717821P103)</span>
+                            </div>
+                            <div class="mt-2 text-end">
+                                <button class="btn btn-sm btn-outline-danger py-0 px-2" style="font-size: 0.75rem;">Issue Warning</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Alert Item -->
+                        <div class="bg-white p-3 rounded-3 border shadow-sm opacity-75">
+                            <div class="d-flex justify-content-between mb-2">
+                                <div class="fw-bold text-dark small"><i class="fa-solid fa-window-restore text-warning me-1"></i>Tab Switch Detected</div>
+                                <div class="text-muted" style="font-size: 0.7rem;">12 mins ago</div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <img src="https://ui-avatars.com/api/?name=Deepak+Raj&background=random" class="rounded-circle me-2" width="24" height="24" alt="Avatar">
+                                <span class="small text-muted fw-medium">Deepak Raj (717821P104)</span>
+                            </div>
+                            <div class="mt-2 text-end">
+                                <span class="text-muted small fst-italic">Warning Issued</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Grid -->
+        <div class="col-md-8">
+            <div class="lux-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                    <h5 class="brand m-0">Student Status</h5>
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control form-control-sm bg-light border-0" placeholder="Search student..." style="width: 150px;">
+                        <select class="form-select form-select-sm bg-light border-0" style="width: 120px;">
+                            <option value="all">All Status</option>
+                            <option value="flagged">Flagged</option>
+                            <option value="normal">Normal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table align-middle table-hover">
+                        <thead>
+                            <tr class="text-muted small text-uppercase" style="letter-spacing:1px;">
+                                <th>Student</th>
+                                <th style="width: 30%;">Progress</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Student 1 -->
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="position-relative">
+                                            <img src="https://ui-avatars.com/api/?name=Arun+Kumar&background=random" class="rounded-circle me-3" width="36" height="36" alt="Avatar">
+                                            <span class="position-absolute bottom-0 end-0 p-1 bg-danger border border-white rounded-circle" style="transform: translate(-100%, 25%);"></span>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark">Arun Kumar</div>
+                                            <div class="small text-muted">717821P101</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span>40/50</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%;"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-danger text-white"><i class="fa-solid fa-triangle-exclamation me-1"></i>Flagged</span>
+                                </td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-outline-secondary" title="View Stream"><i class="fa-solid fa-video"></i></button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Student 2 -->
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="position-relative">
+                                            <img src="https://ui-avatars.com/api/?name=Bhavya+Shree&background=random" class="rounded-circle me-3" width="36" height="36" alt="Avatar">
+                                            <span class="position-absolute bottom-0 end-0 p-1 bg-warning border border-white rounded-circle" style="transform: translate(-100%, 25%);"></span>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark">Bhavya Shree</div>
+                                            <div class="small text-muted">717821P102</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span>25/50</span>
+                                        <span>50%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-warning text-dark"><i class="fa-solid fa-bell me-1"></i>Warning</span>
+                                </td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-outline-secondary" title="View Stream"><i class="fa-solid fa-video"></i></button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Student 3 -->
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="position-relative">
+                                            <img src="https://ui-avatars.com/api/?name=Deepak+Raj&background=random" class="rounded-circle me-3" width="36" height="36" alt="Avatar">
+                                            <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-white rounded-circle" style="transform: translate(-100%, 25%);"></span>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark">Deepak Raj</div>
+                                            <div class="small text-muted">717821P104</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span>48/50</span>
+                                        <span>96%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 96%;"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">Normal</span>
+                                </td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-outline-secondary" title="View Stream"><i class="fa-solid fa-video"></i></button>
+                                </td>
+                            </tr>
+                            
+                             <!-- Student 4 -->
+                             <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="position-relative">
+                                            <img src="https://ui-avatars.com/api/?name=Ezhil+Mathi&background=random" class="rounded-circle me-3" width="36" height="36" alt="Avatar">
+                                            <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-white rounded-circle" style="transform: translate(-100%, 25%);"></span>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark">Ezhil Mathi</div>
+                                            <div class="small text-muted">717821P105</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-between small text-muted mb-1">
+                                        <span>30/50</span>
+                                        <span>60%</span>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 60%;"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">Normal</span>
+                                </td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-outline-secondary" title="View Stream"><i class="fa-solid fa-video"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

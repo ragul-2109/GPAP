@@ -1,0 +1,85 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">College Management</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Manage registered institutions and their access levels.</div>
+        </div>
+        <div>
+            <button class="btn btn-primary"><i class="fa-solid fa-building-circle-check"></i> Onboard New College</button>
+        </div>
+    </div>
+
+    <div class="premium-table-wrapper">
+        <div class="premium-table-toolbar">
+            <div class="input-group" style="max-width: 300px;">
+                <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                <input type="text" class="form-control border-start-0 ps-0" placeholder="Search colleges...">
+            </div>
+            <div>
+                <select class="form-select form-select-sm d-inline-block w-auto">
+                    <option>Status: All</option>
+                    <option>Status: Active</option>
+                    <option>Status: Inactive</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>College Details</th>
+                        <th>Code</th>
+                        <th>Total Students</th>
+                        <th>Subscription Plan</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Genfinix Institute</div>
+                            <div class="text-muted" style="font-size: 0.8rem;"><i class="fa-solid fa-location-dot"></i> New York, NY</div>
+                        </td>
+                        <td><span class="badge bg-light text-dark border font-monospace">GENFINIX</span></td>
+                        <td><i class="fa-solid fa-users text-muted"></i> 1,250</td>
+                        <td><span class="badge" style="background-color: #8b5cf6;">Enterprise</span></td>
+                        <td><span class="status-pill status-active">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary">Manage</button>
+                            <button class="btn btn-sm btn-light"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">XYZ Tech University</div>
+                            <div class="text-muted" style="font-size: 0.8rem;"><i class="fa-solid fa-location-dot"></i> San Francisco, CA</div>
+                        </td>
+                        <td><span class="badge bg-light text-dark border font-monospace">XYZTECH</span></td>
+                        <td><i class="fa-solid fa-users text-muted"></i> 4,500</td>
+                        <td><span class="badge" style="background-color: #3b82f6;">Pro</span></td>
+                        <td><span class="status-pill status-active">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary">Manage</button>
+                            <button class="btn btn-sm btn-light"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Global Engineering College</div>
+                            <div class="text-muted" style="font-size: 0.8rem;"><i class="fa-solid fa-location-dot"></i> Austin, TX</div>
+                        </td>
+                        <td><span class="badge bg-light text-dark border font-monospace">GEC_TX</span></td>
+                        <td><i class="fa-solid fa-users text-muted"></i> 850</td>
+                        <td><span class="badge bg-secondary">Basic</span></td>
+                        <td><span class="status-pill status-inactive">Inactive</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary">Manage</button>
+                            <button class="btn btn-sm btn-light"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

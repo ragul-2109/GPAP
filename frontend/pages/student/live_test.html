@@ -1,0 +1,149 @@
+<div class="live-test-container pb-5">
+    
+    <!-- Hero Banner -->
+    <div class="lux-card mb-4 overflow-hidden border-0 p-0 shadow-sm position-relative" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-hover)); min-height: 250px;">
+        <!-- Background Pattern -->
+        <div class="position-absolute w-100 h-100 opacity-25" style="background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 20%); pointer-events: none;"></div>
+        
+        <div class="p-5 d-flex flex-column justify-content-center h-100 position-relative z-1 text-white text-center">
+            <div class="mb-3">
+                <span class="badge bg-danger rounded-pill px-3 py-2 border border-white border-opacity-25" style="box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);"><i class="fa-solid fa-satellite-dish fa-beat me-2"></i>LIVE NOW</span>
+            </div>
+            <h2 class="fw-bold mb-2">Google Software Engineering Intern Assessment</h2>
+            <p class="text-white-50 fs-5 mb-4">Ends in <span class="fw-bold text-white font-monospace">01:42:15</span></p>
+            
+            <div>
+                <button class="btn btn-light text-primary btn-lg px-5 rounded-pill shadow fw-bold hover-lift" onclick="LiveTestModule.startTestPrompt(1)"><i class="fa-solid fa-right-to-bracket me-2"></i>Enter Waiting Room</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs & Content -->
+    <div class="lux-card p-4 border-0 shadow-sm">
+        <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
+            <div>
+                <h4 class="brand m-0">Assessments Dashboard</h4>
+                <div class="text-muted small mt-1">Manage your placement exams and internal evaluations.</div>
+            </div>
+            
+            <!-- Custom Tabs -->
+            <ul class="nav nav-pills custom-nav-pills gap-2" id="live-test-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-pill px-4" id="pills-upcoming-tab" data-bs-toggle="pill" data-bs-target="#pills-upcoming" type="button" role="tab" onclick="LiveTestModule.filterTests('upcoming')">Upcoming</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4" id="pills-completed-tab" data-bs-toggle="pill" data-bs-target="#pills-completed" type="button" role="tab" onclick="LiveTestModule.filterTests('completed')">Completed</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4" id="pills-missed-tab" data-bs-toggle="pill" data-bs-target="#pills-missed" type="button" role="tab" onclick="LiveTestModule.filterTests('missed')">Missed</button>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="tab-content" id="pills-tabContent">
+            <!-- Dynamic Test Container -->
+            <div class="row g-4" id="live-test-grid">
+                <!-- Test cards rendered via JS -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Proctored Setup Modal -->
+<div class="modal fade" id="proctorModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 text-center">
+                <div class="mb-4">
+                    <div class="d-inline-flex justify-content-center align-items-center bg-primary bg-opacity-10 text-primary rounded-circle" style="width: 80px; height: 80px; font-size: 2rem;">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                </div>
+                
+                <h3 class="fw-bold mb-2">Secure Environment Setup</h3>
+                <p class="text-muted mb-4">You are about to enter a proctored assessment. Please ensure you meet the following requirements before proceeding.</p>
+
+                <div class="row g-4 text-start mb-5">
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded h-100 bg-light d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-camera fs-4 text-secondary"></i>
+                            <div>
+                                <div class="fw-bold text-dark">Webcam Required</div>
+                                <div class="small text-muted">Must remain active during the entire test.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded h-100 bg-light d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-microphone fs-4 text-secondary"></i>
+                            <div>
+                                <div class="fw-bold text-dark">Microphone Required</div>
+                                <div class="small text-muted">Audio will be recorded for proctoring.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded h-100 bg-light d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-expand fs-4 text-secondary"></i>
+                            <div>
+                                <div class="fw-bold text-dark">Full Screen Enforcement</div>
+                                <div class="small text-muted">Exiting full screen will terminate the test.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded h-100 bg-light d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-ban fs-4 text-secondary"></i>
+                            <div>
+                                <div class="fw-bold text-dark">No Tab Switching</div>
+                                <div class="small text-muted">Switching tabs will result in a warning.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-light px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary px-5" onclick="LiveTestModule.confirmSetup()"><i class="fa-solid fa-check me-2"></i>I Agree, Start Test</button>
+                </div>
+                
+                <div id="proctor-loader" class="mt-4 d-none">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <div class="mt-2 text-primary fw-medium">Verifying environment...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Custom Pill Tabs Styling */
+.custom-nav-pills .nav-link {
+    color: #6c757d;
+    background: transparent;
+    border: 1px solid transparent;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.custom-nav-pills .nav-link:hover {
+    color: var(--primary-color);
+    background: #f8f9fa;
+}
+.custom-nav-pills .nav-link.active {
+    color: #fff;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+}
+.hover-lift {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+</style>

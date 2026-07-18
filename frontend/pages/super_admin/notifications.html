@@ -1,0 +1,78 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">Global Notifications</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Broadcast critical system updates and announcements across the entire platform.</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="lux-card p-4">
+                <h5 class="mb-4">Compose Broadcast</h5>
+                
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: 600;">Message Title</label>
+                    <input type="text" class="form-control" placeholder="e.g., Scheduled Platform Maintenance">
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label" style="font-weight: 600;">Target Audience</label>
+                        <select class="form-select">
+                            <option>All Users (Global)</option>
+                            <option>College Admins Only</option>
+                            <option>All Students</option>
+                            <option>Genfinix Staff Only</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" style="font-weight: 600;">Message Priority</label>
+                        <select class="form-select border-danger text-danger">
+                            <option>Normal</option>
+                            <option selected>High (Alert Banner)</option>
+                            <option>Critical (Modal Popup)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" style="font-weight: 600;">Message Body</label>
+                    <textarea class="form-control" rows="5" placeholder="Enter your detailed message here..."></textarea>
+                </div>
+                
+                <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-outline-secondary">Save Draft</button>
+                    <button class="btn btn-primary"><i class="fa-solid fa-paper-plane me-2"></i> Send Broadcast</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="lux-card p-4 h-100">
+                <h5 class="mb-4">Broadcast History</h5>
+                <div class="list-group list-group-flush bg-transparent">
+                    <div class="list-group-item bg-transparent px-0 border-bottom">
+                        <div class="d-flex justify-content-between mb-1">
+                            <div style="font-weight: 600; color: var(--primary-dark);">Platform Update v2.1</div>
+                            <span class="badge bg-light text-dark border">College Admins</span>
+                        </div>
+                        <div class="text-muted mb-2" style="font-size: 0.85rem;">New analytics features added to dashboard.</div>
+                        <div class="text-muted" style="font-size: 0.75rem;"><i class="fa-regular fa-clock"></i> Sent 2 days ago by SuperAdmin</div>
+                    </div>
+                    <div class="list-group-item bg-transparent px-0 border-bottom">
+                        <div class="d-flex justify-content-between mb-1">
+                            <div style="font-weight: 600; color: #ef4444;"><i class="fa-solid fa-triangle-exclamation me-1"></i> Emergency Maintenance</div>
+                            <span class="badge bg-danger">All Users</span>
+                        </div>
+                        <div class="text-muted mb-2" style="font-size: 0.85rem;">Database upgrading. Expected downtime: 1 hour.</div>
+                        <div class="text-muted" style="font-size: 0.75rem;"><i class="fa-regular fa-clock"></i> Sent 2 weeks ago by DevOps</div>
+                    </div>
+                    <div class="list-group-item bg-transparent px-0 border-bottom-0 text-center py-3">
+                        <button class="btn btn-sm btn-link text-decoration-none">View All History</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

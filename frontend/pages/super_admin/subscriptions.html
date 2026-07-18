@@ -1,0 +1,112 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">Subscription Management</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Track college subscription tiers, API usage, and billing cycles.</div>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary me-2"><i class="fa-solid fa-file-invoice"></i> All Invoices</button>
+            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Custom Plan</button>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <!-- Subscription Plan 1 -->
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100 d-flex flex-column" style="border-top: 4px solid #94a3b8;">
+                <h5 class="brand">Basic</h5>
+                <div class="text-muted mb-3" style="font-size: 0.85rem;">For small institutions.</div>
+                <div class="mb-4">
+                    <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary-dark);">$499</span>
+                    <span class="text-muted">/month</span>
+                </div>
+                <ul class="list-unstyled flex-grow-1" style="font-size: 0.9rem;">
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Up to 1,000 Students</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Basic Assessment Engine</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Standard Reporting</li>
+                    <li class="mb-2 text-muted"><i class="fa-solid fa-xmark text-danger opacity-50 me-2"></i> AI Cheating Detection</li>
+                </ul>
+                <button class="btn btn-outline-secondary w-100 mt-3">Edit Tier</button>
+            </div>
+        </div>
+        
+        <!-- Subscription Plan 2 -->
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100 d-flex flex-column position-relative" style="border-top: 4px solid #3b82f6; transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div class="position-absolute top-0 start-50 translate-middle badge bg-primary rounded-pill">Most Popular</div>
+                <h5 class="brand mt-2" style="color: #3b82f6;">Pro</h5>
+                <div class="text-muted mb-3" style="font-size: 0.85rem;">For growing universities.</div>
+                <div class="mb-4">
+                    <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary-dark);">$999</span>
+                    <span class="text-muted">/month</span>
+                </div>
+                <ul class="list-unstyled flex-grow-1" style="font-size: 0.9rem;">
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Up to 5,000 Students</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Advanced Assessment Engine</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Custom Reporting & Analytics</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Standard Support (24hr SLA)</li>
+                </ul>
+                <button class="btn btn-primary w-100 mt-3">Edit Tier</button>
+            </div>
+        </div>
+
+        <!-- Subscription Plan 3 -->
+        <div class="col-md-4">
+            <div class="lux-card p-4 h-100 d-flex flex-column" style="border-top: 4px solid #8b5cf6;">
+                <h5 class="brand" style="color: #8b5cf6;">Enterprise</h5>
+                <div class="text-muted mb-3" style="font-size: 0.85rem;">For large-scale deployment.</div>
+                <div class="mb-4">
+                    <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary-dark);">Custom</span>
+                </div>
+                <ul class="list-unstyled flex-grow-1" style="font-size: 0.9rem;">
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Unlimited Students</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> AI Cheating Detection & Proctoring</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> API Access & Integration</li>
+                    <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i> Dedicated Account Manager</li>
+                </ul>
+                <button class="btn btn-outline-secondary w-100 mt-3">Edit Tier</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-table-wrapper">
+        <div class="p-3 border-bottom bg-light">
+            <h6 class="m-0">Recent Billing Activity</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>College</th>
+                        <th>Plan</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-monospace text-muted">INV-2023-0891</td>
+                        <td style="font-weight: 600; color: var(--primary-dark);">Genfinix Institute</td>
+                        <td><span class="badge" style="background-color: #8b5cf6;">Enterprise</span></td>
+                        <td>$2,450.00</td>
+                        <td><span class="badge bg-success bg-opacity-25 text-success">Paid</span></td>
+                        <td>Oct 15, 2023</td>
+                        <td class="text-end"><button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td class="font-monospace text-muted">INV-2023-0890</td>
+                        <td style="font-weight: 600; color: var(--primary-dark);">XYZ Tech University</td>
+                        <td><span class="badge" style="background-color: #3b82f6;">Pro</span></td>
+                        <td>$999.00</td>
+                        <td><span class="badge bg-warning bg-opacity-25 text-warning">Pending</span></td>
+                        <td>Oct 12, 2023</td>
+                        <td class="text-end"><button class="btn btn-sm btn-light"><i class="fa-solid fa-download"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

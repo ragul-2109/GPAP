@@ -1,0 +1,12 @@
+/* GPAP Modular CSS Entry File */
+@import url('core/variables.css');
+@import url('core/reset.css');
+@import url('components/cards.css');
+@import url('components/buttons.css');
+@import url('components/forms.css');
+@import url('layout/sidebar.css');
+@import url('pages/login.css');
+@import url('pages/staff-pages.css');
+@import url('pages/college-pages.css');
+
+/* Miscellaneous utility classes that weren't moved yet */

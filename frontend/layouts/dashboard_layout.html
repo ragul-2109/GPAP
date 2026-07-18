@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GPAP Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Assets -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span>GPAP</span> Platform
+            </div>
+            
+            <ul class="nav-menu" id="sidebar-menu">
+                <!-- Menu items injected dynamically via JS based on role -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <header class="topbar">
+                <div class="topbar-title" id="page-title">Dashboard Overview</div>
+                
+                <div class="user-profile" onclick="auth.logout()">
+                    <span id="user-name">User</span>
+                    <div class="avatar" id="user-initial">U</div>
+                </div>
+            </header>
+
+            <div class="content-wrapper" id="main-view">
+                <!-- Page specific content goes here -->
+            </div>
+            
+        </main>
+        
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/charts.js"></script>
+</body>
+</html>

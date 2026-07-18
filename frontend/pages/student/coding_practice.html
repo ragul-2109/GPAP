@@ -1,0 +1,134 @@
+<div class="coding-container h-100 d-flex flex-column" style="min-height: calc(100vh - 100px);">
+    
+    <!-- State 1: Problem Library -->
+    <div id="coding-library-view" class="d-block flex-grow-1">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="brand m-0">Coding Practice</h3>
+                <div class="text-muted small mt-1">Sharpen your logic with algorithmic challenges.</div>
+            </div>
+            <div class="d-flex gap-2">
+                <div class="input-group" style="width:250px;">
+                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                    <input type="text" class="form-control border-start-0 ps-0" placeholder="Search problems...">
+                </div>
+                <button class="btn btn-primary"><i class="fa-solid fa-filter me-2"></i>Filter</button>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="lux-card p-3 border-0 shadow-sm border-start border-4 border-success">
+                    <div class="text-muted small">Solved</div>
+                    <div class="fs-4 fw-bold text-dark">12 <span class="fs-6 text-muted fw-normal">/ 150</span></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="lux-card p-3 border-0 shadow-sm border-start border-4 border-warning">
+                    <div class="text-muted small">Current Streak</div>
+                    <div class="fs-4 fw-bold text-dark">5 <span class="fs-6 text-muted fw-normal">Days</span></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="lux-card p-3 border-0 shadow-sm border-start border-4 border-primary">
+                    <div class="text-muted small">Global Rank</div>
+                    <div class="fs-4 fw-bold text-dark">#4,291</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lux-card p-0 overflow-hidden border-0 shadow-sm">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="bg-light text-muted small text-uppercase">
+                    <tr>
+                        <th class="ps-4 py-3">Status</th>
+                        <th class="py-3">Title</th>
+                        <th class="py-3">Difficulty</th>
+                        <th class="py-3">Acceptance</th>
+                        <th class="pe-4 py-3 text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="coding-problem-list">
+                    <!-- Injected via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- State 2: IDE Interface -->
+    <div id="coding-ide-view" class="d-none h-100 flex-grow-1 flex-column" style="margin: -1.5rem; background: #0f172a;">
+        
+        <!-- IDE Header -->
+        <div class="d-flex justify-content-between align-items-center p-3 border-bottom border-secondary border-opacity-25" style="background: #1e293b;">
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-sm btn-dark text-muted" style="border:none; background:transparent;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#6c757d'" onclick="CodingModule.showLibrary()">
+                    <i class="fa-solid fa-arrow-left fs-5"></i>
+                </button>
+                <h5 class="text-white m-0" id="ide-problem-title">Two Sum</h5>
+                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25" id="ide-problem-difficulty">Easy</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <select class="form-select form-select-sm bg-dark text-white border-secondary" style="width: 130px;" id="ide-language">
+                    <option value="python">Python 3</option>
+                    <option value="c_cpp">C++</option>
+                    <option value="java">Java</option>
+                    <option value="javascript">JavaScript</option>
+                </select>
+                <button class="btn btn-sm btn-outline-secondary text-white border-secondary"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+
+        <!-- IDE Split Pane -->
+        <div class="d-flex flex-grow-1 overflow-hidden" style="height: calc(100vh - 120px);">
+            <!-- Left Pane: Problem Description -->
+            <div class="w-50 h-100 overflow-auto p-4 text-light border-end border-secondary border-opacity-25" style="background: #0f172a; scrollbar-width: thin;">
+                <h4 class="text-white mb-3" id="ide-desc-title">1. Two Sum</h4>
+                <div class="text-muted mb-4" id="ide-desc-body" style="font-size: 0.95rem; line-height: 1.6;">
+                    Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.
+                </div>
+                
+                <h6 class="text-white mb-2">Examples</h6>
+                <div id="ide-desc-examples">
+                    <div class="p-3 rounded mb-3" style="background: #1e293b; font-family: monospace; font-size: 0.9rem;">
+                        <div class="text-muted">Input: <span class="text-white">nums = [2,7,11,15], target = 9</span></div>
+                        <div class="text-muted">Output: <span class="text-white">[0,1]</span></div>
+                    </div>
+                </div>
+
+                <h6 class="text-white mb-3 mt-4">Constraints</h6>
+                <ul class="text-muted small" style="font-family: monospace;" id="ide-desc-constraints">
+                    <li>2 <= nums.length <= 10^4</li>
+                    <li>-10^9 <= nums[i] <= 10^9</li>
+                </ul>
+            </div>
+
+            <!-- Right Pane: Code Editor & Terminal -->
+            <div class="w-50 h-100 d-flex flex-column">
+                <!-- Code Editor -->
+                <div class="flex-grow-1 position-relative" id="ide-editor-container" style="background: #1e293b; min-height: 60%;">
+                    <!-- Ace Editor will attach here -->
+                    <div id="code-editor" class="position-absolute top-0 start-0 w-100 h-100"></div>
+                </div>
+
+                <!-- Terminal / Output -->
+                <div class="border-top border-secondary border-opacity-25 d-flex flex-column" style="height: 35%; background: #0f172a;">
+                    <div class="d-flex justify-content-between align-items-center p-2 px-3 border-bottom border-secondary border-opacity-25" style="background: #1e293b;">
+                        <div class="d-flex gap-3 text-muted small fw-medium">
+                            <div class="text-white border-bottom border-2 border-primary pb-1" style="cursor:pointer;">Console</div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-dark border-secondary text-white" onclick="CodingModule.runCode()">Run Code</button>
+                            <button class="btn btn-sm btn-success text-white px-3" onclick="CodingModule.submitCode()">Submit</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Terminal Content -->
+                    <div class="p-3 overflow-auto flex-grow-1" id="ide-terminal" style="font-family: monospace; font-size: 0.9rem;">
+                        <div class="text-muted"><span class="text-primary">~</span> Ready to compile. Click "Run Code" or "Submit" to test your solution.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

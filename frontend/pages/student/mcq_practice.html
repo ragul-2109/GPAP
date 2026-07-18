@@ -1,0 +1,106 @@
+<div class="mcq-container">
+    <!-- State 1: Course Selection -->
+    <div id="mcq-state-selection" class="d-block">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="brand m-0">MCQ Practice</h3>
+                <div class="text-muted small mt-1">Select a topic to start your mock test.</div>
+            </div>
+        </div>
+        
+        <div class="row g-4" id="mcq-course-grid">
+            <!-- Rendered via JS -->
+        </div>
+    </div>
+
+    <!-- State 2: Pre-Start Overview -->
+    <div id="mcq-state-prestart" class="d-none">
+        <button class="btn btn-link text-decoration-none text-muted p-0 mb-3" onclick="MCQModule.showState('selection')">
+            <i class="fa-solid fa-arrow-left me-2"></i>Back to Courses
+        </button>
+        <div class="lux-card p-5 text-center">
+            <div class="mb-4 d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-circle" style="width: 80px; height: 80px; font-size: 2rem;">
+                <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <h2 class="brand mb-2" id="prestart-title">Course Title</h2>
+            <p class="text-muted mb-4">This mock test contains 25 questions to evaluate your proficiency.</p>
+            
+            <div class="d-flex justify-content-center gap-4 mb-5">
+                <div>
+                    <div class="fw-bold fs-4 text-dark">25</div>
+                    <div class="text-muted small">Questions</div>
+                </div>
+                <div class="border-end"></div>
+                <div>
+                    <div class="fw-bold fs-4 text-dark">30</div>
+                    <div class="text-muted small">Minutes</div>
+                </div>
+                <div class="border-end"></div>
+                <div>
+                    <div class="fw-bold fs-4 text-dark">1</div>
+                    <div class="text-muted small">Mark / Q</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary btn-lg px-5 rounded-pill shadow" onclick="MCQModule.startTest()">
+                Start Test Now <i class="fa-solid fa-play ms-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- State 3: Active Test -->
+    <div id="mcq-state-active" class="d-none">
+        <div class="lux-card p-3 mb-4 sticky-top shadow-sm" style="top: 20px; z-index: 1000;">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="brand m-0" id="active-test-title">Course Test</h5>
+                    <div class="text-muted small">Answer all questions before time runs out.</div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-light px-4 py-2 rounded-3 border d-flex align-items-center gap-2">
+                        <i class="fa-regular fa-clock text-primary"></i>
+                        <span class="fs-5 fw-bold text-dark font-monospace" id="mcq-timer">30:00</span>
+                    </div>
+                    <button class="btn btn-success px-4" onclick="MCQModule.submitTest()">Submit Test</button>
+                </div>
+            </div>
+            <div class="progress mt-3" style="height: 4px;">
+                <div class="progress-bar bg-primary" id="mcq-progress-bar" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div id="mcq-questions-container">
+            <!-- Questions rendered via JS -->
+        </div>
+    </div>
+
+    <!-- State 4: Results -->
+    <div id="mcq-state-results" class="d-none">
+        <div class="lux-card p-5 text-center">
+            <div class="mb-4 d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success rounded-circle" style="width: 80px; height: 80px; font-size: 2rem;">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 class="brand mb-2">Test Completed!</h2>
+            <p class="text-muted mb-4">Here is your performance summary for <span class="fw-bold" id="result-title">Course</span>.</p>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-3">
+                    <div class="p-4 border rounded-3 bg-light">
+                        <div class="text-muted small mb-1">Score</div>
+                        <div class="fs-2 fw-bold text-primary" id="result-score">0/25</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 border rounded-3 bg-light">
+                        <div class="text-muted small mb-1">Accuracy</div>
+                        <div class="fs-2 fw-bold text-success" id="result-accuracy">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary px-5 rounded-pill" onclick="MCQModule.showState('selection')">
+                <i class="fa-solid fa-house me-2"></i>Back to Courses
+            </button>
+        </div>
+    </div>
+</div>

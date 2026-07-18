@@ -1,0 +1,276 @@
+<div class="resume-builder-container h-100 d-flex flex-column pb-3">
+    
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h3 class="brand m-0">Live Resume Builder</h3>
+            <div class="text-muted small mt-1">Build and preview your professional resume in real-time.</div>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" onclick="ResumeModule.autoGenerate()"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Auto-Generate (AI)</button>
+            <button class="btn btn-primary shadow-sm" onclick="ResumeModule.downloadPDF()"><i class="fa-solid fa-download me-2"></i>Download PDF</button>
+        </div>
+    </div>
+
+    <!-- Split Pane Layout -->
+    <div class="row g-4 flex-grow-1" style="min-height: 800px;">
+        
+        <!-- Left Pane: Editor Form -->
+        <div class="col-lg-5 h-100">
+            <div class="lux-card p-4 border-0 shadow-sm h-100 overflow-auto form-scroll-container">
+                <h5 class="fw-bold mb-4">Edit Details</h5>
+                
+                <div class="accordion custom-accordion" id="resumeAccordion">
+                    
+                    <!-- Personal Info -->
+                    <div class="accordion-item border-0 mb-3 rounded shadow-sm bg-light">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button fw-bold bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePersonal" aria-expanded="true">
+                                <i class="fa-solid fa-user text-primary me-3"></i> Personal Information
+                            </button>
+                        </h2>
+                        <div id="collapsePersonal" class="accordion-collapse collapse show" data-bs-parent="#resumeAccordion">
+                            <div class="accordion-body bg-white rounded-bottom">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-medium">Full Name</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-name" placeholder="John Doe" oninput="ResumeModule.updatePreview()">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-medium">Professional Title</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-title" placeholder="Software Engineer" oninput="ResumeModule.updatePreview()">
+                                </div>
+                                <div class="row g-2">
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label small fw-medium">Email</label>
+                                        <input type="email" class="form-control form-control-sm" id="input-email" placeholder="john@example.com" oninput="ResumeModule.updatePreview()">
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label small fw-medium">Phone</label>
+                                        <input type="text" class="form-control form-control-sm" id="input-phone" placeholder="+1 234 567 890" oninput="ResumeModule.updatePreview()">
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label small fw-medium">Location</label>
+                                        <input type="text" class="form-control form-control-sm" id="input-location" placeholder="New York, NY" oninput="ResumeModule.updatePreview()">
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="form-label small fw-medium">LinkedIn/GitHub</label>
+                                        <input type="text" class="form-control form-control-sm" id="input-link" placeholder="github.com/johndoe" oninput="ResumeModule.updatePreview()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <div class="accordion-item border-0 mb-3 rounded shadow-sm bg-light">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSummary">
+                                <i class="fa-solid fa-align-left text-primary me-3"></i> Professional Summary
+                            </button>
+                        </h2>
+                        <div id="collapseSummary" class="accordion-collapse collapse" data-bs-parent="#resumeAccordion">
+                            <div class="accordion-body bg-white rounded-bottom">
+                                <textarea class="form-control form-control-sm" id="input-summary" rows="4" placeholder="Brief overview of your skills and goals..." oninput="ResumeModule.updatePreview()"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="accordion-item border-0 mb-3 rounded shadow-sm bg-light">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEducation">
+                                <i class="fa-solid fa-graduation-cap text-primary me-3"></i> Education
+                            </button>
+                        </h2>
+                        <div id="collapseEducation" class="accordion-collapse collapse" data-bs-parent="#resumeAccordion">
+                            <div class="accordion-body bg-white rounded-bottom">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-medium">University / College</label>
+                                    <input type="text" class="form-control form-control-sm mb-2" id="input-edu-school" placeholder="University of Technology" oninput="ResumeModule.updatePreview()">
+                                </div>
+                                <div class="row g-2 mb-3">
+                                    <div class="col-8">
+                                        <label class="form-label small fw-medium">Degree</label>
+                                        <input type="text" class="form-control form-control-sm" id="input-edu-degree" placeholder="B.S. Computer Science" oninput="ResumeModule.updatePreview()">
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="form-label small fw-medium">Grad Year</label>
+                                        <input type="text" class="form-control form-control-sm" id="input-edu-year" placeholder="2026" oninput="ResumeModule.updatePreview()">
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small fw-medium">CGPA / Marks</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-edu-grade" placeholder="3.8/4.0" oninput="ResumeModule.updatePreview()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div class="accordion-item border-0 mb-3 rounded shadow-sm bg-light">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills">
+                                <i class="fa-solid fa-code text-primary me-3"></i> Technical Skills
+                            </button>
+                        </h2>
+                        <div id="collapseSkills" class="accordion-collapse collapse" data-bs-parent="#resumeAccordion">
+                            <div class="accordion-body bg-white rounded-bottom">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-medium">Languages</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-skills-lang" placeholder="Python, JavaScript, C++..." oninput="ResumeModule.updatePreview()">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-medium">Frameworks & Tools</label>
+                                    <input type="text" class="form-control form-control-sm" id="input-skills-tools" placeholder="React, Node.js, Git, Docker..." oninput="ResumeModule.updatePreview()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience / Projects -->
+                    <div class="accordion-item border-0 mb-3 rounded shadow-sm bg-light">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-bold bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProjects">
+                                <i class="fa-solid fa-briefcase text-primary me-3"></i> Projects & Experience
+                            </button>
+                        </h2>
+                        <div id="collapseProjects" class="accordion-collapse collapse" data-bs-parent="#resumeAccordion">
+                            <div class="accordion-body bg-white rounded-bottom">
+                                <div class="p-3 border rounded mb-3 bg-light">
+                                    <h6 class="small fw-bold mb-2">Project 1</h6>
+                                    <input type="text" class="form-control form-control-sm mb-2" id="input-proj1-title" placeholder="Project Name" oninput="ResumeModule.updatePreview()">
+                                    <input type="text" class="form-control form-control-sm mb-2" id="input-proj1-tech" placeholder="Technologies used..." oninput="ResumeModule.updatePreview()">
+                                    <textarea class="form-control form-control-sm" id="input-proj1-desc" rows="3" placeholder="What did you build? What was the impact?" oninput="ResumeModule.updatePreview()"></textarea>
+                                </div>
+                                <div class="p-3 border rounded bg-light">
+                                    <h6 class="small fw-bold mb-2">Project 2</h6>
+                                    <input type="text" class="form-control form-control-sm mb-2" id="input-proj2-title" placeholder="Project Name" oninput="ResumeModule.updatePreview()">
+                                    <input type="text" class="form-control form-control-sm mb-2" id="input-proj2-tech" placeholder="Technologies used..." oninput="ResumeModule.updatePreview()">
+                                    <textarea class="form-control form-control-sm" id="input-proj2-desc" rows="3" placeholder="What did you build? What was the impact?" oninput="ResumeModule.updatePreview()"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Pane: Live Preview -->
+        <div class="col-lg-7 h-100 pb-4">
+            <div class="p-4 bg-secondary bg-opacity-10 h-100 rounded d-flex justify-content-center overflow-auto preview-scroll-container position-relative">
+                
+                <!-- The A4 Paper Canvas -->
+                <div class="a4-paper bg-white shadow" id="resume-preview-document">
+                    
+                    <!-- Header -->
+                    <div class="text-center border-bottom pb-3 mb-3">
+                        <h1 class="resume-name text-dark fw-bold mb-1" id="preview-name">John Doe</h1>
+                        <h3 class="resume-title text-primary mb-2" id="preview-title" style="font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase;">Software Engineer</h3>
+                        <div class="d-flex justify-content-center flex-wrap gap-3 small text-muted resume-contact">
+                            <span id="preview-email"><i class="fa-solid fa-envelope me-1"></i>john@example.com</span>
+                            <span id="preview-phone"><i class="fa-solid fa-phone me-1"></i>+1 234 567 890</span>
+                            <span id="preview-location"><i class="fa-solid fa-location-dot me-1"></i>New York, NY</span>
+                            <span id="preview-link"><i class="fa-brands fa-github me-1"></i>github.com/johndoe</span>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="mb-3">
+                        <h4 class="resume-section-title text-uppercase fw-bold text-dark border-bottom border-2 border-dark pb-1 mb-2" style="font-size: 0.9rem;">Professional Summary</h4>
+                        <p class="resume-text small text-dark mb-0" id="preview-summary">Motivated computer science student with a strong foundation in software engineering and algorithms. Passionate about building scalable web applications and learning new technologies.</p>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="mb-3">
+                        <h4 class="resume-section-title text-uppercase fw-bold text-dark border-bottom border-2 border-dark pb-1 mb-2" style="font-size: 0.9rem;">Education</h4>
+                        <div class="d-flex justify-content-between align-items-baseline mb-1">
+                            <strong class="resume-text text-dark" id="preview-edu-school">University of Technology</strong>
+                            <span class="resume-text text-muted small fw-bold" id="preview-edu-year">2026</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <span class="resume-text text-dark fst-italic" id="preview-edu-degree">B.S. Computer Science</span>
+                            <span class="resume-text text-dark small">CGPA: <span id="preview-edu-grade">3.8/4.0</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div class="mb-3">
+                        <h4 class="resume-section-title text-uppercase fw-bold text-dark border-bottom border-2 border-dark pb-1 mb-2" style="font-size: 0.9rem;">Technical Skills</h4>
+                        <div class="resume-text small text-dark mb-1">
+                            <strong>Languages:</strong> <span id="preview-skills-lang">Python, JavaScript, C++, SQL</span>
+                        </div>
+                        <div class="resume-text small text-dark">
+                            <strong>Frameworks & Tools:</strong> <span id="preview-skills-tools">React, Node.js, Git, Docker, AWS</span>
+                        </div>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="mb-3">
+                        <h4 class="resume-section-title text-uppercase fw-bold text-dark border-bottom border-2 border-dark pb-1 mb-2" style="font-size: 0.9rem;">Projects</h4>
+                        
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-baseline mb-1">
+                                <strong class="resume-text text-dark" id="preview-proj1-title">E-Commerce Web Application</strong>
+                            </div>
+                            <div class="resume-text text-muted small fst-italic mb-1" id="preview-proj1-tech">React, Node.js, MongoDB</div>
+                            <p class="resume-text small text-dark mb-0" id="preview-proj1-desc">Developed a full-stack e-commerce platform with user authentication, product catalog, and Stripe payment integration. Improved database query performance by 30% through indexing.</p>
+                        </div>
+                        
+                        <div>
+                            <div class="d-flex justify-content-between align-items-baseline mb-1">
+                                <strong class="resume-text text-dark" id="preview-proj2-title">AI Chatbot Assistant</strong>
+                            </div>
+                            <div class="resume-text text-muted small fst-italic mb-1" id="preview-proj2-tech">Python, OpenAI API, Flask</div>
+                            <p class="resume-text small text-dark mb-0" id="preview-proj2-desc">Built a smart customer support chatbot capable of answering FAQ and routing complex queries to human agents. Deployed on Heroku.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+/* Resume Editor & Preview Styling */
+.form-scroll-container, .preview-scroll-container {
+    max-height: calc(100vh - 180px);
+}
+
+.preview-scroll-container {
+    /* Subtle background grid for preview pane */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* A4 Paper Dimensions and Styling */
+.a4-paper {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    background: white;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    transform-origin: top center;
+    /* Scale down slightly on smaller screens */
+    transform: scale(0.9);
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1400px) {
+    .a4-paper { transform: scale(0.8); }
+}
+@media (max-width: 1200px) {
+    .a4-paper { transform: scale(0.7); margin-top: -3rem; }
+}
+@media (max-width: 992px) {
+    .a4-paper { transform: scale(1); margin-top: 0; }
+}
+
+/* Resume Specific Typography inside the A4 paper */
+.a4-paper .resume-name { font-size: 2.2rem; }
+.a4-paper .resume-text { line-height: 1.5; }
+</style>

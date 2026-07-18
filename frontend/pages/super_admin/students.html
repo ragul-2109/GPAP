@@ -1,0 +1,90 @@
+<div>
+    <div class="page-header-actions mb-4">
+        <div>
+            <h4 class="brand m-0">Global Student Database</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">Search and view any student across all registered colleges on the platform.</div>
+        </div>
+    </div>
+
+    <div class="lux-card p-4 mb-4" style="background: linear-gradient(to right, #f8fafc, #ffffff); border: 1px solid #e2e8f0;">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="input-group input-group-lg mb-3 shadow-sm rounded-pill overflow-hidden border">
+                    <span class="input-group-text bg-white border-0 ps-4 text-primary"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control border-0 px-3 shadow-none" style="font-size: 1rem;" placeholder="Global search by student name, email, roll number, or college...">
+                    <button class="btn btn-primary px-4 border-0">Search</button>
+                </div>
+                
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <select class="form-select form-select-sm w-auto rounded-pill px-3 shadow-sm border-0 bg-white">
+                        <option>College: All</option>
+                        <option>Genfinix Institute</option>
+                        <option>XYZ Tech</option>
+                    </select>
+                    <select class="form-select form-select-sm w-auto rounded-pill px-3 shadow-sm border-0 bg-white">
+                        <option>Status: All</option>
+                        <option>Active</option>
+                        <option>Suspended</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="premium-table-wrapper">
+        <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light">
+            <h6 class="m-0 text-muted">Showing random sample of <strong class="text-dark">3</strong> students out of 35,400</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Student Name & Email</th>
+                        <th>College</th>
+                        <th>Enrolled Date</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">John Doe</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">john.doe@genfinix.edu</div>
+                        </td>
+                        <td>Genfinix Institute</td>
+                        <td>Aug 15, 2023</td>
+                        <td><span class="status-pill status-active">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary">View Global Profile</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Sarah Connor</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">s.connor@xyztech.edu</div>
+                        </td>
+                        <td>XYZ Tech University</td>
+                        <td>Sep 02, 2023</td>
+                        <td><span class="status-pill status-active">Active</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary">View Global Profile</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600; color: var(--primary-dark);">Marcus Wright</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">m.wright@xyztech.edu</div>
+                        </td>
+                        <td>XYZ Tech University</td>
+                        <td>Jan 10, 2023</td>
+                        <td><span class="status-pill status-inactive">Suspended</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary">View Global Profile</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
