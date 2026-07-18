@@ -1,0 +1,140 @@
+<div class="staff-daily-mcq pb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Daily MCQ Manager</h3>
+            <div class="text-muted small mt-1">Assign daily tests, set correct answers, and monitor advanced proctoring.</div>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm px-3 shadow-sm" onclick="StaffDailyMCQ.exportData()">
+                <i class="fa-solid fa-file-export me-2"></i>Export Results
+            </button>
+            <button class="btn btn-primary btn-sm px-3 shadow-sm" onclick="StaffDailyMCQ.showCreateModal()">
+                <i class="fa-solid fa-plus me-2"></i>New Daily Test
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="lux-card p-4 border-0 position-relative overflow-hidden h-100" style="background: linear-gradient(135deg, rgba(78, 115, 223, 0.1), rgba(78, 115, 223, 0.05)); backdrop-filter: blur(10px); border: 1px solid rgba(78,115,223,0.2) !important;">
+                <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                    <i class="fa-solid fa-file-signature fa-3x text-primary"></i>
+                </div>
+                <div class="text-primary small fw-bold text-uppercase mb-2">Active Tests</div>
+                <div class="fs-2 fw-bold text-dark" id="stats-active">0</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-4 border-0 position-relative overflow-hidden h-100" style="background: linear-gradient(135deg, rgba(28, 200, 138, 0.1), rgba(28, 200, 138, 0.05)); backdrop-filter: blur(10px); border: 1px solid rgba(28,200,138,0.2) !important;">
+                <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                    <i class="fa-solid fa-check-double fa-3x text-success"></i>
+                </div>
+                <div class="text-success small fw-bold text-uppercase mb-2">Submissions Today</div>
+                <div class="fs-2 fw-bold text-dark" id="stats-submissions">0</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="lux-card p-4 border-0 position-relative overflow-hidden h-100" style="background: linear-gradient(135deg, rgba(231, 74, 59, 0.1), rgba(231, 74, 59, 0.05)); backdrop-filter: blur(10px); border: 1px solid rgba(231,74,59,0.2) !important;">
+                <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                    <i class="fa-solid fa-user-secret fa-3x text-danger"></i>
+                </div>
+                <div class="text-danger small fw-bold text-uppercase mb-2">Cheating Flags</div>
+                <div class="fs-2 fw-bold text-dark" id="stats-flags">0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Tests & Results Table -->
+    <div class="lux-card p-4">
+        <h5 class="brand mb-3">Live & Recent Tests</h5>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr class="text-muted small text-uppercase" style="letter-spacing:1px;">
+                        <th>Test Title</th>
+                        <th>Created</th>
+                        <th>Students Finished</th>
+                        <th>Avg Score</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="daily-tests-list">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Create Test Modal -->
+<div class="modal fade" id="createDailyTestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom-0 bg-light">
+                <h5 class="modal-title brand"><i class="fa-solid fa-calendar-plus text-primary me-2"></i>Create Daily Test</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="form-create-daily-test">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label fw-bold small text-muted">Test Title</label>
+                            <input type="text" class="form-control bg-light border-0" id="dt-title" required placeholder="e.g. Daily Data Structures Test">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold small text-muted">Duration (Mins)</label>
+                            <input type="number" class="form-control bg-light border-0" id="dt-duration" value="30" required>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <label class="form-label fw-bold small text-muted">Upload Questions & Answers (CSV/JSON)</label>
+                            <div class="p-4 border border-2 border-dashed rounded text-center bg-light" id="upload-zone">
+                                <i class="fa-solid fa-cloud-arrow-up fs-1 text-primary mb-3"></i>
+                                <h6>Drag & Drop file or <span class="text-primary" style="cursor:pointer;" onclick="document.getElementById('dt-file').click()">Browse</span></h6>
+                                <div class="small text-muted mt-2">Must contain 'Question', 'Option A', 'Option B', 'Option C', 'Option D', and 'Correct Answer'</div>
+                                <input type="file" id="dt-file" class="d-none" accept=".csv,.json">
+                                <div id="upload-status" class="mt-3 fw-bold text-success d-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" onclick="StaffDailyMCQ.submitCreateTest()">Create Test</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Test Results Modal -->
+<div class="modal fade" id="resultsDailyTestModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom-0" style="background: linear-gradient(90deg, var(--primary-color), var(--primary-hover)); color: white;">
+                <h5 class="modal-title fw-bold" id="results-modal-title">Test Results & Proctoring</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 bg-light">
+                <div class="table-responsive bg-white rounded shadow-sm border p-2">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr class="text-muted small text-uppercase" style="letter-spacing:1px;">
+                                <th>Student</th>
+                                <th>Score</th>
+                                <th>Time Taken</th>
+                                <th>Status</th>
+                                <th>Tab Switches</th>
+                                <th>Copy/Paste</th>
+                                <th>Proctoring Risk</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-results-list">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

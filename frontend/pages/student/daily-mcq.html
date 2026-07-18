@@ -1,0 +1,101 @@
+<div class="student-daily-mcq pb-5" id="student-daily-mcq-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="brand m-0">Daily MCQ Test</h3>
+            <div class="text-muted small mt-1">Take your daily assigned test. Questions are shuffled. Ensure you don't switch tabs!</div>
+        </div>
+    </div>
+
+    <!-- Pre-Test Dashboard -->
+    <div id="dt-dashboard" class="row g-4">
+        <div class="col-md-6 mx-auto">
+            <div class="lux-card p-5 text-center border-0 shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(78, 115, 223, 0.05), rgba(78, 115, 223, 0.15)); backdrop-filter: blur(10px); border: 1px solid rgba(78,115,223,0.3) !important; border-radius: 20px;">
+                <div class="mb-4">
+                    <i class="fa-solid fa-clock fa-4x text-primary opacity-75"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-2" id="dt-available-title">Daily Data Structures Test</h4>
+                <div class="d-flex justify-content-center gap-4 mb-4 text-muted small">
+                    <div><i class="fa-solid fa-list-ol me-1"></i> 25 Questions</div>
+                    <div><i class="fa-regular fa-clock me-1"></i> 30 Minutes</div>
+                </div>
+                <div class="alert alert-warning small text-start border-warning border-opacity-50 bg-warning bg-opacity-10 mb-4 rounded-3">
+                    <div class="fw-bold mb-1"><i class="fa-solid fa-triangle-exclamation me-1"></i>Proctoring Enabled</div>
+                    Do not switch tabs, exit fullscreen, or copy/paste text. All activities are recorded and sent to your staff.
+                </div>
+                <button class="btn btn-primary btn-lg px-5 shadow-sm rounded-pill fw-bold" onclick="StudentDailyMCQ.startTest()">
+                    <i class="fa-solid fa-play me-2"></i> Start Test Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Player (Hidden Initially) -->
+    <div id="dt-player" class="d-none">
+        <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-white rounded shadow-sm border">
+            <h5 class="m-0 fw-bold brand text-primary" id="dt-player-title">Daily Data Structures Test</h5>
+            <div class="d-flex align-items-center gap-4">
+                <div class="fw-bold text-danger fs-5" id="dt-timer">30:00</div>
+                <button class="btn btn-success px-4 fw-bold" onclick="StudentDailyMCQ.submitTest()">Submit Test</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Question Container -->
+                <div class="lux-card p-4 mb-4">
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-3 py-2 fs-6 rounded-pill" id="dt-question-number">Question 1 of 25</span>
+                        <span class="text-muted small fw-bold">1.0 Mark</span>
+                    </div>
+                    <div class="fs-5 fw-medium text-dark mb-4" id="dt-question-text">
+                        Loading question...
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-3" id="dt-options-container">
+                        <!-- Options populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded border">
+                    <button class="btn btn-outline-secondary px-4" id="btn-prev" onclick="StudentDailyMCQ.prevQuestion()" disabled>
+                        <i class="fa-solid fa-arrow-left me-2"></i>Previous
+                    </button>
+                    <button class="btn btn-primary px-4" id="btn-next" onclick="StudentDailyMCQ.nextQuestion()">
+                        Next<i class="fa-solid fa-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <!-- Question Palette -->
+                <div class="lux-card p-4 sticky-top" style="top: 20px;">
+                    <h6 class="fw-bold mb-3 small text-uppercase text-muted">Question Palette</h6>
+                    <div class="d-flex flex-wrap gap-2" id="dt-palette">
+                        <!-- Palette populated via JS -->
+                    </div>
+                    
+                    <hr class="my-4">
+                    <div class="small">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="bg-primary rounded-circle me-2" style="width:12px; height:12px;"></div>
+                            <span class="text-muted">Answered</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-light border rounded-circle me-2" style="width:12px; height:12px;"></div>
+                            <span class="text-muted">Not Answered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Results Summary (Hidden Initially) -->
+    <div id="dt-results" class="d-none text-center py-5">
+        <i class="fa-solid fa-circle-check fa-5x text-success mb-3"></i>
+        <h2 class="brand mb-2">Test Submitted Successfully!</h2>
+        <p class="text-muted mb-4">Your responses and proctoring logs have been sent to your staff.</p>
+        <button class="btn btn-outline-primary" onclick="switchTab('tab-results')">View Detailed Results</button>
+    </div>
+</div>

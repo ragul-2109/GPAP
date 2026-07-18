@@ -23,6 +23,7 @@ async function switchTab(tabId) {
     let page = tabId.replace("tab-", "");
 
     if (page.startsWith("staff-")) { role = "staff"; page = page.replace("staff-", ""); }
+    else if (page.startsWith("student-")) { role = "student"; page = page.replace("student-", ""); }
     else if (page.startsWith("college-")) { role = "college_admin"; page = page.replace("college-", ""); }
     else if (page.startsWith("super-")) { role = "super_admin"; page = page.replace("super-", ""); }
     else {
@@ -63,6 +64,12 @@ async function switchTab(tabId) {
             } else if (page === 'notifications') {
                 if (typeof NotificationsModule !== 'undefined') {
                     NotificationsModule.init();
+                }
+            } else if (page === 'daily-mcq') {
+                if (role === 'student' && typeof StudentDailyMCQ !== 'undefined') {
+                    StudentDailyMCQ.init();
+                } else if (role === 'staff' && typeof StaffDailyMCQ !== 'undefined') {
+                    StaffDailyMCQ.init();
                 }
             } else if (page === 'staff-mcq-create') {
                 loadModuleContent(appState.selectedRole);
