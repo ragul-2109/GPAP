@@ -106,7 +106,7 @@ const StaffMCQCreate = (function() {
         const csvContent = [
             headers.join(","),
             exampleRow.map(item => `"${item.replace(/"/g, '""')}"`).join(",") 
-        ].join("\\n");
+        ].join("\n");
         
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement("a");
