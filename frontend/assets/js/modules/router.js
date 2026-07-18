@@ -68,7 +68,9 @@ async function switchTab(tabId) {
                     StaffDailyMCQ.init();
                 }
             } else if (page === 'staff-mcq-create') {
-                loadModuleContent(appState.selectedRole);
+                if (typeof StaffMCQCreate !== 'undefined') {
+                    StaffMCQCreate.init();
+                }
             }
 
             // Load Dashboard stats if needed
