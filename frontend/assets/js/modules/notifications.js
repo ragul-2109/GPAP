@@ -54,8 +54,6 @@ const NotificationsModule = (function() {
         }
     ];
 
-    ];
-
     let sentNotificationsData = []; // To track messages sent by the user
     let currentFilter = 'all';
     let currentTab = 'inbox'; // 'inbox' or 'sent'
@@ -287,3 +285,5 @@ const NotificationsModule = (function() {
         markAllAsRead
     };
 })();
+
+window.NotificationsModule = NotificationsModule;
