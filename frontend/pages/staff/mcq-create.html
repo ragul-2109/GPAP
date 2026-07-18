@@ -94,8 +94,13 @@
                     </div>
                 </div>
                 <form id="bulkUploadForm">
+                    <div class="d-flex mb-3">
+                        <button type="button" class="btn btn-outline-primary shadow-sm ms-auto" onclick="downloadCSVTemplate()">
+                            <i class="fa-solid fa-download me-2"></i>Download CSV Template
+                        </button>
+                    </div>
                     <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="questionFile" accept=".csv,.json" required>
+                        <input type="file" class="form-control" id="questionFile" accept=".csv" required>
                         <button class="btn btn-success" type="submit"><i class="fa-solid fa-upload me-2"></i>Upload</button>
                     </div>
                 </form>
@@ -181,4 +186,35 @@
             statusDiv.innerHTML = `<div class="alert alert-danger py-2 mb-0">Connection error</div>`;
         }
     });
+
+    function downloadCSVTemplate() {
+        const headers = ["Question", "Option A", "Option B", "Option C", "Option D", "Correct Answer", "Explanation", "Marks", "Difficulty", "Topic"];
+        const exampleRow = [
+            "What is the output of print(2**3)?",
+            "5",
+            "6",
+            "8",
+            "9",
+            "C",
+            "** is the exponentiation operator in Python.",
+            "1",
+            "Easy",
+            "Python Basics"
+        ];
+        
+        const csvContent = [
+            headers.join(","),
+            exampleRow.map(item => `"${item.replace(/"/g, '""')}"`).join(",") 
+        ].join("\\n");
+        
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "GPAP_MCQ_Template.csv");
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 </script>
