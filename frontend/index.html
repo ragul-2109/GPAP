@@ -290,6 +290,9 @@
                         <div class="brand fs-4 m-0 p-0 text-primary fw-bold" style="letter-spacing: 1px;"><i class="fa-solid fa-graduation-cap me-2"></i>GPAP Portal</div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-primary shadow-sm rounded-pill px-3" onclick="NotificationsModule.openCompose()" title="Send Message or Feedback">
+                            <i class="fa-solid fa-pen-to-square me-2"></i>Compose
+                        </button>
                         <button class="btn btn-light position-relative border-0 shadow-sm rounded-circle p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#notificationsOffcanvas" aria-controls="notificationsOffcanvas" style="width: 45px; height: 45px;">
                             <i class="fa-regular fa-bell fs-5 text-dark"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="nav-notification-badge">
@@ -312,8 +315,36 @@
                         </h5>
                         <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body p-0" id="notifications-panel-body">
-                        <!-- Notifications loaded dynamically via JS -->
+                    
+                    <div class="bg-light px-3 pt-2 border-bottom">
+                        <ul class="nav nav-tabs nav-tabs-custom border-0" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active bg-transparent border-0 fw-bold pb-2" id="inbox-tab" data-bs-toggle="tab" data-bs-target="#inbox-panel" type="button" role="tab" onclick="NotificationsModule.switchTab('inbox')">
+                                    <i class="fa-solid fa-inbox me-1"></i> Inbox
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link bg-transparent border-0 text-muted fw-bold pb-2" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent-panel" type="button" role="tab" onclick="NotificationsModule.switchTab('sent')">
+                                    <i class="fa-solid fa-paper-plane me-1"></i> Sent
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="offcanvas-body p-0 tab-content">
+                        <!-- Inbox Tab -->
+                        <div class="tab-pane fade show active" id="inbox-panel" role="tabpanel">
+                            <div id="notifications-panel-body">
+                                <!-- Notifications loaded dynamically via JS -->
+                            </div>
+                        </div>
+                        
+                        <!-- Sent Tab -->
+                        <div class="tab-pane fade" id="sent-panel" role="tabpanel">
+                            <div id="sent-panel-body">
+                                <!-- Sent loaded dynamically via JS -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -324,6 +355,42 @@
             </main>
         </div>
     </section>
+
+    <!-- Compose Notification / Feedback Modal -->
+    <div class="modal fade" id="composeNotificationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-bottom bg-light">
+                    <h5 class="modal-title fw-bold text-dark d-flex align-items-center">
+                        <i class="fa-solid fa-paper-plane text-primary me-2"></i> New Message
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">To</label>
+                        <select class="form-select" id="compose-target">
+                            <!-- Populated dynamically based on user role -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Subject</label>
+                        <input type="text" class="form-control" id="compose-subject" placeholder="Enter subject...">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Message</label>
+                        <textarea class="form-control" id="compose-message" rows="4" placeholder="Type your message or feedback here..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 bg-light">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary px-4" onclick="NotificationsModule.sendMessage()">
+                        <i class="fa-solid fa-paper-plane me-2"></i>Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Student Profile Modal (Advanced) -->
     <div class="modal fade" id="studentProfileModal" tabindex="-1" aria-hidden="true">
