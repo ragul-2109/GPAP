@@ -5,7 +5,7 @@ const ResultsModule = (function() {
         {
             id: 1,
             title: "TCS NQT National Qualifier",
-            type: "live",
+            type: "mcq",
             date: "Jul 10, 2026",
             time: "10:00 AM",
             scoreStr: "85/100",
@@ -41,7 +41,7 @@ const ResultsModule = (function() {
         {
             id: 4,
             title: "Infosys Systems Engineer Assessment",
-            type: "live",
+            type: "mcq",
             date: "Jul 05, 2026",
             time: "11:00 AM",
             scoreStr: "68/100",
@@ -113,7 +113,6 @@ const ResultsModule = (function() {
             let icon = 'fa-file-lines';
             let iconColor = 'text-primary';
             if(r.type === 'coding') { icon = 'fa-code'; iconColor = 'text-info'; }
-            if(r.type === 'live') { icon = 'fa-globe'; iconColor = 'text-warning'; }
 
             return `
             <tr>
@@ -153,6 +152,7 @@ const ResultsModule = (function() {
     }
 
     let reportModalInstance = null;
+    let radarChartInstance = null;
 
     function viewReport(id) {
         const result = resultsData.find(r => r.id === id);
@@ -161,12 +161,58 @@ const ResultsModule = (function() {
         document.getElementById('report-title').textContent = result.title;
         document.getElementById('report-date').textContent = `Taken on ${result.date} at ${result.time}`;
         document.getElementById('report-score').textContent = result.scoreStr;
-        document.getElementById('report-accuracy').textContent = `${result.percentage}%`;
+
+        const totalQ = parseInt(result.scoreStr.split('/')[1]) || 25;
+        const correct = parseInt(result.scoreStr.split('/')[0]) || 0;
+        const incorrect = Math.floor((totalQ - correct) * 0.7);
+        const skipped = totalQ - correct - incorrect;
+
+        document.getElementById('report-correct').textContent = correct;
+        document.getElementById('report-incorrect').textContent = incorrect;
+        document.getElementById('report-skipped').textContent = skipped;
+
         document.getElementById('report-time').textContent = result.timeTaken;
         document.getElementById('report-percentile').textContent = result.percentile;
 
-        const accuracyEl = document.getElementById('report-accuracy');
-        accuracyEl.className = result.status === 'Pass' ? 'fs-4 fw-bold text-success' : 'fs-4 fw-bold text-danger';
+        const ctx = document.getElementById('skillRadarChart').getContext('2d');
+        if (radarChartInstance) {
+            radarChartInstance.destroy();
+        }
+        radarChartInstance = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Core Concepts', 'Problem Solving', 'Time Management', 'Accuracy', 'Logic'],
+                datasets: [{
+                    label: 'Skill Level (%)',
+                    data: [
+                        Math.min(100, result.percentage + 5), 
+                        Math.max(0, result.percentage - 10), 
+                        92, 
+                        result.percentage, 
+                        Math.min(100, result.percentage + 15)
+                    ],
+                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                    borderColor: 'rgba(78, 115, 223, 1)',
+                    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(78, 115, 223, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        pointLabels: { font: { size: 11, family: 'Inter' } },
+                        ticks: { display: false, min: 0, max: 100 }
+                    }
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
 
         if (typeof bootstrap !== 'undefined') {
             const modalEl = document.getElementById('reportModal');
