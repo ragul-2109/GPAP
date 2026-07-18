@@ -168,3 +168,47 @@
     transform: translateX(0);
   }
 }
+
+/* Advanced Glassmorphism Cards */
+.glass-card-primary {
+    background: linear-gradient(135deg, rgba(78, 115, 223, 0.1), rgba(78, 115, 223, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(78,115,223,0.2) !important;
+}
+.glass-card-success {
+    background: linear-gradient(135deg, rgba(28, 200, 138, 0.1), rgba(28, 200, 138, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(28,200,138,0.2) !important;
+}
+.glass-card-warning {
+    background: linear-gradient(135deg, rgba(246, 194, 62, 0.1), rgba(246, 194, 62, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(246,194,62,0.2) !important;
+}
+.glass-card-danger {
+    background: linear-gradient(135deg, rgba(231, 74, 59, 0.1), rgba(231, 74, 59, 0.05));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(231,74,59,0.2) !important;
+}
+.glass-card-solid-primary {
+    background: linear-gradient(135deg, #4e73df, #2e59d9);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+.glass-card-student-dash {
+    background: linear-gradient(135deg, rgba(78, 115, 223, 0.05), rgba(78, 115, 223, 0.15));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(78,115,223,0.3) !important;
+    border-radius: 20px;
+}
+.glass-header-primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+    color: white;
+}
+.glass-remarks-block {
+    background: linear-gradient(90deg, rgba(78,115,223,0.1), rgba(28,200,138,0.1));
+    border-left: 4px solid var(--primary-color);
+}
+.gradient-header-light {
+    background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
