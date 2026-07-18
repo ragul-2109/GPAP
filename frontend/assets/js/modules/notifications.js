@@ -83,8 +83,11 @@ const NotificationsModule = (function() {
     let composeModalInstance = null;
 
     function openCompose() {
-        const user = window.StateModule ? window.StateModule.getUser() : { role: 'student' };
-        const role = user.role;
+        let role = 'student';
+        if (typeof appState !== 'undefined' && appState.selectedRole) {
+            role = appState.selectedRole;
+        }
+
         const targetSelect = document.getElementById('compose-target');
         
         targetSelect.innerHTML = '';
@@ -92,7 +95,7 @@ const NotificationsModule = (function() {
         if (role === 'student') {
             targetSelect.innerHTML += `<option value="staff">Send to Staff (Mentors)</option>`;
             targetSelect.innerHTML += `<option value="management">Send to Management</option>`;
-        } else if (role === 'staff') {
+        } else if (role === 'staff' || role === 'trainer') {
             targetSelect.innerHTML += `<option value="student">Broadcast to Students</option>`;
             targetSelect.innerHTML += `<option value="specific_student">Send to Specific Student</option>`;
             targetSelect.innerHTML += `<option value="management">Send to Management</option>`;
