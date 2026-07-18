@@ -29,7 +29,6 @@ async function switchTab(tabId) {
         if (page === "mcq") page = "mcq_practice";
         if (page === "coding") page = "coding_practice";
         if (page === "live") page = "live_test";
-        if (page === "study") page = "study_materials";
     }
 
     try {
@@ -69,10 +68,7 @@ async function switchTab(tabId) {
                 if (typeof PerformanceModule !== 'undefined') {
                     PerformanceModule.init();
                 }
-            } else if (page === 'resume') {
-                if (typeof ResumeModule !== 'undefined') {
-                    ResumeModule.init();
-                }
+
             } else if (page === 'notifications') {
                 if (typeof NotificationsModule !== 'undefined') {
                     NotificationsModule.init();

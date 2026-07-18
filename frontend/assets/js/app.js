@@ -47,7 +47,6 @@ async function switchTab(tabId) {
         if (page === "mcq") page = "mcq_practice";
         if (page === "coding") page = "coding_practice";
         if (page === "live") page = "live_test";
-        if (page === "study") page = "study_materials";
     }
 
     try {
