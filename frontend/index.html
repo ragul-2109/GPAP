@@ -188,6 +188,12 @@
                     <button class="btn btn-sm d-md-none" onclick="toggleSidebar()"><i
                             class="fa-solid fa-times"></i></button>
                 </div>
+                
+                <div class="px-3 pb-3">
+                    <button class="btn btn-primary shadow-sm rounded-pill w-100" onclick="NotificationsModule.openCompose()" title="Send Message or Feedback">
+                        <i class="fa-solid fa-pen-to-square me-2"></i>Compose
+                    </button>
+                </div>
 
                 <!-- Student Menu -->
                 <div class="sidebar-menu d-none" id="studentMenu">
@@ -290,9 +296,6 @@
                         <div class="brand fs-4 m-0 p-0 text-primary fw-bold" style="letter-spacing: 1px;"><i class="fa-solid fa-graduation-cap me-2"></i>GPAP Portal</div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <button class="btn btn-primary shadow-sm rounded-pill px-3" onclick="NotificationsModule.openCompose()" title="Send Message or Feedback">
-                            <i class="fa-solid fa-pen-to-square me-2"></i>Compose
-                        </button>
                         <button class="btn btn-light position-relative border-0 shadow-sm rounded-circle p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#notificationsOffcanvas" aria-controls="notificationsOffcanvas" style="width: 45px; height: 45px;">
                             <i class="fa-regular fa-bell fs-5 text-dark"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="nav-notification-badge">
