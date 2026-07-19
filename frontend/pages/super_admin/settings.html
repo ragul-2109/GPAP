@@ -1,70 +1,316 @@
-<div>
-    <div class="page-header-actions mb-4">
+<div class="settings-container animation-fade-in">
+    <div class="page-header-actions mb-4 d-flex justify-content-between align-items-end flex-wrap gap-3">
         <div>
-            <h4 class="brand m-0">System Settings</h4>
-            <div class="text-muted" style="font-size: 0.9rem;">Configure global platform parameters, security policies, and integrations.</div>
+            <h4 class="brand m-0 fw-bold" style="background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">System Settings</h4>
+            <div class="text-muted mt-1" style="font-size: 0.95rem;">Configure global platform parameters, security policies, and integrations.</div>
         </div>
         <div>
-            <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+            <button class="btn btn-primary shadow-sm px-4 fw-medium" style="border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 15px -3px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px -1px rgba(0, 0, 0, 0.1)'" onclick="SettingsModule.saveSettings(this)">
+                <i class="fa-solid fa-floppy-disk me-2"></i> Save Changes
+            </button>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active border-0 rounded mb-1"><i class="fa-solid fa-sliders me-2"></i> General Settings</a>
-                <a href="#" class="list-group-item list-group-item-action border-0 rounded mb-1 text-muted"><i class="fa-solid fa-shield-halved me-2"></i> Security & Proctoring</a>
-                <a href="#" class="list-group-item list-group-item-action border-0 rounded mb-1 text-muted"><i class="fa-solid fa-code me-2"></i> API & Webhooks</a>
-                <a href="#" class="list-group-item list-group-item-action border-0 rounded mb-1 text-muted"><i class="fa-solid fa-credit-card me-2"></i> Billing Gateway</a>
+    <div class="row g-4">
+        <!-- Settings Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            <div class="settings-sidebar lux-card p-2 border-0 shadow-sm" style="border-radius: 12px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);">
+                <div class="list-group list-group-flush">
+                    <a href="#" class="settings-nav-item active" data-target="panel-general">
+                        <div class="nav-icon"><i class="fa-solid fa-sliders"></i></div>
+                        <div class="nav-text">General Settings</div>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="panel-security">
+                        <div class="nav-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="nav-text">Security & Proctoring</div>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="panel-api">
+                        <div class="nav-icon"><i class="fa-solid fa-code"></i></div>
+                        <div class="nav-text">API & Webhooks</div>
+                    </a>
+                    <a href="#" class="settings-nav-item" data-target="panel-billing">
+                        <div class="nav-icon"><i class="fa-solid fa-credit-card"></i></div>
+                        <div class="nav-text">Billing Gateway</div>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-9">
-            <div class="lux-card p-4 mb-4">
-                <h5 class="mb-4 pb-2 border-bottom">Core Engine Configuration</h5>
-                
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <div style="font-weight: 600;">Global AI Compiler</div>
-                        <div class="text-muted" style="font-size: 0.85rem;">Enable code execution and compilation features for coding assessments.</div>
-                    </div>
-                    <div class="form-check form-switch fs-4 m-0">
-                        <input class="form-check-input" type="checkbox" checked>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <div style="font-weight: 600;">Strict Proctoring Enforcement</div>
-                        <div class="text-muted" style="font-size: 0.85rem;">Force all new assessments to use webcam and screen monitoring by default.</div>
-                    </div>
-                    <div class="form-check form-switch fs-4 m-0">
-                        <input class="form-check-input" type="checkbox" checked>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div>
-                        <div style="font-weight: 600;">Auto-Suspend on Critical Flags</div>
-                        <div class="text-muted" style="font-size: 0.85rem;">Automatically suspend student accounts if similarity score exceeds 95%.</div>
-                    </div>
-                    <div class="form-check form-switch fs-4 m-0">
-                        <input class="form-check-input" type="checkbox">
-                    </div>
-                </div>
-            </div>
+        <!-- Settings Content Panels -->
+        <div class="col-lg-9 col-md-8 position-relative">
             
-            <div class="lux-card p-4">
-                <h5 class="mb-4 pb-2 border-bottom">Maintenance Mode</h5>
-                <div class="alert alert-warning d-flex gap-3 align-items-center m-0">
-                    <i class="fa-solid fa-triangle-exclamation fs-3"></i>
-                    <div>
-                        <div style="font-weight: 600;">Enable Platform Maintenance</div>
-                        <div style="font-size: 0.85rem;">This will log out all active users except Super Admins and show a maintenance page.</div>
+            <!-- PANEL: GENERAL SETTINGS -->
+            <div id="panel-general" class="settings-panel active-panel animation-fade-in">
+                <div class="lux-card p-4 mb-4 border-0 shadow-sm" style="border-radius: 16px; background: linear-gradient(145deg, #ffffff, #f8fafc);">
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom border-light">
+                        <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-microchip fs-5"></i>
+                        </div>
+                        <h5 class="m-0 fw-bold text-dark">Core Engine Configuration</h5>
                     </div>
-                    <button class="btn btn-outline-warning text-dark ms-auto">Activate Mode</button>
+                    
+                    <div class="setting-row p-3 rounded-3 mb-2 transition-all">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="pe-4">
+                                <div class="fw-bold text-dark mb-1" style="font-size: 1.05rem;">Global AI Compiler</div>
+                                <div class="text-muted" style="font-size: 0.9rem; line-height: 1.4;">Enable code execution and compilation features for coding assessments platform-wide.</div>
+                            </div>
+                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                <input class="form-check-input" type="checkbox" checked style="cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-row p-3 rounded-3 mb-2 transition-all">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="pe-4">
+                                <div class="fw-bold text-dark mb-1" style="font-size: 1.05rem;">Strict Proctoring Enforcement</div>
+                                <div class="text-muted" style="font-size: 0.9rem; line-height: 1.4;">Force all new assessments to use webcam, screen monitoring, and AI analysis by default.</div>
+                            </div>
+                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                <input class="form-check-input" type="checkbox" checked style="cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-row p-3 rounded-3 mb-2 transition-all">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="pe-4">
+                                <div class="fw-bold text-dark mb-1" style="font-size: 1.05rem;">Auto-Suspend on Critical Flags</div>
+                                <div class="text-muted" style="font-size: 0.9rem; line-height: 1.4;">Automatically suspend student accounts if their cheating probability score exceeds 95%.</div>
+                            </div>
+                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                <input class="form-check-input" type="checkbox" style="cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Danger Zone -->
+                <div class="lux-card p-4 border-0 shadow-sm position-relative overflow-hidden" style="border-radius: 16px; background-color: #fffaf9; border: 1px dashed #fecdd3 !important;">
+                    <div class="position-absolute end-0 top-0 opacity-10 p-4" style="transform: rotate(15deg);"><i class="fa-solid fa-triangle-exclamation text-danger" style="font-size: 120px;"></i></div>
+                    
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom" style="border-color: #ffe4e6 !important;">
+                        <div class="rounded bg-danger bg-opacity-10 text-danger p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-power-off fs-5"></i>
+                        </div>
+                        <h5 class="m-0 fw-bold text-danger">Danger Zone: Maintenance Mode</h5>
+                    </div>
+
+                    <div class="d-flex flex-column flex-md-row gap-4 align-items-md-center position-relative z-1">
+                        <div class="flex-grow-1">
+                            <div class="fw-bold text-dark mb-1" style="font-size: 1.05rem;">Enable Platform Maintenance</div>
+                            <div class="text-secondary" style="font-size: 0.95rem; line-height: 1.5;">Activating this will immediately log out all active users globally (except Super Admins). The platform will display a generic maintenance page. Use only for critical database migrations or severe security incidents.</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-outline-danger fw-bold px-4 py-2 text-nowrap transition-all danger-btn" onclick="SettingsModule.toggleMaintenance(this)" style="border-radius: 8px; border-width: 2px;">
+                                <i class="fa-solid fa-lock me-2"></i> Activate Mode
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- PANEL: SECURITY & PROCTORING -->
+            <div id="panel-security" class="settings-panel animation-fade-in">
+                <div class="lux-card p-4 mb-4 border-0 shadow-sm" style="border-radius: 16px; background: linear-gradient(145deg, #ffffff, #f8fafc);">
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom border-light">
+                        <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-shield-halved fs-5"></i>
+                        </div>
+                        <h5 class="m-0 fw-bold text-dark">Security Policies</h5>
+                    </div>
+                    
+                    <div class="setting-row p-3 rounded-3 mb-2 transition-all">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="pe-4">
+                                <div class="fw-bold text-dark mb-1" style="font-size: 1.05rem;">Require MFA for Staff</div>
+                                <div class="text-muted" style="font-size: 0.9rem; line-height: 1.4;">Enforce Multi-Factor Authentication for all college administrators and staff members.</div>
+                            </div>
+                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                <input class="form-check-input" type="checkbox" checked style="cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-row p-3 rounded-3 mb-2 transition-all">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="pe-4">
+                                <div class="fw-bold text-dark mb-1" style="font-size: 1.05rem;">Session Timeout</div>
+                                <div class="text-muted" style="font-size: 0.9rem; line-height: 1.4;">Automatically log users out after a period of inactivity.</div>
+                            </div>
+                            <div>
+                                <select class="form-select bg-white shadow-sm" style="width: 150px; border-radius: 8px;">
+                                    <option>15 Minutes</option>
+                                    <option selected>30 Minutes</option>
+                                    <option>1 Hour</option>
+                                    <option>4 Hours</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: API & WEBHOOKS -->
+            <div id="panel-api" class="settings-panel animation-fade-in">
+                <div class="lux-card p-4 mb-4 border-0 shadow-sm" style="border-radius: 16px; background: linear-gradient(145deg, #ffffff, #f8fafc);">
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom border-light">
+                        <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-code fs-5"></i>
+                        </div>
+                        <h5 class="m-0 fw-bold text-dark">API Configuration</h5>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">Global API Key</label>
+                        <div class="input-group shadow-sm" style="border-radius: 8px; overflow: hidden;">
+                            <input type="password" class="form-control border-0 bg-white" value="sk_live_51M..." readonly>
+                            <button class="btn btn-outline-secondary border-0 bg-white border-start text-primary" type="button" onclick="alert('Copied!')"><i class="fa-regular fa-copy"></i></button>
+                            <button class="btn btn-outline-danger border-0 bg-white border-start" type="button">Revoke</button>
+                        </div>
+                        <div class="form-text mt-2">Use this key to authenticate external service requests. Never share this key publicly.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-dark">Webhook Endpoint URL</label>
+                        <input type="url" class="form-control shadow-sm border-0 bg-white" placeholder="https://your-domain.com/webhooks" value="https://api.genfinix.com/v1/webhook" style="border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL: BILLING GATEWAY -->
+            <div id="panel-billing" class="settings-panel animation-fade-in">
+                <div class="lux-card p-4 mb-4 border-0 shadow-sm" style="border-radius: 16px; background: linear-gradient(145deg, #ffffff, #f8fafc);">
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom border-light">
+                        <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-credit-card fs-5"></i>
+                        </div>
+                        <h5 class="m-0 fw-bold text-dark">Payment Gateway Integration</h5>
+                    </div>
+                    
+                    <div class="setting-row p-3 rounded-3 mb-3 transition-all border border-light bg-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="fa-brands fa-stripe text-primary" style="font-size: 2.5rem;"></i>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 1.05rem;">Stripe Connect</div>
+                                    <div class="text-success small fw-bold"><i class="fa-solid fa-circle-check"></i> Connected & Active</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary fw-bold px-3 shadow-sm custom-btn" onclick="SettingsModule.manageStripe(this)"><i class="fa-solid fa-gear me-1"></i> Manage</button>
+                        </div>
+                    </div>
+
+                    <div class="setting-row p-3 rounded-3 mb-3 transition-all border border-light bg-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="fa-brands fa-paypal text-primary" style="font-size: 2.5rem;"></i>
+                                <div>
+                                    <div class="fw-bold text-dark" style="font-size: 1.05rem;">PayPal Gateway</div>
+                                    <div class="text-muted small">Not connected</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-primary fw-bold px-3 shadow-sm custom-btn" onclick="SettingsModule.connectPayPal(this)"><i class="fa-solid fa-link me-1"></i> Connect</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
+
+<style>
+    .animation-fade-in {
+        animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+
+    /* Settings Navigation Styling */
+    .settings-nav-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        color: #64748b;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-bottom: 4px;
+        transition: all 0.2s ease;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .settings-nav-item:hover {
+        background-color: #f8fafc;
+        color: #3b82f6;
+    }
+    
+    .settings-nav-item.active {
+        background-color: #eff6ff;
+        color: #2563eb;
+        font-weight: 600;
+    }
+    
+    .settings-nav-item.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10%;
+        height: 80%;
+        width: 4px;
+        background: linear-gradient(180deg, #3b82f6, #60a5fa);
+        border-radius: 0 4px 4px 0;
+    }
+    
+    .settings-nav-item .nav-icon {
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        margin-right: 12px;
+        font-size: 1.1rem;
+    }
+
+    /* Settings Rows */
+    .setting-row:hover {
+        background-color: #f8fafc;
+        transform: translateX(4px);
+    }
+    
+    /* Custom Switch Styling */
+    .custom-switch .form-check-input {
+        height: 1.5em;
+        width: 3em;
+        background-color: #cbd5e1;
+        border-color: #cbd5e1;
+        box-shadow: none !important;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    .custom-switch .form-check-input:checked {
+        background-color: #3b82f6;
+        border-color: #3b82f6;
+    }
+    
+    /* Danger Button Hover */
+    .danger-btn:hover {
+        box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    /* Panels */
+    .settings-panel {
+        display: none;
+    }
+    .settings-panel.active-panel {
+        display: block;
+    }
+</style>
+

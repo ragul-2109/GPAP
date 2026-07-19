@@ -71,6 +71,14 @@ async function switchTab(tabId) {
                 if (typeof StaffMCQCreate !== 'undefined') {
                     StaffMCQCreate.init();
                 }
+            } else if (page === 'audit') {
+                if (typeof AuditModule !== 'undefined') {
+                    AuditModule.init();
+                }
+            } else if (page === 'settings') {
+                if (typeof SettingsModule !== 'undefined') {
+                    SettingsModule.init();
+                }
             }
 
             // Load Dashboard stats if needed

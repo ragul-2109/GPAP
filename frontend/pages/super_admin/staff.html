@@ -99,32 +99,99 @@
     </div>
 </div>
 
-<!-- Add Staff Modal -->
 <div class="modal fade" id="addStaffModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow-lg">
-            <div class="modal-header border-bottom bg-light">
-                <h5 class="modal-title fw-bold text-dark d-flex align-items-center">
-                    <i class="fa-solid fa-user-plus text-primary me-2"></i> Add New Staff Member
-                </h5>
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+            <div class="modal-header border-bottom bg-light p-4">
+                <h4 class="modal-title fw-bold text-dark d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 text-primary rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                    Provision New Staff Member
+                </h4>
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-4">
-                <form>
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">First Name</label><input type="text" class="form-control" placeholder="E.g. John"></div>
-                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Last Name</label><input type="text" class="form-control" placeholder="E.g. Doe"></div>
+            <div class="modal-body p-0">
+                <div class="row g-0">
+                    <!-- Left: Employee Details -->
+                    <div class="col-md-6 p-4 border-end bg-white">
+                        <h5 class="fw-bold mb-4 text-secondary d-flex align-items-center"><i class="fa-solid fa-address-card me-2"></i> 1. Employee Details</h5>
+                        <form id="staffDetailsForm">
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Employee ID <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control custom-input font-monospace text-uppercase" placeholder="GFX-001" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Phone</label>
+                                    <input type="tel" class="form-control custom-input" placeholder="+1 (555) 000-0000">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control custom-input" placeholder="e.g., John Doe" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control custom-input" placeholder="john.doe@genfinix.com" required>
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Department</label>
+                                    <select class="form-select custom-input">
+                                        <option>Technical Training</option>
+                                        <option>Aptitude Training</option>
+                                        <option>Customer Success</option>
+                                        <option>IT Support</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Role</label>
+                                    <select class="form-select custom-input">
+                                        <option>Senior Trainer</option>
+                                        <option>Junior Trainer</option>
+                                        <option>Account Manager</option>
+                                        <option>Support Staff</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Email Address</label><input type="email" class="form-control" placeholder="john.doe@genfinix.com"></div>
-                        <div class="col-md-6"><label class="form-label small fw-bold text-muted">Role</label><select class="form-select"><option>Technical Trainer</option><option>Aptitude Specialist</option><option>Account Manager</option><option>Support Staff</option></select></div>
+                    <!-- Right: Assignment & Provisioning -->
+                    <div class="col-md-6 p-4" style="background-color: #f8fafc;">
+                        <h5 class="fw-bold mb-4 text-secondary d-flex align-items-center"><i class="fa-solid fa-sitemap me-2"></i> 2. Assignment & Security</h5>
+                        <form id="staffSecurityForm">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Primary College Assignment</label>
+                                <select class="form-select custom-input">
+                                    <option>Global (All Colleges)</option>
+                                    <option>Genfinix Institute</option>
+                                    <option>XYZ Tech University</option>
+                                    <option>Stanford University</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label small fw-bold text-muted text-uppercase tracking-wider">Specializations</label>
+                                <input type="text" class="form-control custom-input" placeholder="e.g., Java, React, System Design">
+                            </div>
+                            <div class="mb-3 mt-4">
+                                <label class="form-label small fw-bold text-muted text-uppercase tracking-wider d-flex justify-content-between align-items-end">
+                                    <span>Temporary Password <span class="text-danger">*</span></span>
+                                    <button type="button" class="btn btn-sm btn-link text-primary p-0 text-decoration-none fw-bold" onclick="SuperStaffManager.generatePassword('staffPassword')"><i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Generate</button>
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" id="staffPassword" class="form-control custom-input font-monospace" placeholder="Enter or generate password" required>
+                                    <button class="btn btn-outline-secondary custom-input bg-white" type="button" onclick="SuperStaffManager.togglePassword('staffPassword', this)"><i class="fa-regular fa-eye-slash"></i></button>
+                                </div>
+                                <div class="form-text mt-2"><i class="fa-solid fa-circle-info text-primary"></i> Staff will be forced to change this upon first login.</div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="mb-3"><label class="form-label small fw-bold text-muted">Specializations (Comma separated)</label><input type="text" class="form-control" placeholder="E.g. Java, DSA, Python"></div>
-                </form>
+                </div>
             </div>
-            <div class="modal-footer border-top-0 bg-light">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">Create Account</button>
+            <div class="modal-footer border-top p-4 bg-white">
+                <button type="button" class="btn btn-light fw-bold px-4 custom-btn" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary fw-bold px-5 shadow-sm custom-btn" onclick="SuperStaffManager.submitProvisioning(this)"><i class="fa-solid fa-user-check me-2"></i> Provision Staff Account</button>
             </div>
         </div>
     </div>

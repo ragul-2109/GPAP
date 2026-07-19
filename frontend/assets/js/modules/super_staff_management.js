@@ -66,12 +66,61 @@ const SuperStaffManager = (function() {
         showToast(`${currentStaffName}'s account has been successfully deactivated.`, 'success');
     }
 
+    function generatePassword(inputId) {
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        let password = "";
+        for (let i = 0, n = charset.length; i < 12; ++i) {
+            password += charset.charAt(Math.floor(Math.random() * n));
+        }
+        document.getElementById(inputId).value = password;
+    }
+
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        } else {
+            input.type = "password";
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        }
+    }
+
+    function submitProvisioning(btn) {
+        // Validate
+        const form1 = document.getElementById('staffDetailsForm');
+        const form2 = document.getElementById('staffSecurityForm');
+        if(!form1.checkValidity() || !form2.checkValidity()) {
+            form1.reportValidity();
+            form2.reportValidity();
+            return;
+        }
+        
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Provisioning...`;
+        btn.disabled = true;
+
+        setTimeout(() => {
+            getModal('addStaffModal').hide();
+            showToast('Staff Member Account successfully provisioned.', 'success');
+            
+            // Reset modal
+            btn.innerHTML = `<i class="fa-solid fa-user-check me-2"></i> Provision Staff Account`;
+            btn.disabled = false;
+            form1.reset();
+            form2.reset();
+        }, 1500);
+    }
+
     return {
         openAddStaffModal,
         openManageProfileModal,
         resetPassword,
         sendMessage,
-        deactivateAccount
+        deactivateAccount,
+        generatePassword,
+        togglePassword,
+        submitProvisioning
     };
 })();
 window.SuperStaffManager = SuperStaffManager;

@@ -42,11 +42,41 @@ const SuperCollegesManager = (function() {
         getModal('onboardCollegeModal').show();
     }
 
+    let currentManageCollege = '';
+
     function openManageModal(btn) {
         const row = btn.closest('tr');
         const collegeName = row.querySelector('td:first-child div[style*="font-weight: 600"]').innerText;
+        currentManageCollege = collegeName;
         document.getElementById('manageCollegeTitle').innerText = `Manage ${collegeName}`;
         getModal('manageCollegeModal').show();
+    }
+
+    function openAddAdminModal() {
+        getModal('manageCollegeModal').hide();
+        document.getElementById('newAdminCollegeName').innerText = currentManageCollege;
+        getModal('addCollegeAdminModal').show();
+    }
+
+    function submitNewAdmin(btn) {
+        const form = document.getElementById('newAdminForm');
+        if(!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Creating...`;
+        btn.disabled = true;
+
+        setTimeout(() => {
+            getModal('addCollegeAdminModal').hide();
+            showToast(`New admin account successfully created for ${currentManageCollege}.`, 'success');
+            
+            // Reset
+            btn.innerHTML = `<i class="fa-solid fa-user-check me-2"></i> Create Admin Account`;
+            btn.disabled = false;
+            form.reset();
+        }, 1200);
     }
 
     function openEditDetailsModal(btn) {
@@ -112,6 +142,52 @@ const SuperCollegesManager = (function() {
         }
     }
 
+    function generatePassword(inputId) {
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        let password = "";
+        for (let i = 0, n = charset.length; i < 12; ++i) {
+            password += charset.charAt(Math.floor(Math.random() * n));
+        }
+        document.getElementById(inputId).value = password;
+    }
+
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const icon = btn.querySelector('i');
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        } else {
+            input.type = "password";
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        }
+    }
+
+    function submitProvisioning(btn) {
+        // Validate
+        const form1 = document.getElementById('collegeDetailsForm');
+        const form2 = document.getElementById('collegeAdminForm');
+        if(!form1.checkValidity() || !form2.checkValidity()) {
+            form1.reportValidity();
+            form2.reportValidity();
+            return;
+        }
+        
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Provisioning...`;
+        btn.disabled = true;
+
+        setTimeout(() => {
+            getModal('onboardCollegeModal').hide();
+            showToast('College and Administrator Account successfully provisioned.', 'success');
+            
+            // Reset modal
+            btn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up me-2"></i> Create College & Admin`;
+            btn.disabled = false;
+            form1.reset();
+            form2.reset();
+        }, 1500);
+    }
+
     // Attach event listeners for filters
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
@@ -125,9 +201,14 @@ const SuperCollegesManager = (function() {
     return {
         openOnboardModal,
         openManageModal,
+        openAddAdminModal,
+        submitNewAdmin,
         openEditDetailsModal,
         toggleStatus,
-        applyFilters
+        applyFilters,
+        generatePassword,
+        togglePassword,
+        submitProvisioning
     };
 })();
 window.SuperCollegesManager = SuperCollegesManager;

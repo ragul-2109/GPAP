@@ -3,6 +3,7 @@
     display: flex;
     min-height: 100vh;
 }
+
 .login-left-pane {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
     padding: 3rem;
@@ -12,6 +13,7 @@
     position: relative;
     overflow: hidden;
 }
+
 .login-left-pane::before {
     content: '';
     position: absolute;
@@ -19,30 +21,40 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
     animation: rotate 20s linear infinite;
     pointer-events: none;
 }
+
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
+
 .login-right-pane {
     background: white;
     display: flex;
     flex-direction: column;
     padding: 2rem;
 }
+
 .login-form-container {
     max-width: 400px;
     width: 100%;
     margin: auto;
 }
+
 .role-tabs {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 2rem;
 }
+
 .role-tab {
     flex: 1;
     text-align: center;
@@ -55,6 +67,7 @@
     color: #64748b;
     transition: all 0.2s;
 }
+
 .role-tab.active {
     background: white;
     border-color: var(--primary-color);

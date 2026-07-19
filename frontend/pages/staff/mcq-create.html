@@ -1,111 +1,251 @@
-<div class="staff-mcq-create pb-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="staff-mcq-create pb-5 animation-fade-in">
+    <div class="page-header-actions mb-4 d-flex justify-content-between align-items-end flex-wrap gap-3">
         <div>
-            <h3 class="brand m-0">Create MCQ Test</h3>
-            <div class="text-muted small mt-1">Configure test parameters and assign questions</div>
+            <h3 class="brand m-0 fw-bold" style="background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Create MCQ Test</h3>
+            <div class="text-muted mt-1" style="font-size: 0.95rem;">Configure test parameters and assign questions</div>
         </div>
     </div>
 
     <div class="row g-4">
         <div class="col-12">
             <!-- Test Configuration Form -->
-            <div class="lux-card p-4 mb-4">
-                <h5 class="brand mb-4 border-bottom pb-2">1. Test Configuration</h5>
+            <div class="lux-card p-4 mb-4 border-0 shadow-sm" style="border-radius: 16px; background: linear-gradient(145deg, #ffffff, #f8fafc);">
+                <div class="d-flex align-items-center mb-4 pb-3 border-bottom border-light">
+                    <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa-solid fa-clipboard-list fs-5"></i>
+                    </div>
+                    <h5 class="m-0 fw-bold text-dark">1. Test Configuration</h5>
+                </div>
+                
                 <form id="createTestForm">
-                    <div class="row g-3">
+                    <div class="row g-4">
                         <div class="col-md-12">
-                            <label class="form-label small fw-semibold text-muted">Test Title</label>
-                            <input type="text" class="form-control" id="testTitle" required placeholder="e.g., Python Basics Midterm">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-semibold text-muted">Subject</label>
-                            <input type="text" class="form-control" id="testSubject" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-semibold text-muted">Topic</label>
-                            <input type="text" class="form-control" id="testTopic">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label small fw-semibold text-muted">Total Questions</label>
-                            <input type="number" class="form-control" id="testTotalQuestions" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label small fw-semibold text-muted">Total Marks</label>
-                            <input type="number" class="form-control" id="testTotalMarks" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label small fw-semibold text-muted">Duration (Minutes)</label>
-                            <input type="number" class="form-control" id="testDuration" required value="30">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-semibold text-muted">Passing Marks</label>
-                            <input type="number" class="form-control" id="testPassingMarks">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label small fw-semibold text-muted">Negative Marking (Marks per wrong answer)</label>
-                            <input type="number" step="0.1" class="form-control" id="testNegativeMarking" value="0">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Test Title</label>
+                            <input type="text" class="form-control custom-input" id="testTitle" required placeholder="e.g., Python Basics Midterm">
                         </div>
                         
-                        <div class="col-md-12 mt-4">
-                            <h6 class="brand mb-3">Security & Randomization Options</h6>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="shuffleQuestions" checked>
-                                        <label class="form-check-label" for="shuffleQuestions">Randomize Question Order</label>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Subject</label>
+                            <input type="text" class="form-control custom-input" id="testSubject" placeholder="e.g., Computer Science" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Topic</label>
+                            <input type="text" class="form-control custom-input" id="testTopic" placeholder="e.g., Data Structures">
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Total Questions</label>
+                            <input type="number" class="form-control custom-input" id="testTotalQuestions" required placeholder="e.g., 50">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Total Marks</label>
+                            <input type="number" class="form-control custom-input" id="testTotalMarks" required placeholder="e.g., 100">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Duration (Mins)</label>
+                            <input type="number" class="form-control custom-input" id="testDuration" required value="30">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Passing Marks</label>
+                            <input type="number" class="form-control custom-input" id="testPassingMarks" placeholder="e.g., 40">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-secondary text-uppercase tracking-wider">Negative Marking <span class="text-muted text-lowercase fw-normal">(marks per wrong answer)</span></label>
+                            <input type="number" step="0.1" class="form-control custom-input" id="testNegativeMarking" value="0">
+                        </div>
+                        
+                        <!-- Security & Randomization -->
+                        <div class="col-md-12 mt-5">
+                            <div class="p-4 rounded-3 border" style="background-color: #f8fafc; border-color: #e2e8f0 !important;">
+                                <h6 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                                    <i class="fa-solid fa-shield-halved text-primary me-2"></i> Security & Randomization Options
+                                </h6>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-between align-items-center p-2 rounded hover-bg-white transition-all">
+                                            <div>
+                                                <div class="fw-semibold text-dark">Randomize Question Order</div>
+                                                <div class="text-muted small">Show questions in different order for each student.</div>
+                                            </div>
+                                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                                <input class="form-check-input" type="checkbox" id="shuffleQuestions" checked style="cursor: pointer;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="shuffleOptions" checked>
-                                        <label class="form-check-label" for="shuffleOptions">Randomize Option Order</label>
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-between align-items-center p-2 rounded hover-bg-white transition-all">
+                                            <div>
+                                                <div class="fw-semibold text-dark">Randomize Option Order</div>
+                                                <div class="text-muted small">Shuffle the A/B/C/D choices for each question.</div>
+                                            </div>
+                                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                                <input class="form-check-input" type="checkbox" id="shuffleOptions" checked style="cursor: pointer;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="requireFullscreen" checked>
-                                        <label class="form-check-label" for="requireFullscreen">Require Fullscreen (Anti-cheating)</label>
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-between align-items-center p-2 rounded hover-bg-white transition-all">
+                                            <div>
+                                                <div class="fw-semibold text-dark">Require Fullscreen</div>
+                                                <div class="text-muted small">Force fullscreen mode to prevent tab switching.</div>
+                                            </div>
+                                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                                <input class="form-check-input" type="checkbox" id="requireFullscreen" checked style="cursor: pointer;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="allowCalculator">
-                                        <label class="form-check-label" for="allowCalculator">Allow On-screen Calculator</label>
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-between align-items-center p-2 rounded hover-bg-white transition-all">
+                                            <div>
+                                                <div class="fw-semibold text-dark">Allow On-screen Calculator</div>
+                                                <div class="text-muted small">Provide a built-in basic calculator during the test.</div>
+                                            </div>
+                                            <div class="form-check form-switch custom-switch fs-4 m-0">
+                                                <input class="form-check-input" type="checkbox" id="allowCalculator" style="cursor: pointer;">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-md-12 mt-4 text-end">
-                            <button type="submit" class="btn btn-primary px-4 shadow-sm">Save Test Configuration</button>
+                            <button type="submit" class="btn btn-primary px-5 py-2 fw-bold shadow-sm custom-btn">
+                                <i class="fa-solid fa-floppy-disk me-2"></i> Save Test Configuration
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
             
             <!-- Bulk Upload Questions -->
-            <div class="lux-card p-4">
-                <h5 class="brand mb-4 border-bottom pb-2">2. Upload Questions</h5>
-                <div class="alert alert-info border-0 rounded-3 d-flex align-items-center gap-3">
-                    <i class="fa-solid fa-circle-info fa-2x"></i>
+            <div class="lux-card p-4 border-0 shadow-sm" style="border-radius: 16px; background-color: #ffffff;">
+                <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-light">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded bg-success bg-opacity-10 text-success p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="fa-solid fa-cloud-arrow-up fs-5"></i>
+                        </div>
+                        <h5 class="m-0 fw-bold text-dark">2. Upload Questions</h5>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm fw-medium shadow-sm transition-all custom-btn-outline" onclick="StaffMCQCreate.downloadCSVTemplate()">
+                        <i class="fa-solid fa-download me-2"></i>Download CSV Template
+                    </button>
+                </div>
+
+                <div class="alert alert-info border-0 d-flex align-items-center gap-3 mb-4" style="background-color: #eff6ff; color: #1e40af; border-radius: 12px;">
+                    <i class="fa-solid fa-circle-info fs-3"></i>
                     <div>
-                        <div class="fw-bold">Upload Format</div>
-                        <small>Please upload a CSV file with columns: Question, Option A, Option B, Option C, Option D, Correct Answer, Explanation, Marks, Difficulty, Topic</small>
+                        <div class="fw-bold mb-1">Upload Format</div>
+                        <div style="font-size: 0.9rem;">Please upload a CSV file strictly matching this structure: <span class="font-monospace bg-white px-2 py-1 rounded border small ms-1">Question, Option A, Option B, Option C, Option D, Correct Answer, Explanation, Marks, Difficulty, Topic</span></div>
                     </div>
                 </div>
+
                 <form id="bulkUploadForm">
-                    <div class="d-flex mb-3">
-                        <button type="button" class="btn btn-outline-primary shadow-sm ms-auto" onclick="StaffMCQCreate.downloadCSVTemplate()">
-                            <i class="fa-solid fa-download me-2"></i>Download CSV Template
+                    <div class="upload-area position-relative p-5 text-center border rounded-4 bg-light transition-all" style="border: 2px dashed #cbd5e1 !important;" id="uploadArea">
+                        <input type="file" class="position-absolute top-0 start-0 w-100 h-100 opacity-0" id="questionFile" accept=".csv" required style="cursor: pointer;" onchange="updateFileName(this)">
+                        <div class="mb-3">
+                            <i class="fa-solid fa-file-csv text-primary opacity-75" style="font-size: 4rem;"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Drag & Drop or Click to Upload</h5>
+                        <p class="text-muted mb-0" id="fileNameDisplay">Supports .csv files only</p>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button class="btn btn-success px-5 py-2 fw-bold shadow-sm custom-btn" type="submit">
+                            <i class="fa-solid fa-upload me-2"></i> Upload & Process Questions
                         </button>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="questionFile" accept=".csv" required>
-                        <button class="btn btn-success" type="submit"><i class="fa-solid fa-upload me-2"></i>Upload</button>
-                    </div>
                 </form>
-                <div id="uploadStatus" class="mt-3"></div>
+                <div id="uploadStatus" class="mt-4"></div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .animation-fade-in {
+        animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .tracking-wider {
+        letter-spacing: 0.05em;
+    }
+    
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+    
+    .hover-bg-white:hover {
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Custom Inputs */
+    .custom-input {
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem 1rem;
+        background-color: #f8fafc;
+        transition: all 0.2s;
+    }
+    .custom-input:focus {
+        background-color: #ffffff;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+    
+    /* Custom Switch Styling */
+    .custom-switch .form-check-input {
+        height: 1.5em;
+        width: 3em;
+        background-color: #cbd5e1;
+        border-color: #cbd5e1;
+        box-shadow: none !important;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    .custom-switch .form-check-input:checked {
+        background-color: #3b82f6;
+        border-color: #3b82f6;
+    }
+    
+    /* Button Hover */
+    .custom-btn {
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+    .custom-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .custom-btn-outline:hover {
+        background-color: #eff6ff;
+        border-color: #2563eb;
+    }
+    
+    /* Upload Area */
+    .upload-area:hover {
+        background-color: #f1f5f9 !important;
+        border-color: #3b82f6 !important;
+    }
+</style>
+
+<script>
+    function updateFileName(input) {
+        const display = document.getElementById('fileNameDisplay');
+        const area = document.getElementById('uploadArea');
+        if (input.files && input.files.length > 0) {
+            display.innerHTML = `<span class="text-primary fw-bold"><i class="fa-solid fa-check me-2"></i> ${input.files[0].name}</span> selected`;
+            area.style.backgroundColor = '#eff6ff';
+            area.style.borderColor = '#3b82f6';
+        } else {
+            display.innerText = "Supports .csv files only";
+            area.style.backgroundColor = '#f8fafc';
+            area.style.borderColor = '#cbd5e1';
+        }
+    }
+</script>

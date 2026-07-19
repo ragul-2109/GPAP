@@ -1,5 +1,5 @@
 // Initialization
-window.setRole = function(role, element) {
+window.setRole = function (role, element) {
     document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
 
