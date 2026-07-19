@@ -9,7 +9,7 @@ from database import SessionLocal
 from models import User
 from passlib.context import CryptContext
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 def create_super_admin(email: str, password: str):
     db = SessionLocal()

@@ -6,6 +6,197 @@ from typing import List, Optional
 class Base(DeclarativeBase):
     pass
 
+
+class Role(Base):
+    __tablename__ = "roles"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
+    slug: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+    users: Mapped[List["AuthUser"]] = relationship(back_populates="role")
+    permissions: Mapped[List["RolePermission"]] = relationship(back_populates="role")
+
+
+class Permission(Base):
+    __tablename__ = "permissions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    code: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+    role_permissions: Mapped[List["RolePermission"]] = relationship(back_populates="permission")
+    staff_permissions: Mapped[List["StaffPermission"]] = relationship(back_populates="permission")
+
+
+class RolePermission(Base):
+    __tablename__ = "role_permissions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
+    permission_id: Mapped[int] = mapped_column(ForeignKey("permissions.id"), nullable=False)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+
+    role: Mapped["Role"] = relationship(back_populates="permissions")
+    permission: Mapped["Permission"] = relationship(back_populates="role_permissions")
+
+
+class AuthUser(Base):
+    __tablename__ = "auth_users"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    full_name: Mapped[str] = mapped_column(String(150), nullable=False)
+    email: Mapped[str] = mapped_column(String(150), unique=True, nullable=False)
+    username: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)
+    password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
+    role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
+    college_id: Mapped[int | None] = mapped_column(ForeignKey("colleges.id"), nullable=True)
+    register_number: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)
+    must_change_password: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    last_login_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+    role: Mapped["Role"] = relationship(back_populates="users")
+    college: Mapped[Optional["College"]] = relationship(back_populates="auth_users")
+    college_admin: Mapped[Optional["CollegeAdmin"]] = relationship(back_populates="user")
+    staff_profile: Mapped[Optional["StaffMember"]] = relationship(back_populates="user")
+    student_profile: Mapped[Optional["StudentRecord"]] = relationship(back_populates="user")
+
+
+class CollegeAdmin(Base):
+    __tablename__ = "college_admins"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("auth_users.id"), nullable=False, unique=True)
+    college_id: Mapped[int] = mapped_column(ForeignKey("colleges.id"), nullable=False)
+    is_primary: Mapped[bool] = mapped_column(Boolean, default=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+    user: Mapped["AuthUser"] = relationship(back_populates="college_admin")
+    college: Mapped["College"] = relationship(back_populates="college_admins")
+
+
+class StaffMember(Base):
+    __tablename__ = "staff"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("auth_users.id"), nullable=False, unique=True)
+    college_id: Mapped[int] = mapped_column(ForeignKey("colleges.id"), nullable=False)
+    employee_id: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    department: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    title: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+    user: Mapped["AuthUser"] = relationship(back_populates="staff_profile")
+    college: Mapped["College"] = relationship(back_populates="staff_members")
+    permissions: Mapped[List["StaffPermission"]] = relationship(back_populates="staff")
+
+
+class StudentRecord(Base):
+    __tablename__ = "students"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("auth_users.id"), nullable=False, unique=True)
+    college_id: Mapped[int] = mapped_column(ForeignKey("colleges.id"), nullable=False)
+    register_number: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    department: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    batch_year: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    section: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+    user: Mapped["AuthUser"] = relationship(back_populates="student_profile")
+    college: Mapped["College"] = relationship(back_populates="students")
+
+
+class StaffPermission(Base):
+    __tablename__ = "staff_permissions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    staff_id: Mapped[int] = mapped_column(ForeignKey("staff.id"), nullable=False)
+    permission_id: Mapped[int] = mapped_column(ForeignKey("permissions.id"), nullable=False)
+    is_granted: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+
+    staff: Mapped["StaffMember"] = relationship(back_populates="permissions")
+    permission: Mapped["Permission"] = relationship(back_populates="staff_permissions")
+
+
+class StudentResultRecord(Base):
+    __tablename__ = "rbac_student_results"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey("students.id"), nullable=False)
+    title: Mapped[str] = mapped_column(String(200), nullable=False)
+    status: Mapped[str] = mapped_column(String(50), default="Pending")
+    score: Mapped[float] = mapped_column(Float, default=0.0)
+    feedback: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+
+class AnalyticsRecord(Base):
+    __tablename__ = "analytics"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    college_id: Mapped[int | None] = mapped_column(ForeignKey("colleges.id"), nullable=True)
+    metric: Mapped[str] = mapped_column(String(100), nullable=False)
+    value: Mapped[float] = mapped_column(Float, default=0.0)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+
+class ReportRecord(Base):
+    __tablename__ = "reports"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    college_id: Mapped[int | None] = mapped_column(ForeignKey("colleges.id"), nullable=True)
+    generated_by_id: Mapped[int | None] = mapped_column(ForeignKey("auth_users.id"), nullable=True)
+    title: Mapped[str] = mapped_column(String(200), nullable=False)
+    report_type: Mapped[str] = mapped_column(String(100), nullable=False)
+    file_path: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+
+class AuditLog(Base):
+    __tablename__ = "audit_logs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int | None] = mapped_column(ForeignKey("auth_users.id"), nullable=True)
+    action: Mapped[str] = mapped_column(String(200), nullable=False)
+    target_type: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    target_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    detail: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
+
+
 class College(Base):
     __tablename__ = "colleges"
 
@@ -14,10 +205,17 @@ class College(Base):
     name: Mapped[str] = mapped_column(String(150), nullable=False)
     domain: Mapped[str | None] = mapped_column(String(150), nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
+    updated_at: Mapped[DateTime] = mapped_column(DateTime, default=func.now(), onupdate=func.now())
+    deleted_at: Mapped[DateTime | None] = mapped_column(DateTime, nullable=True)
 
     departments: Mapped[List["Department"]] = relationship(back_populates="college")
     users: Mapped[List["User"]] = relationship(back_populates="college")
     tests: Mapped[List["Test"]] = relationship(back_populates="college")
+    auth_users: Mapped[List["AuthUser"]] = relationship(back_populates="college")
+    college_admins: Mapped[List["CollegeAdmin"]] = relationship(back_populates="college")
+    staff_members: Mapped[List["StaffMember"]] = relationship(back_populates="college")
+    students: Mapped[List["StudentRecord"]] = relationship(back_populates="college")
 
 class Department(Base):
     __tablename__ = "departments"
@@ -229,7 +427,7 @@ class ActivityLog(Base):
     timestamp: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
 
 class Report(Base):
-    __tablename__ = "reports"
+    __tablename__ = "legacy_reports"
     
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     college_id: Mapped[int] = mapped_column(ForeignKey("colleges.id"), nullable=False)

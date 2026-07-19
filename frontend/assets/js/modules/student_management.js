@@ -22,14 +22,14 @@ const StudentManager = (function() {
         const nameDivs = tds[0].querySelectorAll('div');
         const name = nameDivs[0].innerText;
         const email = nameDivs[1].innerText;
-        const regId = tds[1].innerText;
+        const rollNumber = tds[1].innerText;
         const dept = tds[2].innerText;
         const batch = tds[3].innerText;
         const status = tds[4].innerText.trim();
 
         document.getElementById('studentName').value = name;
         document.getElementById('studentEmail').value = email;
-        document.getElementById('studentRegId').value = regId;
+        document.getElementById('studentRollNumber').value = rollNumber;
         document.getElementById('studentDept').value = dept;
         document.getElementById('studentBatch').value = batch;
         document.getElementById('studentStatus').value = status;
@@ -40,12 +40,12 @@ const StudentManager = (function() {
     function saveStudent() {
         const name = document.getElementById('studentName').value;
         const email = document.getElementById('studentEmail').value;
-        const regId = document.getElementById('studentRegId').value;
+        const rollNumber = document.getElementById('studentRollNumber').value;
         const dept = document.getElementById('studentDept').value;
         const batch = document.getElementById('studentBatch').value;
         const status = document.getElementById('studentStatus').value;
 
-        if (!name || !email || !regId || !dept || !batch) {
+        if (!name || !email || !rollNumber || !dept || !batch) {
             alert("Please fill in all required fields.");
             return;
         }
@@ -56,7 +56,7 @@ const StudentManager = (function() {
             // Update existing row
             const tds = currentEditRow.querySelectorAll('td');
             tds[0].innerHTML = `<div style="font-weight: 600; color: var(--primary-dark);">${name}</div><div class="text-muted" style="font-size: 0.8rem;">${email}</div>`;
-            tds[1].innerText = regId;
+            tds[1].innerText = rollNumber;
             tds[2].innerText = dept;
             tds[3].innerText = batch;
             tds[4].innerHTML = `<span class="status-pill ${statusClass}">${status}</span>`;
@@ -69,7 +69,7 @@ const StudentManager = (function() {
                     <div style="font-weight: 600; color: var(--primary-dark);">${name}</div>
                     <div class="text-muted" style="font-size: 0.8rem;">${email}</div>
                 </td>
-                <td>${regId}</td>
+                <td>${rollNumber}</td>
                 <td>${dept}</td>
                 <td>${batch}</td>
                 <td><span class="status-pill ${statusClass}">${status}</span></td>
@@ -101,25 +101,42 @@ const StudentManager = (function() {
         }
     }
 
-    function processBulkImport() {
+    async function processBulkImport() {
         const fileInput = document.getElementById('csvFileInput');
         if (!fileInput || !fileInput.files.length) {
             alert("Please select a CSV file first.");
             return;
         }
-        alert(`Importing students from ${fileInput.files[0].name}...`);
-        setTimeout(() => {
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        const token = localStorage.getItem('gpap_token');
+
+        try {
+            const response = await fetch('/api/super-admin/bulk-import/students', {
+                method: 'POST',
+                headers: token ? { Authorization: `Bearer ${token}` } : {},
+                body: formData
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                throw new Error(data.detail || 'Import failed');
+            }
             getModal('bulkImportModal').hide();
-            alert("Bulk import completed successfully! (Mocked)");
-        }, 800);
+            alert(`Imported ${data.imported || 0} student accounts. Default password: Welcome@123. Students must change it at first login.`);
+            fileInput.value = '';
+            document.getElementById('selectedFileName').innerText = 'No file selected';
+        } catch (error) {
+            alert(error.message || 'Bulk import failed.');
+        }
     }
 
     function downloadTemplate(e) {
         if (e) e.preventDefault();
-        const headers = ["Full Name", "Email Address", "Reg ID", "Department", "Batch", "Status"];
-        const sampleRow = ["John Doe", "john.doe@example.com", "CS2025099", "Computer Science", "2025", "Active"];
-        const csvContent = headers.join(",") + "\n" + sampleRow.join(",");
-        
+        const headers = ["roll_number", "full_name", "email", "college_name", "department", "batch_year", "section", "password"];
+        const sampleRow = ["CS23001", "John Doe", "john.doe@example.com", "GENFINIX", "Computer Science", "2025", "A", "Welcome@123"];
+        const csvContent = headers.join(",") + "\n" + sampleRow.join(",") + "\n";
+
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement("a");
         const url = URL.createObjectURL(blob);

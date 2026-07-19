@@ -77,22 +77,14 @@
                 <h2>Welcome Back!</h2>
                 <p>Sign in to continue to your account</p>
 
-                <div class="role-tabs">
-                    <div class="role-tab active" onclick="setRole('student', this)">
-                        <i class="fa-solid fa-user-graduate"></i>
-                        <span>Student</span>
+                <div class="role-tabs single-login-card">
+                    <div class="role-tab active" data-role="student" onclick="setRole('student', this)">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Student Login</span>
                     </div>
-                    <div class="role-tab" onclick="setRole('staff', this)">
-                        <i class="fa-regular fa-user"></i>
-                        <span>Staff</span>
-                    </div>
-                    <div class="role-tab" onclick="setRole('college', this)">
-                        <i class="fa-solid fa-building-columns"></i>
-                        <span>College Admin</span>
-                    </div>
-                    <div class="role-tab" onclick="setRole('super', this)">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>Super Admin</span>
+                    <div class="role-tab" data-role="staff" onclick="setRole('staff', this)">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>Staff Login</span>
                     </div>
                 </div>
 
@@ -100,23 +92,24 @@
                     <label class="login-label">Select Institute / College</label>
                     <div class="login-input-group">
                         <i class="fa-solid fa-building-columns left-icon"></i>
-                        <input id="collegeCode" type="text" class="login-input"
-                            placeholder="Choose your institute / college" value="EXCEL" required />
+                        <select id="collegeCode" class="login-input" required>
+                            <option value="" disabled selected>Loading institutes...</option>
+                        </select>
                         <i class="fa-solid fa-chevron-down right-icon" style="font-size:0.8rem;"></i>
                     </div>
 
                     <label class="login-label">Username / Email</label>
                     <div class="login-input-group">
                         <i class="fa-regular fa-user left-icon"></i>
-                        <input id="email" type="text" class="login-input" placeholder="Enter your username or email"
-                            value="student@gmail.com" required />
+                        <input id="email" type="text" class="login-input" placeholder="Enter the login email"
+                            value="" required />
                     </div>
 
                     <label class="login-label">Password</label>
                     <div class="login-input-group mb-2">
                         <i class="fa-solid fa-lock left-icon"></i>
-                        <input id="password" type="password" class="login-input" placeholder="Enter your password"
-                            value="student123" required />
+                        <input id="password" type="password" class="login-input" placeholder="Enter the password "
+                            value="" required />
                         <i class="fa-regular fa-eye right-icon"
                             onclick="const p=document.getElementById('password'); p.type=p.type==='password'?'text':'password';"></i>
                     </div>
@@ -152,8 +145,7 @@
 
                     <div class="text-center mt-4">
                         <p class="text-muted" style="font-size:0.9rem;">
-                            New here? Contact your <a href="#"
-                                class="text-primary text-decoration-none fw-semibold">college admin</a>
+                            Student login is now available here. Credentials are assigned by your college management.
                         </p>
                     </div>
                 </form>
@@ -492,9 +484,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/assets/js/modules/state.js?v=2"></script>
     <script src="/static/assets/js/modules/layout.js?v=2"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"
-        integrity="sha512-v48N5EAhqA+e0t8QeT4aTj8Oa/5oT12r/03i1RjQzQ/m+J4+098oN3Q7Tz5q+yP10a7M7x+4U3E/8+629Q+U+A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/assets/js/modules/router.js?v=2"></script>
     <script src="/static/assets/js/modules/auth.js?v=2"></script>
@@ -508,11 +498,10 @@
     <script src="/static/assets/js/modules/staff_mcq_create.js?v=1"></script>
     <script src="/static/assets/js/modules/export_results.js?v=1"></script>
     <script src="/static/assets/js/modules/dashboard_management.js?v=1"></script>
+    <script src="/static/assets/js/modules/super_dashboard_management.js?v=1"></script>
     <script src="/static/assets/js/modules/student_profile.js?v=1"></script>
     <script src="/static/assets/js/modules/student_management.js?v=1"></script>
     <script src="/static/assets/js/modules/department_management.js?v=1"></script>
-    <script src="/static/assets/js/modules/dashboard_management.js?v=1"></script>
-    <script src="/static/assets/js/modules/super_dashboard_management.js?v=1"></script>
     <script src="/static/assets/js/modules/super_colleges_management.js?v=1"></script>
     <script src="/static/assets/js/modules/super_staff_management.js?v=1"></script>
     <script src="/static/assets/js/modules/super_subscriptions_management.js?v=1"></script>

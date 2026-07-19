@@ -34,9 +34,9 @@
                 <thead>
                     <tr>
                         <th>Student Name</th>
-                        <th>Reg ID</th>
+                        <th>Roll Number</th>
                         <th>Department</th>
-                        <th>Batch</th>
+                        <th>Batch Year</th>
                         <th>Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
@@ -111,11 +111,11 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-6">
-                            <label class="form-label text-muted small fw-bold">Reg ID</label>
-                            <input type="text" class="form-control" id="studentRegId" required>
+                            <label class="form-label text-muted small fw-bold">Roll Number</label>
+                            <input type="text" class="form-control" id="studentRollNumber" required>
                         </div>
                         <div class="col-6">
-                            <label class="form-label text-muted small fw-bold">Batch</label>
+                            <label class="form-label text-muted small fw-bold">Batch Year</label>
                             <input type="text" class="form-control" id="studentBatch" required>
                         </div>
                     </div>
@@ -151,6 +151,12 @@
                 <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="alert alert-info border-0 bg-primary bg-opacity-10 mb-3">
+                    CSV columns supported: roll_number, full_name, email, college_name, department, batch_year, section, password
+                </div>
+                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 mb-3">
+                    Imported student accounts receive the default password <strong>Welcome@123</strong> unless a custom <strong>password</strong> column is provided. Students must change it on first login.
+                </div>
                 <div class="p-4 border rounded bg-light text-center mb-4 border-dashed">
                     <i class="fa-solid fa-cloud-arrow-up fs-1 text-primary mb-2"></i>
                     <h6 class="fw-bold text-dark">Upload CSV File</h6>
@@ -174,4 +180,4 @@
         </div>
     </div>
 </div>
-
+

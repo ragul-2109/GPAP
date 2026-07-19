@@ -42,6 +42,10 @@ const SuperStaffManager = (function() {
         getModal('addStaffModal').show();
     }
 
+    function openBulkModal() {
+        getModal('bulkStaffModal').show();
+    }
+
     let currentStaffName = '';
 
     function openManageProfileModal(btn) {
@@ -87,6 +91,35 @@ const SuperStaffManager = (function() {
         }
     }
 
+    async function uploadBulkStaff() {
+        const fileInput = document.getElementById('bulkStaffFile');
+        if (!fileInput || !fileInput.files.length) {
+            showToast('Please select a CSV file before importing.', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        const token = localStorage.getItem('gpap_token');
+
+        try {
+            const response = await fetch('/api/super-admin/bulk-import/staff', {
+                method: 'POST',
+                headers: token ? { Authorization: `Bearer ${token}` } : {},
+                body: formData
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                throw new Error(data.detail || 'Import failed');
+            }
+            getModal('bulkStaffModal').hide();
+            showToast(`Imported ${data.imported || 0} staff accounts.`, 'success');
+            fileInput.value = '';
+        } catch (error) {
+            showToast(error.message || 'Bulk import failed.', 'error');
+        }
+    }
+
     function submitProvisioning(btn) {
         // Validate
         const form1 = document.getElementById('staffDetailsForm');
@@ -114,6 +147,8 @@ const SuperStaffManager = (function() {
 
     return {
         openAddStaffModal,
+        openBulkModal,
+        uploadBulkStaff,
         openManageProfileModal,
         resetPassword,
         sendMessage,

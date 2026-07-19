@@ -1,34 +1,29 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from database import get_db
+from models import College
 
 router = APIRouter(prefix="/api/colleges", tags=["colleges"])
 
+
 @router.get("/")
-def get_colleges():
+def get_colleges(db: Session = Depends(get_db)):
+    try:
+        colleges = db.query(College).order_by(College.name).all()
+    except Exception as exc:
+        print(f"Unable to load colleges: {exc}")
+        return {"colleges": []}
+
     return {
         "colleges": [
             {
-                "id": "GENFINIX",
-                "name": "Genfinix Institute",
-                "location": "New York, NY",
-                "students": 1250,
-                "plan": "Enterprise",
-                "status": "Active"
-            },
-            {
-                "id": "XYZTECH",
-                "name": "XYZ Tech University",
-                "location": "San Francisco, CA",
-                "students": 4500,
-                "plan": "Pro",
-                "status": "Active"
-            },
-            {
-                "id": "GEC_TX",
-                "name": "Global Engineering College",
-                "location": "Austin, TX",
-                "students": 850,
-                "plan": "Basic",
-                "status": "Inactive"
+                "id": college.code,
+                "code": college.code,
+                "name": college.name,
+                "location": college.domain or "",
+                "status": "Active" if college.is_active else "Inactive",
             }
+            for college in colleges
         ]
     }

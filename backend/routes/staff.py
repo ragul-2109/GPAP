@@ -1,6 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from jose import jwt
+from sqlalchemy.orm import Session
+
+from config import settings
+from database import get_db
+from routes.auth import get_current_user
+from schemas import UserProfile
 
 router = APIRouter(prefix="/api/staff", tags=["staff"])
+security = HTTPBearer(auto_error=False)
+
 
 @router.get("/")
 def get_staff():
@@ -37,3 +47,19 @@ def get_staff():
             }
         ]
     }
+
+
+@router.post("/assignments", status_code=status.HTTP_200_OK)
+def manage_staff_assignment(
+    payload: dict,
+    credentials: HTTPAuthorizationCredentials | None = Depends(security),
+    current_user: UserProfile = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    if current_user.role != "super_admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Only Super Admin can manage Genfinix staff assignments",
+        )
+
+    return {"message": "Staff assignment updated", "payload": payload}

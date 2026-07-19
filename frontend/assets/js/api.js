@@ -28,8 +28,8 @@ class ApiClient {
 
       if (!response.ok) {
         if (response.status === 401) {
-          // Handle unauthorized (redirect to login)
-          window.location.href = '/pages/auth/login.html';
+          // Handle unauthorized by sending the user back to the unified entry page
+          window.location.href = '/';
         }
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.detail || 'API Request Failed');

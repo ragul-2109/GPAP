@@ -134,9 +134,11 @@ async function fetchUserProfile() {
         appState.selectedRole = appState.user.role;
         
         const topNavAvatar = document.getElementById('top-nav-avatar');
-        if (topNavAvatar && appState.user && appState.user.full_name) {
-            topNavAvatar.innerText = appState.user.full_name.charAt(0).toUpperCase();
-            
+        if (topNavAvatar && appState.user) {
+            const roleInitial = appState.selectedRole ? appState.selectedRole.charAt(0).toUpperCase() : '';
+            const nameInitial = appState.user.full_name ? appState.user.full_name.trim().charAt(0).toUpperCase() : '';
+            topNavAvatar.innerText = roleInitial || nameInitial || 'U';
+
             // Apply dynamic colors based on role
             topNavAvatar.className = 'text-white rounded-circle d-flex align-items-center justify-content-center fw-bold shadow-sm';
             if (appState.selectedRole === 'student') topNavAvatar.classList.add('bg-primary');

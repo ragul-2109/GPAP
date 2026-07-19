@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPAP Login</title>
+  <link rel="stylesheet" href="/static/assets/css/main.css" />
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f7fb; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: min(420px, 90vw); }
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab { flex: 1; border: 1px solid #d7dce5; border-radius: 8px; padding: 0.7rem; text-align: center; cursor: pointer; background: #f8fafc; }
+    .tab.active { background: #2563eb; color: white; border-color: #2563eb; }
+    .field { margin-bottom: 0.9rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    input, select { padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; }
+    button { width: 100%; padding: 0.8rem; border: none; border-radius: 8px; background: #2563eb; color: white; cursor: pointer; }
+    .hint { font-size: 0.9rem; color: #64748b; margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Welcome to GPAP</h2>
+    <p>Select your access point.</p>
+    <div class="tabs">
+      <div class="tab active" data-role="staff">Staff / Admin Login</div>
+      <div class="tab" data-role="student">Student Login</div>
+    </div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="identifier">Email or Username</label>
+        <input id="identifier" name="identifier" required />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required />
+      </div>
+      <div class="field">
+        <label for="collegeCode">College Code</label>
+        <input id="collegeCode" name="collegeCode" placeholder="GENFINIX" />
+      </div>
+      <button type="submit">Sign In</button>
+      <div class="hint">Staff, college admin, and super admin access now use the same sign-in option.</div>
+    </form>
+  </div>
+
+  <script src="/static/assets/js/auth.js"></script>
+  <script>
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    let selectedRole = 'staff';
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        selectedRole = tab.dataset.role;
+      });
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const identifier = document.getElementById('identifier').value;
+      const password = document.getElementById('password').value;
+      const collegeCode = document.getElementById('collegeCode').value;
+      const payload = {
+        password,
+        role: selectedRole,
+        college_code: collegeCode || undefined,
+      };
+      if (identifier.includes('@')) payload.email = identifier; else payload.username = identifier;
+      const result = await window.gpapAuth.login(payload);
+      if (result.ok) {
+        window.location.href = selectedRole === 'student' ? '/student/dashboard.html' : '/staff/dashboard.html';
+      }
+    });
+  </script>
+</body>
+</html>

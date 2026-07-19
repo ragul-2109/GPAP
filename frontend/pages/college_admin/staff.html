@@ -1,136 +1,42 @@
 <div>
     <div class="page-header-actions">
         <div>
-            <h4 class="brand m-0">Assign Genfinix Staff</h4>
-            <div class="text-muted" style="font-size: 0.9rem;">Manage platform trainers and assign them to specific departments.</div>
-        </div>
-        <div>
-            <button class="btn btn-primary" onclick="StaffManager.openRequestStaffModal()"><i class="fa-solid fa-user-plus"></i> Request New Staff</button>
+            <h4 class="brand m-0">Assigned Genfinix Staff</h4>
+            <div class="text-muted" style="font-size: 0.9rem;">View the Genfinix staff currently assigned to this college. Assignment management is restricted to the Super Admin.</div>
         </div>
     </div>
 
     <div class="lux-card p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h5 class="m-0">Assigned Staff</h5>
-            <div class="input-group" style="max-width: 250px;">
-                <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
-                <input type="text" class="form-control border-start-0 ps-0" placeholder="Search staff...">
-            </div>
-        </div>
-
-        <div class="staff-assignment-list">
-            <div class="staff-card">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="staff-avatar">RS</div>
-                    <div>
-                        <div style="font-weight:600; font-size: 1.05rem;">Robert Smith</div>
-                        <div class="text-muted" style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> r.smith@genfinix.com</div>
-                        <div class="mt-1">
-                            <span class="badge bg-light text-dark border"><i class="fa-solid fa-code text-primary"></i> Data Structures</span>
-                            <span class="badge bg-light text-dark border"><i class="fa-solid fa-code text-primary"></i> Java</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-end">
-                    <div class="mb-2"><span class="status-pill status-active">Currently Assigned</span></div>
-                    <div class="text-muted mb-2" style="font-size: 0.8rem;">Depts: <strong>CSE, IT</strong></div>
-                    <button class="btn btn-outline-primary btn-sm w-100" onclick="StaffManager.openManageAssignmentModal(this)">Manage Department</button>
+        <div class="border rounded-4 p-4 bg-light">
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="staff-avatar bg-primary text-white">RS</div>
+                <div>
+                    <h5 class="mb-1">Robert Smith</h5>
+                    <div class="text-muted small">Senior Technical Trainer</div>
                 </div>
             </div>
 
-            <div class="staff-card">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="staff-avatar" style="color: #10b981;">EM</div>
-                    <div>
-                        <div style="font-weight:600; font-size: 1.05rem;">Emily Martinez</div>
-                        <div class="text-muted" style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> emily.m@genfinix.com</div>
-                        <div class="mt-1">
-                            <span class="badge bg-light text-dark border"><i class="fa-solid fa-chart-pie text-success"></i> Quantitative Aptitude</span>
-                            <span class="badge bg-light text-dark border"><i class="fa-solid fa-comments text-success"></i> Soft Skills</span>
-                        </div>
-                    </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="text-muted small text-uppercase fw-bold mb-1">Employee ID</div>
+                    <div class="fw-semibold">EMP-1001</div>
                 </div>
-                <div class="text-end">
-                    <div class="mb-2"><span class="status-pill status-active">Currently Assigned</span></div>
-                    <div class="text-muted mb-2" style="font-size: 0.8rem;">Depts: <strong>ALL</strong></div>
-                    <button class="btn btn-outline-primary btn-sm w-100" onclick="StaffManager.openManageAssignmentModal(this)">Manage Department</button>
+                <div class="col-md-6">
+                    <div class="text-muted small text-uppercase fw-bold mb-1">Email</div>
+                    <div class="fw-semibold">r.smith@genfinix.com</div>
                 </div>
-            </div>
-
-            <div class="staff-card">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="staff-avatar" style="color: #f59e0b;">AL</div>
-                    <div>
-                        <div style="font-weight:600; font-size: 1.05rem;">Aaron Lee</div>
-                        <div class="text-muted" style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> a.lee@genfinix.com</div>
-                        <div class="mt-1">
-                            <span class="badge bg-light text-dark border"><i class="fa-solid fa-microchip text-warning"></i> Embedded Systems</span>
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                    <div class="text-muted small text-uppercase fw-bold mb-1">Department</div>
+                    <div class="fw-semibold">Data Structures & Java</div>
                 </div>
-                <div class="text-end">
-                    <div class="mb-2"><span class="status-pill status-inactive">Not Assigned</span></div>
-                    <div class="text-muted mb-2" style="font-size: 0.8rem;">Depts: <strong>None</strong></div>
-                    <button class="btn btn-primary btn-sm w-100" onclick="StaffManager.openManageAssignmentModal(this)">Assign Now</button>
+                <div class="col-md-6">
+                    <div class="text-muted small text-uppercase fw-bold mb-1">Designation</div>
+                    <div class="fw-semibold">Senior Technical Trainer</div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Request Staff Modal -->
-<div class="modal fade" id="requestStaffModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0 pb-0">
-                <h5 class="modal-title fw-bold">Request New Staff</h5>
-                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="requestStaffForm">
-                    <div class="mb-3">
-                        <label class="form-label text-muted small fw-bold">Required Specialization / Subject</label>
-                        <input type="text" class="form-control" id="staffSpecialization" placeholder="e.g. Python & ML" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label text-muted small fw-bold">Additional Message (Optional)</label>
-                        <textarea class="form-control" id="staffMessage" rows="3" placeholder="Provide any extra details or requirements for this role..."></textarea>
-                    </div>
-                    <button type="button" class="btn btn-primary w-100" onclick="StaffManager.submitStaffRequest()"><i class="fa-solid fa-paper-plane me-1"></i> Send Request to Genfinix</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Assign Staff Modal -->
-<div class="modal fade" id="assignStaffModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0 pb-0">
-                <h6 class="modal-title fw-bold" id="assignStaffModalTitle">Assign Departments</h6>
-                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body pb-0">
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" id="deptCSE">
-                    <label class="form-check-label" for="deptCSE">Computer Science & Eng. (CSE)</label>
+                <div class="col-md-12">
+                    <div class="text-muted small text-uppercase fw-bold mb-1">Status</div>
+                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 rounded-pill px-3 py-2">Active</span>
                 </div>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" id="deptIT">
-                    <label class="form-check-label" for="deptIT">Information Technology (IT)</label>
-                </div>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" id="deptECE">
-                    <label class="form-check-label" for="deptECE">Electronics & Comm. (ECE)</label>
-                </div>
-                <div class="form-check mb-4">
-                    <input class="form-check-input" type="checkbox" id="deptMECH">
-                    <label class="form-check-label" for="deptMECH">Mechanical Engineering (MECH)</label>
-                </div>
-            </div>
-            <div class="modal-footer border-top-0 pt-0">
-                <button type="button" class="btn btn-primary w-100" onclick="StaffManager.saveAssignment()">Save Assignment</button>
             </div>
         </div>
     </div>

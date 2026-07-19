@@ -42,6 +42,10 @@ const SuperStudentsManager = (function() {
         getModal('provisionStudentModal').show();
     }
 
+    function openBulkModal() {
+        getModal('bulkStudentModal').show();
+    }
+
     function openGlobalProfile(btn) {
         const row = btn.closest('tr');
         const studentName = row.querySelector('td:first-child div[style*="font-weight: 600"]').innerText;
@@ -118,6 +122,35 @@ const SuperStudentsManager = (function() {
         }
     }
 
+    async function uploadBulkStudents() {
+        const fileInput = document.getElementById('bulkStudentFile');
+        if (!fileInput || !fileInput.files.length) {
+            showToast('Please select a CSV file before importing.', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        const token = localStorage.getItem('gpap_token');
+
+        try {
+            const response = await fetch('/api/super-admin/bulk-import/students', {
+                method: 'POST',
+                headers: token ? { Authorization: `Bearer ${token}` } : {},
+                body: formData
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                throw new Error(data.detail || 'Import failed');
+            }
+            getModal('bulkStudentModal').hide();
+            showToast(`Imported ${data.imported || 0} student accounts. Default password: Welcome@123. Students must change it at first login.`, 'success');
+            fileInput.value = '';
+        } catch (error) {
+            showToast(error.message || 'Bulk import failed.', 'error');
+        }
+    }
+
     function submitProvisioning(btn) {
         // Validate
         const form1 = document.getElementById('studentAcademicForm');
@@ -146,6 +179,8 @@ const SuperStudentsManager = (function() {
     return {
         openGlobalProfile,
         openProvisionModal,
+        openBulkModal,
+        uploadBulkStudents,
         applyFilters,
         generatePassword,
         togglePassword,

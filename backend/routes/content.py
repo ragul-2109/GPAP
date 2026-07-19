@@ -1,4 +1,8 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy.orm import Session
+
+from database import get_db
+from models import QuestionBank
 
 router = APIRouter(prefix="/api/content", tags=["content"])
 
@@ -48,7 +52,27 @@ def get_overview(role: str | None = Query(default="student")):
 
 
 @router.get("/mcq")
-def get_mcq_questions():
+def get_mcq_questions(db: Session = Depends(get_db)):
+    questions = db.query(QuestionBank).filter(QuestionBank.is_active.is_(True)).limit(10).all()
+    if questions:
+        result = []
+        for q in questions:
+            options = []
+            if isinstance(q.options, dict):
+                options = [q.options.get(k, "") for k in ["A", "B", "C", "D"]]
+            elif isinstance(q.options, list):
+                options = q.options
+            else:
+                options = []
+
+            result.append({
+                "id": q.id,
+                "prompt": q.prompt,
+                "options": [opt for opt in options if opt is not None],
+                "answer": q.correct_answer,
+            })
+        return {"questions": result}
+
     return {
         "questions": [
             {

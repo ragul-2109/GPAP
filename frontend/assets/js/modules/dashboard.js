@@ -6,18 +6,28 @@ async function loadDashboardSummary() {
         });
         const data = await response.json();
         const stats = data.stats || {};
-        document.getElementById('statsTests').textContent = stats.tests || 0;
-        document.getElementById('statsScore').textContent = `${stats.avg_score || 0}%`;
-        document.getElementById('statsPlacements').textContent = stats.placements || 0;
-
+        const statsTestsEl = document.getElementById('statsTests');
+        const statsScoreEl = document.getElementById('statsScore');
+        const statsPlacementsEl = document.getElementById('statsPlacements');
         const overview = document.getElementById('overviewCards');
-        overview.innerHTML = '';
-        (data.overview || []).forEach((item) => {
-            const card = document.createElement('div');
-            card.className = 'col-md-6';
-            card.innerHTML = `<div class="p-3 border rounded-3 bg-light h-100"><h6 class="text-muted mb-2">${item.title}</h6><div class="fs-4 brand">${item.value}</div></div>`;
-            overview.appendChild(card);
-        });
+
+        if (!statsTestsEl && !statsScoreEl && !statsPlacementsEl && !overview) {
+            return;
+        }
+
+        if (statsTestsEl) statsTestsEl.textContent = stats.tests || 0;
+        if (statsScoreEl) statsScoreEl.textContent = `${stats.avg_score || 0}%`;
+        if (statsPlacementsEl) statsPlacementsEl.textContent = stats.placements || 0;
+
+        if (overview) {
+            overview.innerHTML = '';
+            (data.overview || []).forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'col-md-6';
+                card.innerHTML = `<div class="p-3 border rounded-3 bg-light h-100"><h6 class="text-muted mb-2">${item.title}</h6><div class="fs-4 brand">${item.value}</div></div>`;
+                overview.appendChild(card);
+            });
+        }
     } catch (e) {
         console.error("Dashboard fetch error", e);
     }

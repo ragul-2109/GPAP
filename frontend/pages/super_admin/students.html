@@ -4,7 +4,8 @@
             <h4 class="brand m-0">Global Student Database</h4>
             <div class="text-muted" style="font-size: 0.9rem;">Search and view any student across all registered colleges on the platform.</div>
         </div>
-        <div>
+        <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-primary" onclick="SuperStudentsManager.openBulkModal()"><i class="fa-solid fa-file-csv"></i> Bulk Import CSV</button>
             <button class="btn btn-primary" onclick="SuperStudentsManager.openProvisionModal()"><i class="fa-solid fa-user-graduate"></i> Provision Student Account</button>
         </div>
     </div>
@@ -88,6 +89,35 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bulkStudentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+            <div class="modal-header border-bottom bg-light p-4">
+                <h4 class="modal-title fw-bold text-dark d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 text-primary rounded p-2 me-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                        <i class="fa-solid fa-file-csv"></i>
+                    </div>
+                    Bulk Import Student Accounts
+                </h4>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="alert alert-info border-0 bg-primary bg-opacity-10">
+                    CSV columns supported: roll_number, full_name, email, college_name, department, batch_year, section
+                </div>
+                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 mt-2">
+                    Imported student accounts receive the default password <strong>Welcome@123</strong> and will be required to change it on first login.
+                </div>
+                <input type="file" id="bulkStudentFile" class="form-control" accept=".csv" />
+            </div>
+            <div class="modal-footer border-top p-4 bg-white">
+                <button type="button" class="btn btn-light fw-bold px-4" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary fw-bold px-5" onclick="SuperStudentsManager.uploadBulkStudents()"><i class="fa-solid fa-cloud-arrow-up me-2"></i> Import CSV</button>
+            </div>
         </div>
     </div>
 </div>

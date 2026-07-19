@@ -160,6 +160,78 @@
             </div>
         </div>
     </div>
+
+    <div class="col-12">
+        <div class="lux-card p-4 mb-4 border-0 shadow-sm" style="border-radius: 16px; background-color: #ffffff;">
+            <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-light">
+                <div class="d-flex align-items-center">
+                    <div class="rounded bg-primary bg-opacity-10 text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="fa-solid fa-chart-line fs-5"></i>
+                    </div>
+                    <div>
+                        <h5 class="m-0 fw-bold text-dark">3. Live Test Progress</h5>
+                        <div class="text-muted small">Track student completion and follow the current test status.</div>
+                    </div>
+                </div>
+                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="StaffMCQCreate.refreshProgress()">Refresh</button>
+            </div>
+
+            <div class="row g-3 mb-4" id="test-progress-summary">
+                <div class="col-md-4">
+                    <div class="p-3 rounded-3 bg-light text-center">
+                        <div class="text-muted small text-uppercase mb-1">Total Tests</div>
+                        <div class="fs-3 fw-bold" id="progress-total-tests">0</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 rounded-3 bg-light text-center">
+                        <div class="text-muted small text-uppercase mb-1">Active Tests</div>
+                        <div class="fs-3 fw-bold" id="progress-active-tests">0</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 rounded-3 bg-light text-center">
+                        <div class="text-muted small text-uppercase mb-1">Completed Tests</div>
+                        <div class="fs-3 fw-bold" id="progress-completed-tests">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr class="text-muted small text-uppercase" style="letter-spacing:1px;">
+                            <th>Test Title</th>
+                            <th>Status</th>
+                            <th>Questions</th>
+                            <th>Total Marks</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="test-progress-list">
+                        <tr><td colspan="5" class="text-center text-muted py-4">Loading test progress ...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Live Progress Modal -->
+<div class="modal fade" id="testProgressModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title fw-bold" id="testProgressModalLabel">Live Progress</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" id="testProgressModalBody">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
